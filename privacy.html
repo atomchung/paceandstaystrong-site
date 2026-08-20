@@ -12,7 +12,7 @@
     <a href="index.html">← Long Run Hybrid Coach</a>
     <header>
       <h1>Privacy Policy</h1>
-      <p class="meta">Last updated: 14 August 2026 · Operated by an independent developer in Taiwan.</p>
+      <p class="meta">Last updated: 20 August 2026 · Operated by an independent developer in Taiwan.</p>
     </header>
 
     <p>This policy explains what Long Run Hybrid Coach processes, why it is needed, where it goes, and how to revoke access or request deletion.</p>
@@ -24,11 +24,13 @@
       <tr><td>Available wellness summaries</td><td>Inform coaching judgment when the evidence is present and current. Missing or stale fields remain unknown.</td></tr>
       <tr><td>Planned calendar workouts</td><td>Read the current calendar, prevent duplicate ownership conflicts, and publish only workouts you approved.</td></tr>
       <tr><td>Goals, constraints, and preferences</td><td>Make the plan usable for your schedule and stated direction.</td></tr>
+      <tr><td>Training and body records you report</td><td>Keep what no device records: strength sets you report, sessions you describe, body weight or body fat you state, and training-history files you upload. Each is stored as your own statement, never as a provider actual, and you can retract it.</td></tr>
+      <tr><td>How you say you feel, and recovery numbers you state</td><td>Inform coaching judgment in your own words — including heart-rate, HRV, or sleep values you read off your device. Stated feelings are kept until you retract or delete them; stated recovery numbers are used in that conversation and persist only inside the context a recorded plan decision keeps.</td></tr>
       <tr><td>OAuth authorization</td><td>Access your Intervals.icu account within the scopes you grant. Your Intervals.icu password is never collected.</td></tr>
     </table>
 
     <h2>2. Storage and authorization</h2>
-    <p>When a hosted gateway is used, it stores owner-scoped training state, including plans, decisions, approvals, and observable delivery receipts. Provider identity and a keyed token fingerprint are stored separately so requests can be resolved to the same owner.</p>
+    <p>When a hosted gateway is used, it stores owner-scoped training state, including plans, decisions, approvals, observable delivery receipts, and the training evidence you report yourself. Provider identity and a keyed token fingerprint are stored separately so requests can be resolved to the same owner.</p>
     <p>The raw Intervals.icu OAuth access token is used for the authorized request but is not written to the state store or application logs. The OAuth client secret stays server-side and is not exposed to the active AI interface.</p>
 
     <h2>3. AI processing</h2>
