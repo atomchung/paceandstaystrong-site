@@ -3,21 +3,31 @@
 Public static website for the personal GitHub project **Long Run Hybrid Coach**.
 
 Long Run Hybrid Coach is an independent, Intervals-first, device-agnostic running and
-strength coaching project. This repository publishes the public overview, privacy policy,
-terms of service, and public assets. It is not the coaching runtime and has no access to
-athlete state, provider credentials, gateway secrets, or deployment volumes.
+strength coaching project. This repository publishes the short public product overview,
+privacy policy, terms of service, support page, and public assets. It is not the coaching
+runtime and has no access to athlete state, provider credentials, gateway secrets, or
+deployment volumes.
+
+The website explains only the stable first-layer product story: what the Coach is, why
+Intervals.icu is currently part of the loop, that Garmin is not a prerequisite, and the
+choice between the hosted MCP and a self-hosted gateway. The core repository README is the
+canonical detailed onboarding guide and owns per-client setup, capability boundaries, and
+current verification status.
 
 ## Repository boundaries
 
-- Product runtime, contracts, tests, evals, entrypoints, and gateway release operations:
+- Product runtime, contracts, tests, evals, entrypoints, detailed onboarding, and gateway
+  release operations:
   [`long-run-hybrid-coach`](https://github.com/atomchung/long-run-hybrid-coach)
 - Brand decisions, application records, GTM notes, and master assets: the private
   `garmin-coach-loop-venture` workspace
-- Public pages and published assets: this repository
+- Public landing page, policy/support pages, and published assets: this repository
 
 Capability claims on this site must remain consistent with the current core release. A
 runtime or data-boundary change is made in the core repository first, then reflected here.
-Copy-only changes stay in this repository and do not create a gateway release.
+Copy-only changes stay in this repository and do not create a gateway release. Platform-
+specific setup details should not be duplicated here when the core README can own them in
+one place.
 
 ## Local verification
 
