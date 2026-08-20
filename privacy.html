@@ -15,7 +15,7 @@
       <p class="meta">Last updated: 20 August 2026 · Operated by an independent developer in Taiwan.</p>
     </header>
 
-    <p>This policy explains what Long Run Hybrid Coach processes, why it is needed, where it goes, and how to revoke access or request deletion.</p>
+    <p>This policy explains what Long Run Hybrid Coach processes, why it is needed, where it goes, and how to revoke access or delete product-held data.</p>
 
     <h2>1. Data processed and purpose</h2>
     <table>
@@ -24,42 +24,43 @@
       <tr><td>Available wellness summaries</td><td>Inform coaching judgment when the evidence is present and current. Missing or stale fields remain unknown.</td></tr>
       <tr><td>Planned calendar workouts</td><td>Read the current calendar, prevent duplicate ownership conflicts, and publish only workouts you approved.</td></tr>
       <tr><td>Goals, constraints, and preferences</td><td>Make the plan usable for your schedule and stated direction.</td></tr>
-      <tr><td>Training and body records you report</td><td>Keep what no device records: strength sets you report, sessions you describe, body weight or body fat you state, and training-history files you upload. Each is stored as your own statement, never as a provider actual, and you can retract it.</td></tr>
-      <tr><td>How you say you feel, and recovery numbers you state</td><td>Inform coaching judgment in your own words — including heart-rate, HRV, or sleep values you read off your device. Stated feelings are kept until you retract or delete them; stated recovery numbers are used in that conversation and persist only inside the context a recorded plan decision keeps.</td></tr>
+      <tr><td>Training and body records you report</td><td>Keep what no device records: strength sets you report, sessions you describe, body weight or body fat you state, and training-history files you upload. Each is stored as athlete-reported evidence, never silently upgraded into a provider actual. Supported records can be corrected or retracted through the coach.</td></tr>
+      <tr><td>How you say you feel, and recovery numbers you state</td><td>Inform coaching judgment in your own words — including heart-rate, HRV, or sleep values you read off your device. Subjective statements are stored as statements rather than translated into a score. Request-scoped recovery readings are used for that coaching turn and are not kept as a raw provider upload.</td></tr>
       <tr><td>OAuth authorization</td><td>Access your Intervals.icu account within the scopes you grant. Your Intervals.icu password is never collected.</td></tr>
     </table>
 
     <h2>2. Storage and authorization</h2>
-    <p>When a hosted gateway is used, it stores owner-scoped training state, including plans, decisions, approvals, observable delivery receipts, and the training evidence you report yourself. Provider identity and a keyed token fingerprint are stored separately so requests can be resolved to the same owner.</p>
-    <p>The raw Intervals.icu OAuth access token is used for the authorized request but is not written to the state store or application logs. The OAuth client secret stays server-side and is not exposed to the active AI interface.</p>
+    <p>When a hosted gateway is used, it stores owner-scoped product state including PlanState versions, decisions and receipts, athlete-reported evidence, and delivery bookkeeping needed to maintain one current plan. Provider identity and a keyed token fingerprint are stored separately so requests can resolve to the same owner.</p>
+    <p>The raw Intervals.icu OAuth access token is used for authorized requests but is not written to the owner state store or application logs. The OAuth client secret stays server-side and is not exposed to the active AI interface.</p>
 
     <h2>3. AI processing</h2>
-    <p>Long Run Hybrid Coach may be used through ChatGPT or another supported AI interface. The active interface processes the training context needed for the coaching task under that AI provider's applicable terms and privacy policy. The current ChatGPT entry is processed by OpenAI. Any additional AI provider will be disclosed before use or in this policy.</p>
-    <p>The gateway does not use training data to train a proprietary model. The current repository does not call a separate large-language-model API or require you to provide an AI API key. If you do not want training or wellness information processed by the disclosed AI provider, do not use that interface.</p>
+    <p>Long Run Hybrid Coach may be used through ChatGPT, Claude, or another supported AI interface. The active interface processes the training context needed for the coaching task under that AI provider's applicable terms and privacy policy. Which interface is used depends on the entry you choose.</p>
+    <p>The gateway does not use training data to train a proprietary model. The current repository does not call a separate large-language-model API or require you to provide an AI API key. If you do not want training or wellness information processed by the AI provider behind the interface you chose, do not use that interface.</p>
 
     <h2>4. Connected platform</h2>
     <p>Long Run Hybrid Coach reads from and writes to Intervals.icu under the authorization scopes you grant. Intervals.icu handles that data under its own terms and privacy policy. The product does not sell training data, use it for advertising, or write completed activities or wellness records.</p>
 
-    <h2>5. Retention and deletion</h2>
+    <h2>5. Retention, correction, and deletion</h2>
     <p>Owner-scoped training state is retained until you delete it, so that current decisions can be reconciled and audited. There is no expiry and no inactivity sweep.</p>
-    <p>Export and deletion are self-service: ask the coach for a copy of your data, or to delete it, through the same connection you already use. Deletion shows you exactly what it removes and what it cannot reach, and removes nothing until you confirm that preview. Correction requests are still handled manually.</p>
-    <p>Deletion removes plan state, its whole version history, the evidence you reported yourself, any snapshot of that history stored beside it, and the identity mappings that resolve your account. It does not remove workouts already written to your Intervals.icu calendar, and it does not withdraw your Intervals.icu authorization. This product creates no routine backups; any deployment that enables its host's volume snapshots must document the rotation, and the resulting maximum delay before a deletion is complete, before use. No backup-retention period is promised, because none has been measured.</p>
-    <p>To stop future access immediately, revoke Long Run Hybrid Coach in Intervals.icu. Revocation prevents future authorized reads and writes, but does not by itself delete state or identity mappings already held by Long Run Hybrid Coach; delete separately if that is what you want. You can remove product-created workouts from your Intervals.icu calendar.</p>
+    <p>Export and deletion are self-service: ask the coach for a copy of your data, or to delete it, through the same authenticated connection you already use. Deletion shows what it removes and what it cannot reach, and removes nothing until you confirm that preview.</p>
+    <p>Athlete-reported records that use a latest-wins key can be corrected by reporting the replacement value; supported athlete-reported records can also be retracted when removal is the right outcome. This does not rewrite the append-only PlanState/decision history: plan revisions remain auditable rather than being edited in place.</p>
+    <p>Deletion removes plan state, its version history, athlete-reported evidence, snapshots stored beside it, and the identity mappings that resolve your account. It does not remove workouts already written to your Intervals.icu calendar, and it does not withdraw your Intervals.icu authorization. This product creates no routine backups; any deployment that enables host-level volume snapshots must document its own retention behavior.</p>
+    <p>To stop future access immediately, revoke Long Run Hybrid Coach in Intervals.icu. Revocation prevents future authorized reads and writes, but does not by itself delete product-held state or identity mappings; delete separately if that is what you want. Product-created workouts already on your Intervals.icu calendar are managed there.</p>
 
     <h2>6. Security</h2>
     <p>Authorization uses OAuth. Raw access tokens are not persisted or logged; account lookup uses a keyed HMAC-SHA256 fingerprint. Owner state is separated by owner identifier, credentials are not committed to source control, and private training records do not belong in this public website repository.</p>
 
     <h2>7. Your choices and rights</h2>
-    <p>You may access, export, or delete the hosted data associated with your owner account yourself, through the connection you already have — no request and no identity check, because the connection is the identity check. Correction requests are handled manually. You may also revoke Intervals.icu access at any time through Intervals.icu.</p>
+    <p>You may access, export, correct or retract supported athlete-reported records, or delete the hosted data associated with your owner account through the connection you already have. You may also revoke Intervals.icu access at any time through Intervals.icu. PlanState history itself is not edited in place; deletion removes it as part of deleting the owner data.</p>
 
     <h2>8. Children</h2>
     <p>Long Run Hybrid Coach is not intended for anyone under 16 and is not directed at children.</p>
 
     <h2>9. Not medical advice</h2>
-    <p>Long Run Hybrid Coach is a training-planning tool. It does not diagnose, treat, or monitor medical conditions and is not a substitute for a physician or qualified human coach.</p>
+    <p>Long Run Hybrid Coach is a training-planning tool. It does not diagnose, treat, or monitor medical conditions and is not a substitute for qualified medical care or a human coach.</p>
 
     <h2>10. Contact</h2>
-    <p>Access, export, and deletion need no contact at all — do them yourself through the coach. For anything else, the <a href="support.html">support page</a> is the way in: a direct support address is not published yet, so the current channel is the <a href="https://github.com/atomchung/long-run-hybrid-coach/issues">public repository issue tracker</a>. Do not include health data, credentials, OAuth tokens, or other private information in a public issue; ask for a private follow-up channel instead. The opaque account reference printed in your data export is safe to quote publicly and is enough for an operator to find your account.</p>
+    <p>Access, export, supported corrections/retractions, and deletion need no contact — use the coach through your authenticated connection. For anything else, the <a href="support.html">support page</a> is the way in: a direct support address is not published yet, so the current channel is the <a href="https://github.com/atomchung/long-run-hybrid-coach/issues">public repository issue tracker</a>. Do not include health data, credentials, OAuth tokens, or other private information in a public issue; ask for a private follow-up channel instead. The opaque account reference printed in your data export is safe to quote publicly and is enough for an operator to find your account.</p>
 
     <h2>11. Changes</h2>
     <p>If this policy changes materially, the updated date above will change and the new version will be published at this URL.</p>
@@ -68,4 +69,3 @@
   </main>
 </body>
 </html>
-

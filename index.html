@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Long Run Hybrid Coach — Running and strength for the long run</title>
-  <meta name="description" content="Device-agnostic adaptive running and strength coaching built around Intervals.icu evidence and one current plan.">
+  <meta name="description" content="Device-agnostic adaptive running and strength coaching built around Intervals.icu evidence, one current plan, and an optional hosted MCP entry.">
   <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
@@ -12,6 +12,7 @@
     <nav class="site-nav" aria-label="Primary navigation">
       <a class="brand" href="index.html">Long Run Hybrid Coach</a>
       <div class="nav-links">
+        <a href="#get-started">Get started</a>
         <a href="#how-it-works">How it works</a>
         <a href="support.html">Support</a>
         <a href="privacy.html">Privacy</a>
@@ -24,10 +25,10 @@
         <div>
           <span class="eyebrow">Independent project</span>
           <h1>Train for today. Stay capable for the long run.</h1>
-          <p class="lede">Long Run Hybrid Coach is an Intervals-first, device-agnostic coach for athletes who run and lift. It maintains one current 28-day direction from the training evidence you already sync, then writes only workouts you explicitly approve.</p>
+          <p class="lede">Long Run Hybrid Coach is an Intervals-first, device-agnostic coach for athletes who run and lift. It maintains one current 28-day direction from the evidence available to the coaching loop, then changes or delivers workouts only through explicit confirmation.</p>
           <div class="actions">
-            <a class="button" href="#how-it-works">See how it works</a>
-            <a class="button secondary" href="privacy.html">Read the privacy policy</a>
+            <a class="button" href="#get-started">Get started</a>
+            <a class="button secondary" href="https://github.com/atomchung/long-run-hybrid-coach">Read the full guide</a>
           </div>
         </div>
         <div class="hero-art">
@@ -35,42 +36,67 @@
         </div>
       </div>
 
+      <section id="get-started" aria-labelledby="start-title">
+        <h2 id="start-title">Start with an Intervals.icu account—not a specific watch.</h2>
+        <p class="section-copy">Intervals.icu is the current interoperability hub for the product: it brings external activity and wellness evidence into the loop and receives workouts you approve. Garmin is the first downstream device path we have dogfooded, but it is not a prerequisite.</p>
+        <div class="grid">
+          <article class="card">
+            <div class="card-mark">1</div>
+            <h3>Use the hosted MCP</h3>
+            <p>For the shortest path, connect a compatible MCP client to <code>https://mcp.paceandstaystrong.com/mcp</code>, then complete the Intervals.icu authorization flow. You do not need to create an Intervals developer app for the hosted service.</p>
+          </article>
+          <article class="card">
+            <div class="card-mark">2</div>
+            <h3>Or self-host</h3>
+            <p>Developers who want to operate their own gateway can self-host the same product surface. That path uses their own Intervals OAuth application credentials and their own state root.</p>
+          </article>
+          <article class="card">
+            <div class="card-mark">3</div>
+            <h3>Ask a normal coaching question</h3>
+            <p>No setup questionnaire is required. Ask what to train this week, review recent work, or define the first 28-day direction. The coach reads existing evidence first and asks only for missing information that changes the decision.</p>
+          </article>
+        </div>
+        <div class="notice">
+          <strong>Client availability matters.</strong> The hosted endpoint is live, but the ability to add a custom MCP server—and whether that client exposes write actions—depends on the AI product and plan you use. The <a href="https://github.com/atomchung/long-run-hybrid-coach">GitHub Quick Start</a> keeps the current per-client setup and limitations.
+        </div>
+      </section>
+
       <section aria-labelledby="one-plan">
         <h2 id="one-plan">One current plan—not a folder of stale plans.</h2>
-        <p class="section-copy">Training changes when life changes. A missed run, a completed lifting session, or incomplete recovery evidence should affect what comes next. Long Run Hybrid Coach reconciles planned work against identity-backed activities and updates one current direction.</p>
+        <p class="section-copy">Training changes when life changes. A missed run, a completed lifting session, or incomplete recovery evidence can change what comes next. Long Run Hybrid Coach reconciles trustworthy completed work against the current plan and keeps one current direction rather than reconstructing a second plan from chat history.</p>
         <div class="grid">
           <article class="card">
             <div class="card-mark">1</div>
             <h3>Run and lift together</h3>
-            <p>Running and strength share the same week and recovery budget. Strength is not an afterthought added to a running plan.</p>
+            <p>Running and strength live in the same weekly plan. Strength is not an afterthought added to a running schedule.</p>
           </article>
           <article class="card">
             <div class="card-mark">2</div>
             <h3>Use actual evidence</h3>
-            <p>Completed activities and available wellness signals inform revisions. Missing or stale evidence remains unknown—not zero.</p>
+            <p>Completed activities, available wellness signals, and athlete-reported facts inform revisions. Missing or stale evidence remains unknown—not zero.</p>
           </article>
           <article class="card">
             <div class="card-mark">3</div>
-            <h3>Approve every write</h3>
-            <p>You review the exact workout before publication. The product writes only workouts it owns and reads them back to verify delivery.</p>
+            <h3>Approve consequential writes</h3>
+            <p>Plan changes and calendar delivery are previewed before their apply step. The product writes only through the confirmation boundary defined for that action.</p>
           </article>
         </div>
       </section>
 
       <section id="how-it-works" aria-labelledby="how-title">
-        <h2 id="how-title">How it works</h2>
+        <h2 id="how-title">How Intervals.icu fits into the loop</h2>
         <div class="steps">
-          <div class="step"><strong>Connect Intervals.icu.</strong> Your wearable or training app can feed Intervals.icu; the coach works from the evidence available there instead of requiring one watch brand.</div>
-          <div class="step"><strong>Review one current direction.</strong> The coach combines your recent training, available recovery evidence, goals, and schedule into a 28-day direction and current week.</div>
-          <div class="step"><strong>Approve before delivery.</strong> Nothing is written to your calendar until you review the exact proposal and confirm it.</div>
-          <div class="step"><strong>Verify what can be observed.</strong> The product verifies that Intervals.icu accepted and returned the workout. Downstream synchronization and presentation depend on the athlete's device/app path and are only claimed when separately verified.</div>
+          <div class="step"><strong>Device or app → Intervals.icu.</strong> A wearable or training app can feed activity and wellness evidence into Intervals.icu. Device-specific richness varies, but the coaching path stays the same.</div>
+          <div class="step"><strong>Intervals.icu → Coach.</strong> The coach reads the evidence available there together with athlete-reported facts and the one current PlanState.</div>
+          <div class="step"><strong>Coach → Intervals.icu calendar.</strong> When a workout is selected for delivery, you review the exact preview and confirm before it is written.</div>
+          <div class="step"><strong>Intervals.icu → downstream device/app.</strong> The product verifies only the Intervals acceptance/read-back it can observe. A successful Intervals write is not proof that the workout reached Garmin, Apple Watch, or another downstream device.</div>
         </div>
       </section>
 
       <section aria-labelledby="status-title">
         <h2 id="status-title">Status</h2>
         <div class="notice">
-          <strong>In development.</strong> Long Run Hybrid Coach is a personal GitHub project, not a company, maintained by an independent developer in Taiwan. Its Intervals.icu OAuth application has been submitted, and supported AI interfaces are being prepared. Garmin is the current dogfood device; other device paths are being evaluated independently. Availability and features may change as the product develops; there is no public signup yet.
+          <strong>Hosted MCP is live; public distribution is still being prepared.</strong> The production endpoint is <code>https://mcp.paceandstaystrong.com/mcp</code>, and real OAuth/coaching/delivery flows have been validated on selected clients. A public app/directory listing is not yet the universal entry, so direct availability still depends on whether your chosen client supports the required MCP connection and actions. The source repository records which entry paths are verified end to end.
         </div>
       </section>
     </main>
