@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>開始使用 — Long Run Hybrid Coach</title>
+  <meta name="description" content="透過 remote MCP connector 把 Long Run Hybrid Coach 連上 Intervals.icu，開始一段教練對話。">
+  <meta property="og:title" content="開始使用 Long Run Hybrid Coach">
+  <meta property="og:description" content="透過 remote MCP connector 把 Long Run Hybrid Coach 連上 Intervals.icu，開始一段教練對話。">
+  <meta property="og:url" content="https://paceandstaystrong.com/zh/start.html">
+  <meta property="og:image" content="https://paceandstaystrong.com/assets/long-run-hybrid-coach-logo.png">
+  <link rel="alternate" hreflang="zh-Hant" href="https://paceandstaystrong.com/zh/start.html">
+  <link rel="alternate" hreflang="en" href="https://paceandstaystrong.com/start.html">
+  <link rel="alternate" hreflang="x-default" href="https://paceandstaystrong.com/start.html">
+  <link rel="stylesheet" href="../assets/styles.css">
+  <style>
+    /* Minimal Traditional Chinese font fallback: the shared stack leads with
+       Western display fonts (ui-rounded, Arial Rounded MT Bold, Inter) that
+       carry no CJK glyphs. Prepend system CJK fonts so zh copy renders with
+       an intended face instead of an arbitrary OS fallback. No external
+       font is loaded. */
+    body {
+      font-family: "PingFang TC", "Heiti TC", "Microsoft JhengHei", "Noto Sans TC",
+        ui-rounded, "Arial Rounded MT Bold", Inter, ui-sans-serif, system-ui,
+        -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a class="brand" href="../index.html">Long Run Hybrid Coach</a>
+      <div class="nav-links">
+        <a href="start.html" aria-current="page">開始使用</a>
+        <a href="../index.html#how-it-works">運作方式</a>
+        <a href="../index.html#what-you-connect">常見問題</a>
+        <a href="../start.html">English</a>
+      </div>
+    </nav>
+
+    <main class="start-page">
+      <header class="start-header">
+        <span class="page-kicker">設定連接</span>
+        <h1>開始使用 Long Run Hybrid Coach</h1>
+        <p class="lede">你需要一個 Intervals.icu 帳號，以及一個支援 remote MCP connector（遠端 MCP 連接器）的 AI client。讓 Coach 讀取你自己帳號裡，原本就有的訓練 evidence。</p>
+        <p class="lede">還沒有 Intervals.icu 帳號？免費——下面的連接流程會帶你到它的登入頁，可以用 Google 帳號在 30 秒內完成註冊。</p>
+      </header>
+
+      <section class="connect-section" aria-labelledby="connect-title">
+        <h2 id="connect-title">四步驟完成連接</h2>
+        <div class="connector-address connector-address-primary">
+          <span>Remote MCP URL</span>
+          <code>https://mcp.paceandstaystrong.com/mcp</code>
+        </div>
+        <div class="start-connect-layout">
+          <ol class="steps setup-steps" role="list">
+            <li class="step">
+              <strong>開啟你 AI client 的連接器設定。</strong>
+              <p>選擇新增 remote MCP connector 或 remote MCP server 的選項。</p>
+              <p class="fine">claude.ai 或 Claude Desktop：Settings → Connectors → Add custom connector。</p>
+              <p class="fine">ChatGPT：完整的 read/write connector 存取，目前依 OpenAI 官方說明，在 Business、Enterprise 與 Edu 的網頁版 workspace 透過 Apps／developer mode 開放 beta；其他人可以先等這個 connector 在 ChatGPT 目錄上架。</p>
+            </li>
+            <li class="step">
+              <strong>新增 Long Run Hybrid Coach 的 endpoint。</strong>
+              <p>把上面的網址貼進 remote MCP server 的 URL 欄位，然後繼續。</p>
+            </li>
+            <li class="step">
+              <strong>授權 Intervals.icu。</strong>
+              <p>Intervals.icu 開出同意頁時登入，四個權限都勾選，然後核准。少勾一項不會讓連線更安全，而是讓某個功能用難以回溯原因的方式失敗。</p>
+              <p><a href="../index.html#what-you-connect">看看這個授權涵蓋哪些範圍，以及要怎麼撤銷。</a></p>
+            </li>
+            <li class="step">
+              <strong>回到 AI client，開始對話。</strong>
+              <p>確認連接器在對話裡可以使用，然後請 Coach 讀你最近的訓練。</p>
+            </li>
+          </ol>
+          <div class="start-art">
+            <img src="../assets/get-started-connector.png" width="900" height="600" alt="香蕉運動員把對話氣泡接上訓練日曆">
+          </div>
+        </div>
+        <p class="first-message">試試看：「讀我最近的訓練，幫我排 28 天的跑步＋重訓方向。」</p>
+      </section>
+
+      <section aria-labelledby="empty-account-title">
+        <h2 id="empty-account-title">你的 Intervals.icu 帳號是新的還是空的？</h2>
+        <p class="section-copy">Coach 只會讀 Intervals.icu 裡已經有的資料。如果帳號是新的，在請它讀你的訓練之前，有兩種方法可以先把歷史資料補進去：</p>
+        <ul>
+          <li><strong>連接你原本就在用的裝置或 app。</strong>在 Intervals.icu 自己的 Settings 裡，連上 Garmin 或你既有的手錶、訓練 app 帳號。過去的活動會自動回填——資料到了之後，再回來請 Coach 重新讀一次你的訓練。</li>
+          <li><strong>直接把匯出檔上傳給 Coach。</strong>在對話裡把 CSV、Apple Health 匯出檔或 .fit 檔直接交給 Coach，請它匯入你的歷史紀錄。</li>
+        </ul>
+      </section>
+
+      <section aria-labelledby="expect-title">
+        <h2 id="expect-title">接下來會發生什麼事</h2>
+        <p class="section-copy">Coach 會讀 Intervals.icu 裡可用的 evidence，和你討論目前的方向。如果它提出一筆日曆課表，你會在任何東西寫入前看到完整課表。交付成功，代表 Intervals.icu 已經接受並回傳這筆課表；並不代表手錶或其他裝置已經收到。</p>
+      </section>
+    </main>
+  </div>
+
+  <footer>
+    <div class="wrap footer-row">
+      <div>Long Run Hybrid Coach · 獨立專案</div>
+      <div><a href="../support.html">支援</a> · <a href="../privacy.html">隱私權</a> · <a href="../terms.html">條款</a> · <a href="https://github.com/atomchung/long-run-hybrid-coach">原始碼</a></div>
+    </div>
+    <div class="wrap"><p class="fine">Long Run Hybrid Coach 是獨立專案，與 Garmin、Intervals.icu、Apple 或其他裝置／平台供應商沒有隸屬、背書或贊助關係。Garmin 與 Intervals.icu 是其各自所有者的商標。</p></div>
+  </footer>
+</body>
+</html>

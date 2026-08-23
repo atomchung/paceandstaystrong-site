@@ -29,6 +29,23 @@ Copy-only changes stay in this repository and do not create a gateway release. P
 specific setup details should not be duplicated here when the core README can own them in
 one place.
 
+## Localization contract
+
+This site mirrors exactly one page into Traditional Chinese, on purpose — not as a first
+step toward full localization.
+
+1. **Mirrored pages: exactly one pair.** `start.html` ↔ `zh/start.html`. Any commit that
+   changes `start.html` must change `zh/start.html` in the same commit, or open a tracking
+   issue in the same change.
+2. **The homepage and the legal pages (privacy, terms, support) are English-only by
+   decision, not omission.** Community posts carry the persuasion job in each language;
+   legal wording keeps a single authoritative version.
+3. **No build step, no SSG, no i18n framework, no JS language toggle.** Static mirror
+   files with `hreflang` are the final mechanism, not a stopgap.
+4. **A second mirrored page requires evidence, not intent.** Both of the following, not
+   either: real traffic on `zh/start.html`, and a reader demonstrably blocked by an
+   English page.
+
 ## Local verification
 
 ```bash
