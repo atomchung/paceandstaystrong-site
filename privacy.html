@@ -45,6 +45,7 @@
     <p>Export and deletion are self-service: ask the coach for a copy of your data, or to delete it, through the same authenticated connection you already use. Deletion shows what it removes and what it cannot reach, and removes nothing until you confirm that preview.</p>
     <p>Athlete-reported records that use a latest-wins key can be corrected by reporting the replacement value; supported athlete-reported records can also be retracted when removal is the right outcome. This does not rewrite the append-only PlanState/decision history: plan revisions remain auditable rather than being edited in place.</p>
     <p>Deletion removes plan state, its version history, athlete-reported evidence, snapshots stored beside it, and the identity mappings that resolve your account. It does not remove workouts already written to your Intervals.icu calendar, and it does not withdraw your Intervals.icu authorization. This product creates no routine backups; any deployment that enables host-level volume snapshots must document its own retention behavior.</p>
+    <p>No backup-retention period is promised, because none has been measured — matching what the support page already states.</p>
     <p>To stop future access immediately, revoke Long Run Hybrid Coach in Intervals.icu. Revocation prevents future authorized reads and writes, but does not by itself delete product-held state or identity mappings; delete separately if that is what you want. Product-created workouts already on your Intervals.icu calendar are managed there.</p>
 
     <h2>6. Security</h2>
