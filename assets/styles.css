@@ -22,6 +22,18 @@ body {
     system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
+/* Traditional Chinese pages. The stack above leads with Western display faces
+   (ui-rounded, Arial Rounded MT Bold, Inter) that carry no CJK glyphs, so zh copy
+   would fall back to an arbitrary OS face. No external font is loaded. */
+html[lang="zh-Hant"] body {
+  font-family: "PingFang TC", "Heiti TC", "Microsoft JhengHei", "Noto Sans TC",
+    ui-rounded, "Arial Rounded MT Bold", Inter, ui-sans-serif, system-ui,
+    -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+html[lang="zh-Hant"] h1,
+html[lang="zh-Hant"] h2,
+html[lang="zh-Hant"] h3 { letter-spacing: -0.01em; }
+
 a { color: var(--ink); text-underline-offset: 3px; }
 a:hover { color: #14588d; }
 a:focus-visible {
@@ -41,7 +53,28 @@ a:focus-visible {
 }
 
 .brand { font-weight: 900; text-decoration: none; letter-spacing: -0.02em; }
-.nav-links { display: flex; flex-wrap: wrap; gap: 18px; font-size: 0.92rem; }
+.nav-links { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; font-size: 0.92rem; }
+
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 0 16px;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  color: var(--paper);
+  background: var(--ink);
+  font-weight: 900;
+  text-decoration: none;
+}
+.nav-cta:hover { color: var(--paper); background: #14588d; border-color: #14588d; }
+.nav-cta[aria-current="page"] { color: var(--ink); background: var(--banana); }
+
+.nav-lang {
+  padding-left: 18px;
+  border-left: 1px solid var(--line);
+  font-weight: 700;
+}
 
 .hero {
   display: grid;
@@ -79,7 +112,12 @@ a:focus-visible {
   text-transform: uppercase;
 }
 
-h1, h2, h3 { line-height: 1.12; letter-spacing: -0.035em; }
+h1, h2, h3 { line-height: 1.12; letter-spacing: -0.035em; text-wrap: balance; }
+
+/* Chinese has no word boundaries, so a heading will break mid-term unless the
+   term is marked. Wrap the units that must stay whole, not the whole heading —
+   a nowrap heading overflows instead of wrapping. */
+.nowrap { white-space: nowrap; }
 h1 { margin: 18px 0; font-size: clamp(2.6rem, 5vw, 4.6rem); }
 h2 { margin: 0 0 22px; font-size: clamp(1.8rem, 4vw, 3.1rem); }
 h3 { margin: 0 0 10px; font-size: 1.18rem; }
@@ -102,6 +140,8 @@ h3 { margin: 0 0 10px; font-size: 1.18rem; }
 }
 
 .button.secondary { color: var(--ink); background: transparent; }
+.button-note { margin: 12px 0 0; color: var(--ink-soft); font-size: 0.92rem; }
+.text-link { color: var(--ink-soft); font-weight: 700; }
 
 section { padding: 72px 0; border-top: 1px solid var(--line); }
 .section-copy { max-width: 760px; color: var(--ink-soft); }
@@ -131,6 +171,23 @@ section { padding: 72px 0; border-top: 1px solid var(--line); }
   background: var(--banana);
   font-weight: 900;
 }
+
+
+.signpost {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 24px;
+  max-width: 860px;
+  margin-top: 34px;
+  padding: 28px 30px;
+  border: 2px solid var(--ink);
+  border-radius: 22px;
+  background: var(--panel);
+}
+.signpost h3 { margin: 6px 0 8px; font-size: 1.35rem; }
+.signpost p { margin: 0; color: var(--ink-soft); }
+.signpost .page-kicker { color: var(--coral); }
 
 .proof {
   max-width: 820px;
@@ -320,6 +377,24 @@ section { padding: 72px 0; border-top: 1px solid var(--line); }
 }
 
 .legal { width: min(760px, calc(100% - 40px)); margin: 0 auto; padding: 32px 0 80px; }
+.legal-nav {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  font-size: 0.92rem;
+}
+.legal-nav .nav-lang { padding-left: 0; border-left: 0; }
+.lang-note {
+  margin: 26px 0 0;
+  padding: 18px 20px;
+  border-left: 6px solid var(--aqua);
+  border-radius: 12px;
+  background: var(--paper);
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+.lang-note strong { color: var(--ink); }
 .legal header { padding: 44px 0 18px; }
 .legal h1 { font-size: clamp(2.3rem, 6vw, 4rem); }
 .legal h2 { margin-top: 44px; font-size: 1.4rem; }
@@ -338,6 +413,7 @@ footer { padding: 34px 0 56px; border-top: 1px solid var(--line); color: var(--i
   .grid { grid-template-columns: 1fr; }
   .boundaries { grid-template-columns: 1fr; }
   .start-connect-layout { grid-template-columns: 1fr; }
+  .signpost { grid-template-columns: 1fr; }
   .start-art img { width: min(76vw, 280px); }
   .site-nav { align-items: flex-start; }
 }
@@ -346,6 +422,7 @@ footer { padding: 34px 0 56px; border-top: 1px solid var(--line); color: var(--i
   .wrap { width: min(100% - 28px, 1080px); }
   .site-nav { flex-direction: column; gap: 12px; }
   .nav-links { gap: 10px 16px; }
+  .nav-lang { padding-left: 0; border-left: 0; }
   .hero { padding-bottom: 56px; }
   .start-header { padding: 40px 0 34px; }
   .start-page .connect-section { padding-top: 38px; }

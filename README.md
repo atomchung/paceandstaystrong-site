@@ -31,26 +31,58 @@ one place.
 
 ## Localization contract
 
-This site mirrors exactly one page into Traditional Chinese, on purpose — not as a first
-step toward full localization.
+Every page on this site exists in two languages: English at the repository root, and
+Traditional Chinese under `zh/` with the same filename. `index.html` ↔ `zh/index.html`,
+`start.html` ↔ `zh/start.html`, and the same for `privacy`, `terms`, and `support`.
 
-1. **Mirrored pages: exactly one pair.** `start.html` ↔ `zh/start.html`. Any commit that
-   changes `start.html` must change `zh/start.html` in the same commit, or open a tracking
-   issue in the same change.
-2. **The homepage and the legal pages (privacy, terms, support) are English-only by
-   decision, not omission.** Community posts carry the persuasion job in each language;
-   legal wording keeps a single authoritative version.
-3. **No build step, no SSG, no i18n framework, no JS language toggle.** Static mirror
-   files with `hreflang` are the final mechanism, not a stopgap.
-4. **A second mirrored page requires evidence, not intent.** Both of the following, not
-   either: real traffic on `zh/start.html`, and a reader demonstrably blocked by an
-   English page.
+This replaces the earlier single-pair rule, in which only the start page was mirrored and
+the homepage and legal pages were English-only. That rule was overturned on 23 August 2026:
+a "中文" link in the navigation reads as a whole-site language switch, so a reader who
+follows it onto one translated page and hits English everywhere after it has been misled by
+the navigation rather than served by it.
+
+1. **Full mirror, matching filenames.** A new English page requires its `zh/` counterpart in
+   the same change. There is no partial-mirror state to design around.
+2. **Same commit, both languages.** Any commit that changes an English page changes its
+   Chinese counterpart, or opens a tracking issue in the same change. A translation left for
+   later is a page that silently states an older version of the product.
+3. **The language link on every page points at that same page in the other language** — never
+   at the other language's homepage. Each pair declares both `hreflang` values plus
+   `x-default` pointing at the English page.
+4. **English is authoritative for `privacy.html` and `terms.html`.** The Chinese versions
+   carry a governing-language notice saying so, and exist for readability rather than legal
+   effect. This is why translating them is safe: a wording that drifts in the Chinese text
+   cannot change what the product has promised, because the promise is the English text.
+5. **No build step, no SSG, no i18n framework, no JS language toggle.** Static mirror files
+   with `hreflang` are the final mechanism, not a stopgap. Shared presentation, including the
+   Traditional Chinese font stack keyed off `html[lang="zh-Hant"]`, lives in
+   `assets/styles.css` rather than being repeated per page.
+
+### The four listing URLs
+
+`/`, `/privacy.html`, `/terms.html`, and `/support.html` are registered with an app platform
+under review. They must keep answering at those exact paths in English. Adding a translation
+under `zh/` does not move them; renaming, redirecting, or turning any of the four into a
+language chooser does. Separately, the privacy policy's commitments may be added to but never
+removed — the policy record is issue #182 in the core repository.
 
 ## Local verification
 
+Pushing to `main` publishes, so the check runs before the push, not after it. It walks
+every page for dead links and dead in-page anchors, confirms both language mirrors are
+complete and point at each other, confirms the four listing URLs still exist at the
+repository root, and flags simplified characters that slipped into a `zh/` page.
+
 ```bash
 git diff --check
-python3 -c "from pathlib import Path; html = Path('index.html').read_text(); assert 'assets/styles.css' in html; assert Path('privacy.html').exists(); assert Path('terms.html').exists()"
+python3 scripts/check-site.py
+```
+
+Then read the pages in a browser — the checker verifies that links resolve, not that the
+copy is right:
+
+```bash
+python3 -m http.server 4173
 ```
 
 ## Deployment
