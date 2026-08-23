@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Long Run Hybrid Coach — Running and strength for the long run</title>
-  <meta name="description" content="Device-agnostic adaptive running and strength coaching built around your Intervals.icu training data and one current plan.">
+  <meta name="description" content="An AI running and strength coach for Claude and ChatGPT — it reads your Intervals.icu training data and writes workouts to your calendar only after you approve them.">
   <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
@@ -15,6 +15,7 @@
         <a href="start.html">Start</a>
         <a href="#how-it-works">How it works</a>
         <a href="#what-you-connect">FAQ</a>
+        <a href="zh/start.html">中文</a>
       </div>
     </nav>
 
@@ -23,7 +24,7 @@
         <div>
           <span class="eyebrow">Independent open-source project</span>
           <h1>Train for today. Stay capable for the long run.</h1>
-          <p class="lede">Long Run Hybrid Coach is a coach for runners who also lift, built around Intervals.icu — it works with whatever device you already use. It keeps one 28-day plan based on your training data, and only writes a workout after you approve it.</p>
+          <p class="lede">Long Run Hybrid Coach is a coach for runners who also lift, built around Intervals.icu — it works with whatever device you already use. It keeps one current 28-day direction based on your training data, and only writes a workout after you approve it.</p>
           <div class="actions">
             <a class="button" href="start.html">Get started</a>
             <a class="button secondary" href="#how-it-works">See how it works</a>
@@ -56,7 +57,7 @@
         </div>
         <div class="proof">
           <strong>Strength stays specific.</strong>
-          <p>&ldquo;Back squat, 4&times;5 at 100&nbsp;kg&rdquo; is a plan entry, not a note you left yourself. Intervals.icu receives the session title; the movement, sets, reps and load stay in the conversation, where you can read them back any time.</p>
+          <p>&ldquo;Back squat, 4&times;5 at 100&nbsp;kg&rdquo; is a real session in your plan, not a note you left yourself. Intervals.icu receives the session title; the movement, sets, reps and load stay in the conversation, where you can read them back any time.</p>
         </div>
       </section>
 
@@ -96,7 +97,7 @@
             <rect x="60" y="364" width="440" height="60" rx="18"></rect>
             <text x="280" y="394">You approve</text>
           </g>
-          <text class="flow-caption" x="280" y="446">Nothing happens without this step.</text>
+          <text class="flow-caption" x="280" y="446">Nothing is written without this step.</text>
           <g class="flow-arrow"><path d="M280 462 v20"></path><path d="M274 482 h12 l-6 9 Z"></path></g>
 
           <g class="flow-node">
@@ -115,12 +116,12 @@
           <article class="boundary">
             <span>Before writing</span>
             <strong>You see the full workout and approve it.</strong>
-            <p>Calendar permission means the coach can propose a workout — it can't write anything until you confirm the exact workout you saw.</p>
+            <p>Calendar permission means the coach can propose a workout — it can't write anything until you confirm the full preview you saw.</p>
           </article>
           <article class="boundary">
             <span>After writing</span>
             <strong>The coach checks back with Intervals.icu.</strong>
-            <p>A successful delivery means Intervals.icu accepted and saved the workout. It doesn't prove your watch has received it yet.</p>
+            <p>A successful delivery means Intervals.icu saved the workout and the coach read it back to confirm. It doesn't mean your watch has it yet.</p>
           </article>
         </div>
       </section>
@@ -130,11 +131,11 @@
         <div class="faq-list">
           <details>
             <summary>What do I need to start?</summary>
-            <p>An <a href="https://intervals.icu">Intervals.icu</a> account, and Claude or ChatGPT. The <a href="start.html">start page</a> has the address to paste in and all four setup steps. If you don't have an Intervals.icu account yet, it's free — the setup flow takes you to its sign-in page, where you can create one with Google in about 30 seconds.</p>
+            <p>An <a href="https://intervals.icu">Intervals.icu</a> account, and Claude or ChatGPT. The <a href="start.html">start page</a> has the address to paste in and all four setup steps. If you don't have an Intervals.icu account yet, it's free — the setup flow takes you to its sign-in page, where you can create one with Google in about 30 seconds. Claude works on its free plan. ChatGPT currently needs a Business, Enterprise, or Edu workspace — on a personal plan, wait for this coach to appear in the ChatGPT directory.</p>
           </details>
           <details>
             <summary>Is your Intervals.icu account new or empty?</summary>
-            <p>The coach only sees what's already in Intervals.icu. You can connect a device or app you already use — Garmin or another watch or training app — in Intervals.icu's own Settings, and past activity shows up automatically. Or just send the coach a CSV, an Apple Health export, or a .fit file in the conversation, and ask it to import your history.</p>
+            <p>The coach automatically reads what's already in Intervals.icu. You can connect a device or app you already use — Garmin or another watch or training app — in Intervals.icu's own Settings, and past activity shows up automatically. Or just send the coach a CSV, an Apple Health export, or a .fit file in the conversation, and ask it to import your history. (The file goes to the coach, not into Intervals.icu.)</p>
           </details>
           <details>
             <summary>Do I need a particular watch?</summary>
@@ -146,7 +147,7 @@
           </details>
           <details>
             <summary>Why do all four Intervals.icu permissions need to be checked?</summary>
-            <p>The four permissions let the coach read your completed activities, read your wellness data, read and write your training calendar, and read your Run settings. Your Run settings hold your threshold pace — if it's missing, the coach can only fill it in through a workout you've already confirmed. Skipping one box doesn't make the connection safer. It just makes one feature quietly break in a way that's hard to trace back.</p>
+            <p>The four permissions let the coach read your completed activities, read your wellness data, read and write your training calendar, and read your Run settings. Your Run settings hold your threshold pace — if it's missing, the coach can only fill it in through a workout you've already confirmed. Each box covers a different kind of access. Skip one, and the feature that needs it breaks in a way that's hard to trace back — check all four for the full coaching flow.</p>
           </details>
           <details>
             <summary>Can the coach write a workout without my approval?</summary>
@@ -154,11 +155,11 @@
           </details>
           <details>
             <summary>What does a successful delivery mean?</summary>
-            <p>It means Intervals.icu accepted the workout and confirmed it back. It doesn't mean your watch has received it yet.</p>
+            <p>A successful delivery means Intervals.icu saved the workout and the coach read it back to confirm. It doesn't mean your watch has it yet.</p>
           </details>
           <details>
             <summary>How do I revoke access or delete my data?</summary>
-            <p>Remove this application in your Intervals.icu settings to stop future reads and writes. Because Intervals.icu grants access per application, not per AI, that disconnects every AI you'd connected — Claude, ChatGPT, all of them. Revoking doesn't delete data that's already there. To delete that, ask the coach in the conversation — it'll show you what's being removed before you confirm. Workouts already on your Intervals.icu calendar stay yours to keep or remove. More detail on the <a href="support.html">support page</a>.</p>
+            <p>Want your stored data deleted too? Ask the coach in the conversation first — it shows you exactly what's being removed before you confirm. Then remove this application in your Intervals.icu settings to stop future reads and writes. (If you revoke first, the coach is signed out and can no longer delete data for you in the conversation.) Because Intervals.icu grants access per application, not per AI, removing it disconnects every AI you'd connected — Claude, ChatGPT, all of them. Workouts already on your Intervals.icu calendar stay yours to keep or remove. More detail on the <a href="support.html">support page</a>.</p>
           </details>
         </div>
       </section>
@@ -167,7 +168,7 @@
         <h2 id="start-title">Ready to connect?</h2>
         <p class="section-copy">Connect it, approve access in Intervals.icu, and start with your recent training data.</p>
         <a class="button" href="start.html">Get started</a>
-        <p class="project-status"><strong>The hosted version is live.</strong> This is an early personal GitHub project, not a company — just one independent developer in Taiwan. Availability may change, and how well it works depends on the AI product and plan you use. <a href="https://github.com/atomchung/long-run-hybrid-coach">View the source</a> for which paths are fully tested.</p>
+        <p class="project-status"><strong>The hosted version is live.</strong> This is an early personal GitHub project, not a company — just one independent developer in Taiwan. Availability may change, and how well it works depends on the AI product and plan you use. <a href="https://github.com/atomchung/long-run-hybrid-coach">The source code</a> shows exactly which setups have been tested end to end.</p>
       </section>
     </main>
   </div>
