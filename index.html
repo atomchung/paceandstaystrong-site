@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Long Run Hybrid Coach — Running and strength for the long run</title>
-  <meta name="description" content="Device-agnostic adaptive running and strength coaching built around Intervals.icu evidence and one current plan.">
+  <meta name="description" content="Device-agnostic adaptive running and strength coaching built around your Intervals.icu training data and one current plan.">
   <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
@@ -23,7 +23,7 @@
         <div>
           <span class="eyebrow">Independent open-source project</span>
           <h1>Train for today. Stay capable for the long run.</h1>
-          <p class="lede">Long Run Hybrid Coach is an Intervals-first, device-agnostic coach for athletes who run and lift. It maintains one current 28-day direction from the training evidence you already sync, then writes only workouts you explicitly approve.</p>
+          <p class="lede">Long Run Hybrid Coach is a coach for runners who also lift, built around Intervals.icu — it works with whatever device you already use. It keeps one 28-day plan based on your training data, and only writes a workout after you approve it.</p>
           <div class="actions">
             <a class="button" href="start.html">Get started</a>
             <a class="button secondary" href="#how-it-works">See how it works</a>
@@ -36,7 +36,7 @@
 
       <section aria-labelledby="one-plan">
         <h2 id="one-plan">One current plan for running and strength.</h2>
-        <p class="section-copy">Training changes when life changes. A missed run, a completed lifting session, or incomplete recovery evidence should affect what comes next. Long Run Hybrid Coach reconciles planned work against identity-backed activities and updates one current direction.</p>
+        <p class="section-copy">Life changes, so training should too. A missed run, a lifting session you actually finished, recovery data that's incomplete — all of that should shape what's next. Long Run Hybrid Coach checks the plan against what you actually did, and updates your one current direction.</p>
         <div class="grid">
           <article class="card">
             <div class="card-mark">1</div>
@@ -50,8 +50,8 @@
           </article>
           <article class="card">
             <div class="card-mark">3</div>
-            <h3>Revise from actual evidence</h3>
-            <p>Completed activities and available wellness signals inform revisions. Missing or stale evidence remains unknown—not zero.</p>
+            <h3>Revise from what really happened</h3>
+            <p>It looks at what you actually did, and whatever recovery data is available, before changing anything. If something's missing or out of date, the plan treats it as unknown — not as zero.</p>
           </article>
         </div>
         <div class="proof">
@@ -62,11 +62,11 @@
 
       <section id="how-it-works" aria-labelledby="how-title">
         <h2 id="how-title">How it works</h2>
-        <p class="section-copy">Devices and apps feed Intervals.icu — richness varies by device, but the coaching path stays the same. The coach reads that evidence together with anything you've told it directly.</p>
+        <p class="section-copy">Your devices and apps send data to Intervals.icu — how much detail you get depends on the device, but the coaching itself works the same either way. The coach reads that training data, plus anything you tell it directly.</p>
       <div class="flow-wrap">
         <svg class="flow" viewBox="0 0 560 652" role="img" aria-labelledby="flow-title flow-desc" xmlns="http://www.w3.org/2000/svg">
           <title id="flow-title">How a workout reaches your Intervals.icu calendar</title>
-          <desc id="flow-desc">Your devices feed Intervals.icu. The coach reads that evidence and builds a full preview. Nothing is written until you approve it. After writing, the workout is read back from Intervals.icu so you can see what it accepted.</desc>
+          <desc id="flow-desc">Your devices feed Intervals.icu. The coach reads that training data and builds a full preview. Nothing is written until you approve it. After writing, the workout is read back from Intervals.icu so you can see what it accepted.</desc>
 
           <g class="flow-node">
             <rect x="60" y="12" width="440" height="54" rx="16"></rect>
@@ -115,12 +115,12 @@
           <article class="boundary">
             <span>Before writing</span>
             <strong>You see the full workout and approve it.</strong>
-            <p>Calendar permission allows a proposal. Nothing is written until you confirm the exact workout.</p>
+            <p>Calendar permission means the coach can propose a workout — it can't write anything until you confirm the exact workout you saw.</p>
           </article>
           <article class="boundary">
             <span>After writing</span>
-            <strong>Intervals.icu is read back.</strong>
-            <p>A successful delivery means Intervals.icu accepted and returned the workout. It does not prove that a watch or another device received it.</p>
+            <strong>The coach checks back with Intervals.icu.</strong>
+            <p>A successful delivery means Intervals.icu accepted and saved the workout. It doesn't prove your watch has received it yet.</p>
           </article>
         </div>
       </section>
@@ -130,44 +130,44 @@
         <div class="faq-list">
           <details>
             <summary>What do I need to start?</summary>
-            <p>An <a href="https://intervals.icu">Intervals.icu</a> account and an AI assistant that lets you add a remote MCP connector by URL. The <a href="start.html">start page</a> gives you the endpoint and the four setup steps. If you don't have an Intervals.icu account yet, it's free — the connection flow reaches its sign-in page, where you can create one with Google in about 30 seconds.</p>
+            <p>An <a href="https://intervals.icu">Intervals.icu</a> account, and Claude or ChatGPT. The <a href="start.html">start page</a> has the address to paste in and all four setup steps. If you don't have an Intervals.icu account yet, it's free — the setup flow takes you to its sign-in page, where you can create one with Google in about 30 seconds.</p>
           </details>
           <details>
             <summary>Is your Intervals.icu account new or empty?</summary>
-            <p>The coach only reads what Intervals.icu already has. Connect a device or app you already use in Intervals.icu's own Settings — Garmin or your existing watch or training app account — and past activity backfills automatically; or send the coach a CSV, an Apple Health export, or a .fit file directly in the conversation and ask it to import your history.</p>
+            <p>The coach only sees what's already in Intervals.icu. You can connect a device or app you already use — Garmin or another watch or training app — in Intervals.icu's own Settings, and past activity shows up automatically. Or just send the coach a CSV, an Apple Health export, or a .fit file in the conversation, and ask it to import your history.</p>
           </details>
           <details>
             <summary>Do I need a particular watch?</summary>
-            <p>No. The coach works from the completed activities and available wellness evidence that reach your Intervals.icu account.</p>
+            <p>No. The coach works from whatever completed activities and wellness data end up in your Intervals.icu account.</p>
           </details>
           <details>
             <summary>Can I run my own gateway instead of the hosted one?</summary>
-            <p>Yes. Self-hosting runs the same product surface with your own Intervals.icu OAuth application credentials and your own state, for developers who want to operate it themselves. Most people should use the hosted endpoint on the <a href="start.html">start page</a>.</p>
+            <p>Yes. Self-hosting runs the exact same product with your own Intervals.icu OAuth credentials and your own storage — it's for developers who want to run it themselves. Most people should just use the hosted version on the <a href="start.html">start page</a>.</p>
           </details>
           <details>
-            <summary>Why do all four Intervals.icu permissions need to be selected?</summary>
-            <p>The permissions let the coach read completed activities, read available wellness data, read and write the training calendar, and read Run settings. A missing threshold pace can be filled only inside a workout you already confirmed. Leaving one permission unticked does not make the connection safer; it makes one capability fail in a way that is hard to trace back.</p>
+            <summary>Why do all four Intervals.icu permissions need to be checked?</summary>
+            <p>The four permissions let the coach read your completed activities, read your wellness data, read and write your training calendar, and read your Run settings. Your Run settings hold your threshold pace — if it's missing, the coach can only fill it in through a workout you've already confirmed. Skipping one box doesn't make the connection safer. It just makes one feature quietly break in a way that's hard to trace back.</p>
           </details>
           <details>
             <summary>Can the coach write a workout without my approval?</summary>
-            <p>No. Every workout is shown to you in full and written only after you confirm that exact proposal.</p>
+            <p>No. Every workout is shown to you in full first, and it's only written after you confirm exactly what you saw.</p>
           </details>
           <details>
             <summary>What does a successful delivery mean?</summary>
-            <p>It means Intervals.icu accepted and returned the workout. It does not prove that a watch or another device received it.</p>
+            <p>It means Intervals.icu accepted the workout and confirmed it back. It doesn't mean your watch has received it yet.</p>
           </details>
           <details>
             <summary>How do I revoke access or delete my data?</summary>
-            <p>Remove this application in your Intervals.icu settings to stop future reads and writes. Because authorization is granted per application, that stops access for every AI assistant you connected. Revoking does not delete data already held. To delete that data, ask the coach in the conversation; it shows you what will be removed before you confirm. Workouts already on your Intervals.icu calendar remain yours to keep or remove. The <a href="support.html">support page</a> has more detail.</p>
+            <p>Remove this application in your Intervals.icu settings to stop future reads and writes. Because Intervals.icu grants access per application, not per AI, that disconnects every AI you'd connected — Claude, ChatGPT, all of them. Revoking doesn't delete data that's already there. To delete that, ask the coach in the conversation — it'll show you what's being removed before you confirm. Workouts already on your Intervals.icu calendar stay yours to keep or remove. More detail on the <a href="support.html">support page</a>.</p>
           </details>
         </div>
       </section>
 
       <section class="final-cta" aria-labelledby="start-title">
         <h2 id="start-title">Ready to connect?</h2>
-        <p class="section-copy">Add the remote MCP connector, approve access in Intervals.icu, and start with your recent training evidence.</p>
+        <p class="section-copy">Connect it, approve access in Intervals.icu, and start with your recent training data.</p>
         <a class="button" href="start.html">Get started</a>
-        <p class="project-status"><strong>Hosted MCP is live.</strong> This is an early personal GitHub project, not a company, maintained by one independent developer in Taiwan — availability may change, and how well it works depends on the AI product and plan you use. <a href="https://github.com/atomchung/long-run-hybrid-coach">View the source</a> for which entry paths are verified end to end.</p>
+        <p class="project-status"><strong>The hosted version is live.</strong> This is an early personal GitHub project, not a company — just one independent developer in Taiwan. Availability may change, and how well it works depends on the AI product and plan you use. <a href="https://github.com/atomchung/long-run-hybrid-coach">View the source</a> for which paths are fully tested.</p>
       </section>
     </main>
   </div>
