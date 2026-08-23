@@ -1,0 +1,90 @@
+/* Styles for start.html only. Loaded alongside assets/styles.css (which
+   defines the shared tokens, body font, and .wrap/.site-nav/.lede/.steps/
+   .step/.section-copy/.fine base rules this file builds on). Every selector
+   below is new — nothing here overrides or duplicates a rule in styles.css,
+   so the four listing pages that also load styles.css are unaffected. */
+
+.page-kicker {
+  display: block;
+  color: var(--ink-soft);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.start-page { width: min(960px, 100%); padding-bottom: 80px; }
+.start-header { max-width: 760px; padding: 56px 0 48px; }
+.start-header h1 { max-width: 760px; }
+.start-page .connect-section { padding-top: 48px; }
+
+.start-connect-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 0.42fr);
+  align-items: start;
+  gap: clamp(24px, 4vw, 44px);
+}
+
+.start-art { text-align: center; }
+.start-art img {
+  display: block;
+  width: min(100%, 300px);
+  height: auto;
+  margin: 0 auto;
+}
+
+.setup-steps { padding: 0; list-style: none; }
+.setup-steps .step { padding-bottom: 24px; }
+.setup-steps .step p { margin: 8px 0 0; }
+
+.connector-address {
+  margin-top: 16px;
+  padding: 16px 18px;
+  border: 2px solid var(--ink);
+  border-radius: 14px;
+  background: var(--paper);
+}
+
+.connector-address-primary {
+  max-width: 660px;
+  margin: 0 0 26px;
+}
+
+.connector-address span {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--ink-soft);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.connector-address code {
+  display: block;
+  overflow-wrap: anywhere;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.first-message {
+  margin: 24px 0 0;
+  padding: 22px 24px;
+  border-left: 6px solid var(--aqua);
+  border-radius: 12px;
+  background: var(--paper);
+  color: var(--ink);
+  font-weight: 700;
+}
+
+@media (max-width: 780px) {
+  .start-connect-layout { grid-template-columns: 1fr; }
+  .start-art img { width: min(76vw, 280px); }
+}
+
+@media (max-width: 520px) {
+  .start-header { padding: 40px 0 34px; }
+  .start-page .connect-section { padding-top: 38px; }
+  .start-page { padding-bottom: 56px; }
+}

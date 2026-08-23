@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Get started — Long Run Hybrid Coach</title>
+  <meta name="description" content="Connect Long Run Hybrid Coach to Intervals.icu through a remote MCP connector and start a coaching conversation.">
+  <meta property="og:title" content="Start Long Run Hybrid Coach">
+  <meta property="og:description" content="Connect Long Run Hybrid Coach to Intervals.icu through a remote MCP connector and start a coaching conversation.">
+  <meta property="og:url" content="https://paceandstaystrong.com/start.html">
+  <meta property="og:image" content="https://paceandstaystrong.com/assets/long-run-hybrid-coach-logo.png">
+  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="stylesheet" href="assets/start.css">
+</head>
+<body>
+  <div class="wrap">
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a class="brand" href="index.html">Long Run Hybrid Coach</a>
+      <div class="nav-links">
+        <a href="start.html" aria-current="page">Start</a>
+        <a href="index.html#how-it-works">How it works</a>
+      </div>
+    </nav>
+
+    <main class="start-page">
+      <header class="start-header">
+        <span class="page-kicker">Set up the connection</span>
+        <h1>Start Long Run Hybrid Coach</h1>
+        <p class="lede">You need an Intervals.icu account and an AI assistant that supports remote MCP connectors. Connect the coach to the training evidence in the account you already control.</p>
+        <p class="lede">If you don't have an Intervals.icu account yet, it's free — the connection flow below reaches its sign-in page, where you can create one with Google in about 30 seconds.</p>
+      </header>
+
+      <section class="connect-section" aria-labelledby="connect-title">
+        <h2 id="connect-title">Connect in four steps</h2>
+        <div class="connector-address connector-address-primary">
+          <span>Remote MCP URL</span>
+          <code>https://mcp.paceandstaystrong.com/mcp</code>
+        </div>
+        <div class="start-connect-layout">
+          <ol class="steps setup-steps" role="list">
+            <li class="step">
+              <strong>Open your AI assistant's connector settings.</strong>
+              <p>Choose the option to add a remote MCP connector or remote MCP server.</p>
+              <p class="fine">claude.ai or Claude Desktop: Settings → Connectors → Add custom connector.</p>
+              <p class="fine">ChatGPT: full read/write connector access is currently in beta for Business, Enterprise, and Edu workspaces through Apps/developer mode; everyone else can wait for this connector's listing to publish in the ChatGPT directory.</p>
+            </li>
+            <li class="step">
+              <strong>Add the Long Run Hybrid Coach endpoint.</strong>
+              <p>Paste the address above into the remote MCP server URL field, then continue.</p>
+            </li>
+            <li class="step">
+              <strong>Approve access in Intervals.icu.</strong>
+              <p>Sign in when Intervals.icu opens its consent page. Tick all four permissions, then approve. Leaving one unticked does not make the connection safer; it makes one capability fail in a way that is hard to trace back.</p>
+              <p><a href="privacy.html">Read what the authorization covers and how to revoke it.</a></p>
+            </li>
+            <li class="step">
+              <strong>Return to the assistant and start the conversation.</strong>
+              <p>Make sure the connector is available in the conversation, then ask the coach to read your recent training.</p>
+            </li>
+          </ol>
+          <div class="start-art">
+            <img src="assets/get-started-connector.png" width="900" height="600" alt="Banana athlete connecting a conversation bubble to a training calendar">
+          </div>
+        </div>
+        <p class="first-message">Try: &ldquo;Read my recent training and help me set a 28-day running and strength direction.&rdquo;</p>
+      </section>
+
+      <section aria-labelledby="empty-account-title">
+        <h2 id="empty-account-title">Is your Intervals.icu account new or empty?</h2>
+        <p class="section-copy">The coach only reads what Intervals.icu already has. If the account is new, there are two ways to bring your history in before you ask it to read your training:</p>
+        <ul>
+          <li><strong>Connect a device or app you already use.</strong> In Intervals.icu's own Settings, connect Garmin or your existing watch or training app account. Past activity backfills automatically — come back and ask the coach to re-read your training once it has arrived.</li>
+          <li><strong>Send an export straight to the coach.</strong> Give the coach a CSV, an Apple Health export, or a .fit file directly in the conversation, and ask it to import your history.</li>
+        </ul>
+      </section>
+
+      <section aria-labelledby="expect-title">
+        <h2 id="expect-title">What happens next</h2>
+        <p class="section-copy">The coach reads the evidence available in Intervals.icu and talks through the current direction with you. If it proposes a calendar workout, you see the full workout before anything is written. A successful delivery means Intervals.icu accepted and returned the workout; it does not prove that a watch or another device received it.</p>
+      </section>
+    </main>
+  </div>
+
+  <footer>
+    <div class="wrap footer-row">
+      <div>Long Run Hybrid Coach · Independent project</div>
+      <div><a href="support.html">Support</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="https://github.com/atomchung/long-run-hybrid-coach">Source</a></div>
+    </div>
+    <div class="wrap"><p class="fine">Long Run Hybrid Coach is an independent project and is not affiliated with, endorsed by, or sponsored by Garmin, Intervals.icu, Apple, or any other device or platform provider. Garmin and Intervals.icu are trademarks of their respective owners.</p></div>
+  </footer>
+</body>
+</html>
