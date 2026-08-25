@@ -35,6 +35,13 @@ Every page on this site exists in two languages: English at the repository root,
 Traditional Chinese under `zh/` with the same filename. `index.html` ↔ `zh/index.html`,
 `start.html` ↔ `zh/start.html`, and the same for `privacy`, `terms`, and `support`.
 
+`start.html` and `zh/start.html` are no longer pages. The setup steps were folded into
+the homepage on 25 August 2026 — a first-time reader was being asked to choose between
+learning what the product is and learning how to connect it, and the connection address is
+the fastest answer to both. What remains at those two paths is a redirect stub to
+`index.html#setup`, kept because the start URL was published in launch posts and a 404 is
+worse than a hop. Nothing links to them.
+
 This replaces the earlier single-pair rule, in which only the start page was mirrored and
 the homepage and legal pages were English-only. That rule was overturned on 23 August 2026:
 a "中文" link in the navigation reads as a whole-site language switch, so a reader who

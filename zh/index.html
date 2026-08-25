@@ -4,7 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Long Run Hybrid Coach — 跑步與重訓，練得久一點</title>
-  <meta name="description" content="活在 Claude 或 ChatGPT 對話裡的自適應 AI 跑步與重訓教練——它讀你 Intervals.icu 的訓練紀錄，並在你同意之後才把課表排進日曆。">
+  <meta name="description" content="把一個網址貼進 Claude 或 ChatGPT，你就有一個自適應的跑步與重訓教練——它讀你 Intervals.icu 的訓練紀錄，並在你同意之後才把課表排進日曆。">
+  <meta property="og:title" content="Long Run Hybrid Coach — 跑步＋重訓的自適應 AI 教練">
+  <meta property="og:description" content="把一個網址貼進 Claude 或 ChatGPT，你就有一個自適應的跑步與重訓教練——它讀你 Intervals.icu 的訓練紀錄，並在你同意之後才把課表排進日曆。">
+  <meta property="og:url" content="https://paceandstaystrong.com/zh/">
+  <meta property="og:image" content="https://paceandstaystrong.com/assets/long-run-hybrid-coach-logo.png">
   <link rel="alternate" hreflang="zh-Hant" href="https://paceandstaystrong.com/zh/">
   <link rel="alternate" hreflang="en" href="https://paceandstaystrong.com/">
   <link rel="alternate" hreflang="x-default" href="https://paceandstaystrong.com/">
@@ -17,7 +21,7 @@
       <div class="nav-links">
         <a href="#how-it-works">運作方式</a>
         <a href="#what-you-connect">常見問題</a>
-        <a class="nav-cta" href="start.html">開始使用</a>
+        <a class="nav-cta" href="#setup">開始使用</a>
         <a class="nav-lang" href="../index.html" hreflang="en" lang="en">English</a>
       </div>
     </nav>
@@ -27,17 +31,66 @@
         <div>
           <span class="eyebrow">獨立開源專案</span>
           <h1><span class="nowrap">跑步＋重訓</span>的<span class="nowrap">自適應</span> <span class="nowrap">AI 教練</span></h1>
-          <p class="lede">Long Run Hybrid Coach 活在你的 Claude 或 ChatGPT 對話裡。它讀你 Intervals.icu 帳號裡的訓練紀錄，維持一份當前的 28 天跑步與重訓計畫，並在你同意之後，把每一堂課表排進你的日曆。</p>
-          <p class="lede">你的訓練怎麼變，它就跟著調整；你原本用什麼手錶或 app 都可以。</p>
-          <div class="actions">
-            <a class="button" href="start.html">開始使用 — 四步驟完成連接</a>
+          <p class="lede">把一個網址貼進 Claude 或 ChatGPT，你就有一個讀得到你真實訓練的教練。</p>
+          <p class="lede">它讀你 Intervals.icu 帳號裡的活動與恢復數據，維持一份當前的 28 天跑步與重訓計畫，並在你同意之後，把每一堂課表排進你的日曆。你原本用什麼手錶或 app 都可以。</p>
+          <div class="connector-address connector-address-primary">
+            <span>連接網址（Remote MCP URL）</span>
+            <code>https://mcp.paceandstaystrong.com/mcp</code>
           </div>
-          <p class="button-note">第一次來？開始使用頁會帶你走完整個設定。或者先<a class="text-link" href="#how-it-works">看它怎麼運作</a>。</p>
+          <div class="actions">
+            <a class="button" href="#setup">開始使用 — 四步驟完成連接</a>
+            <a class="button secondary" href="#how-it-works">看它怎麼運作</a>
+          </div>
+          <p class="button-note">沒有東西要下載，這裡也不用另外註冊帳號。你需要一個免費的 Intervals.icu 帳號，以及 Claude 或 ChatGPT。</p>
         </div>
         <div class="hero-art">
-          <img class="hero-logo" src="../assets/long-run-hybrid-coach-logo.png?v=transparent-20260814" alt="Long Run Hybrid Coach 香蕉運動員標誌">
+          <img class="hero-logo" src="../assets/long-run-hybrid-coach-logo.png?v=transparent-20260814" width="520" height="520" alt="Long Run Hybrid Coach 香蕉運動員標誌">
         </div>
       </div>
+
+      <section id="setup" aria-labelledby="setup-title">
+        <span class="page-kicker">第一次用</span>
+        <h2 id="setup-title">四步驟完成連接</h2>
+        <p class="section-copy">你需要兩樣東西：一個免費的 Intervals.icu 帳號，和 Claude 或 ChatGPT。教練會讀你帳號裡原本就有的訓練紀錄。還沒有帳號？第三步會帶你到 Intervals.icu 的登入頁，用 Google 帳號 30 秒內就能開好。</p>
+        <div class="connector-address connector-address-primary">
+          <span>連接網址（Remote MCP URL）</span>
+          <code>https://mcp.paceandstaystrong.com/mcp</code>
+        </div>
+        <div class="start-connect-layout">
+          <ol class="steps setup-steps" role="list">
+            <li class="step">
+              <strong>開啟你 AI 的連接器設定。</strong>
+              <p>找新增連接器的選項。</p>
+              <p class="fine">claude.ai 或 Claude Desktop：Settings → Connectors → Add custom connector。</p>
+              <p class="fine">ChatGPT：完整的讀寫權限目前只在 Business、Enterprise、Edu 的網頁版 workspace 開放 beta，要透過 Apps／developer mode 啟用。其他人請先等這個連接在 ChatGPT 目錄上架。</p>
+            </li>
+            <li class="step">
+              <strong>貼上連接網址。</strong>
+              <p>把上面的網址貼進 remote MCP server 的 URL 欄位，然後繼續。MCP 是讓 AI 連上外部服務的標準介面——你只需要把網址貼進去。</p>
+            </li>
+            <li class="step">
+              <strong>授權 Intervals.icu。</strong>
+              <p>Intervals.icu 跳出同意頁的時候先登入，四個權限都勾起來，再按核准。每個權限管一種存取。少勾哪一個，需要它的功能就會用很難查出原因的方式壞掉——要用完整的教練流程，四個都勾。</p>
+              <p><a href="#what-you-connect">看這個授權包含什麼範圍、要怎麼撤銷。</a></p>
+            </li>
+            <li class="step">
+              <strong>回到你的 AI，開始對話。</strong>
+              <p>確認這個連接在對話裡是打開的，然後請教練讀你最近的訓練。</p>
+            </li>
+          </ol>
+          <div class="start-art">
+            <img src="../assets/get-started-connector.png" width="900" height="600" alt="香蕉運動員把對話氣泡接上訓練日曆">
+          </div>
+        </div>
+        <p class="first-message">第一句可以這樣講：「讀我最近的訓練，幫我訂出未來 28 天的跑步＋重訓方向。」</p>
+
+        <h3 id="empty-account">你的 Intervals.icu 帳號是新的還是空的？</h3>
+        <p class="section-copy">教練會自動讀取 Intervals.icu 裡已經有的資料。如果帳號是新的，請它讀訓練之前，有兩種方法可以先把歷史資料補進去：</p>
+        <ul>
+          <li><strong>連接你原本就在用的裝置或 app。</strong>在 Intervals.icu 自己的 Settings 裡，連上 Garmin 或你既有的手錶、訓練 app 帳號。過去的活動會自動補上——資料到了之後，再回來請教練重新讀一次你的訓練。</li>
+          <li><strong>直接把匯出檔交給教練。</strong>在對話裡把 CSV、Apple Health 匯出檔或 .fit 檔直接交給教練，請它匯入你的歷史紀錄。（檔案是給教練看的，不會加進 Intervals.icu。）</li>
+        </ul>
+      </section>
 
       <section aria-labelledby="one-plan">
         <h2 id="one-plan">跑步和重訓，共用同一份當前計畫。</h2>
@@ -131,11 +184,11 @@
 
         <aside class="signpost">
           <div>
-            <span class="page-kicker">第一次來</span>
-            <h3>開始使用：四步驟完成連接</h3>
-            <p>開始使用頁有要貼的網址、Intervals.icu 四個權限各管什麼，以及帳號還是空的時候該怎麼辦。</p>
+            <span class="page-kicker">可以開始了</span>
+            <h3>四步驟完成連接</h3>
+            <p>要貼的網址、Intervals.icu 四個權限各管什麼，以及帳號還是空的時候該怎麼辦。</p>
           </div>
-          <a class="button" href="start.html">開始使用</a>
+          <a class="button" href="#setup">開始使用</a>
         </aside>
       </section>
 
@@ -148,11 +201,7 @@
           </details>
           <details>
             <summary>開始之前需要準備什麼？</summary>
-            <p>一個 <a href="https://intervals.icu">Intervals.icu</a> 帳號，以及 Claude 或 ChatGPT。<a href="start.html">開始使用頁</a>有要貼的網址和完整四個步驟。還沒有 Intervals.icu 帳號也沒關係，它是免費的——設定流程會帶你到它的登入頁，用 Google 帳號大約 30 秒就能開好。Claude 用免費方案就可以。ChatGPT 目前需要 Business、Enterprise 或 Edu workspace；個人方案請等這個教練在 ChatGPT 目錄上架。</p>
-          </details>
-          <details>
-            <summary>你的 Intervals.icu 帳號是新的或空的嗎？</summary>
-            <p>教練會自動讀 Intervals.icu 裡已經有的資料。你可以在 Intervals.icu 自己的 Settings 裡，連上你原本就在用的裝置或 app——Garmin 或其他手錶、訓練 app 都行——過去的活動會自動補上。或者直接在對話裡把 CSV、Apple Health 匯出檔或 .fit 檔交給教練，請它匯入你的歷史紀錄。（檔案是給教練看的，不會加進 Intervals.icu。）</p>
+            <p>一個 <a href="https://intervals.icu">Intervals.icu</a> 帳號，以及 Claude 或 ChatGPT。<a href="#setup">上面的四個步驟</a>有要貼的網址。還沒有 Intervals.icu 帳號也沒關係，它是免費的——設定流程會帶你到它的登入頁，用 Google 帳號大約 30 秒就能開好。Claude 用免費方案就可以。ChatGPT 目前需要 Business、Enterprise 或 Edu workspace；個人方案請等這個教練在 ChatGPT 目錄上架。</p>
           </details>
           <details>
             <summary>一定要用特定的手錶嗎？</summary>
@@ -160,7 +209,7 @@
           </details>
           <details>
             <summary>我可以自己架，不用託管版本嗎？</summary>
-            <p>可以。自架跑的是完全一樣的產品，用你自己的 Intervals.icu OAuth 憑證和你自己的儲存空間——這條路是給想自己維運的開發者走的。多數人直接用<a href="start.html">開始使用頁</a>上的託管版本就好。</p>
+            <p>可以。自架跑的是完全一樣的產品，用你自己的 Intervals.icu OAuth 憑證和你自己的儲存空間——這條路是給想自己維運的開發者走的。多數人直接用<a href="#setup">設定步驟</a>裡的託管網址就好。</p>
           </details>
           <details>
             <summary>為什麼 Intervals.icu 四個權限都要勾？</summary>
@@ -184,7 +233,7 @@
       <section class="final-cta" aria-labelledby="start-title">
         <h2 id="start-title">為今天而練，也為往後很長的路<span class="nowrap">保住能力</span>。</h2>
         <p class="section-copy">把教練連上、在 Intervals.icu 授權，然後從你已經練過的東西開始。</p>
-        <a class="button" href="start.html">開始使用</a>
+        <a class="button" href="#setup">開始使用</a>
         <p class="project-status"><strong>託管版本已經在線上。</strong>這是一個早期的個人 GitHub 專案，不是公司——只有一個在台灣的獨立開發者。服務可能會變，實際好不好用也取決於你用的 AI 產品和方案。<a href="https://github.com/atomchung/long-run-hybrid-coach">原始碼</a>裡寫得很清楚，哪些組合真的被端到端測過。</p>
       </section>
     </main>
