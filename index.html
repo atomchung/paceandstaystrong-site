@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Long Run Hybrid Coach — Running and strength for the long run</title>
-  <meta name="description" content="Paste one address into Claude or ChatGPT and you have an adaptive running and strength coach — it reads your Intervals.icu training data and schedules workouts onto your calendar only after you approve them.">
+  <meta name="description" content="Free. Paste one address into Claude or ChatGPT and you have an adaptive running and strength coach — it reads your Intervals.icu training data and schedules workouts onto your calendar only after you approve them.">
   <meta property="og:title" content="Long Run Hybrid Coach — an adaptive AI coach for runners who lift">
-  <meta property="og:description" content="Paste one address into Claude or ChatGPT and you have an adaptive running and strength coach — it reads your Intervals.icu training data and schedules workouts onto your calendar only after you approve them.">
+  <meta property="og:description" content="Free. Paste one address into Claude or ChatGPT and you have an adaptive running and strength coach — it reads your Intervals.icu training data and schedules workouts onto your calendar only after you approve them.">
   <meta property="og:url" content="https://paceandstaystrong.com/">
   <meta property="og:image" content="https://paceandstaystrong.com/assets/long-run-hybrid-coach-logo.png">
   <link rel="alternate" hreflang="en" href="https://paceandstaystrong.com/">
@@ -41,7 +41,7 @@
             <a class="button" href="#setup">Get started — connect in four steps</a>
             <a class="button secondary" href="#how-it-works">See how it works</a>
           </div>
-          <p class="button-note">Nothing to download, and no account to create here. You need a free Intervals.icu account, and Claude or ChatGPT.</p>
+          <p class="button-note">Free to use. Nothing to download, and no account to create here. You need a free Intervals.icu account, and Claude or ChatGPT.</p>
         </div>
         <div class="hero-art">
           <img class="hero-logo" src="assets/long-run-hybrid-coach-logo.png?v=transparent-20260814" width="520" height="520" alt="Long Run Hybrid Coach banana athlete logo">
@@ -67,10 +67,12 @@
             <li class="step">
               <strong>Paste the connection address.</strong>
               <p>Put the address above in the remote MCP server URL field and continue. MCP is the standard interface an AI uses to reach an outside service — pasting the address is all it asks of you.</p>
+              <p class="fine">Nothing else to fill in, and no key to paste. The address sits on this project’s own domain — the one this page is on.</p>
             </li>
             <li class="step">
               <strong>Approve access in Intervals.icu.</strong>
               <p>When Intervals.icu shows its consent screen, sign in, check all four permissions, and approve. Each box covers a different kind of access. Skip one, and the feature that needs it breaks in a way that's hard to trace back — check all four for the full coaching flow.</p>
+              <p class="fine">One of the four is a write permission on your athlete settings, and the coach does write there — narrowly. It reads your threshold pace from that box, and the one thing it ever writes is a threshold pace you do not have yet, during a delivery you already confirmed. A threshold pace you already set is never overwritten.</p>
               <p><a href="#what-you-connect">What that grant covers, and how to revoke it.</a></p>
             </li>
             <li class="step">
@@ -201,7 +203,11 @@
           </details>
           <details>
             <summary>What do I need to start?</summary>
-            <p>An <a href="https://intervals.icu">Intervals.icu</a> account, and Claude or ChatGPT. The <a href="#setup">four steps above</a> have the address to paste in. If you don't have an Intervals.icu account yet, it's free — the setup flow takes you to its sign-in page, where you can create one with Google in about 30 seconds. Claude works on its free plan. ChatGPT currently needs a Business, Enterprise, or Edu workspace — on a personal plan, wait for this coach to appear in the ChatGPT directory.</p>
+            <p>An <a href="https://intervals.icu">Intervals.icu</a> account, and Claude or ChatGPT. The <a href="#setup">four steps above</a> have the address to paste in. If you don't have an Intervals.icu account yet, it's free — the setup flow takes you to its sign-in page, where you can create one with Google in about 30 seconds. Claude works on its free plan, though a free Claude account is limited to one custom connector. ChatGPT currently needs a Business, Enterprise, or Edu workspace — on a personal plan, wait for this coach to appear in the ChatGPT directory.</p>
+          </details>
+          <details>
+            <summary>Does this cost anything?</summary>
+            <p>No. The coach is free and has no paid tier — it is one person's project, not a business, and there is nowhere here to enter a payment method. The only thing you might pay for is your AI subscription: Claude works on its free plan, while ChatGPT currently needs a Business, Enterprise, or Edu workspace. Intervals.icu is free as well. Free also means what the note at the bottom of this page says — no uptime promise, and it can change.</p>
           </details>
           <details>
             <summary>Do I need a particular watch?</summary>
@@ -213,7 +219,7 @@
           </details>
           <details>
             <summary>Why do all four Intervals.icu permissions need to be checked?</summary>
-            <p>The four permissions let the coach read your completed activities, read your wellness data, read and write your training calendar, and read your Run settings. Your Run settings hold your threshold pace — if it's missing, the coach can only fill it in through a workout you've already confirmed. Each box covers a different kind of access. Skip one, and the feature that needs it breaks in a way that's hard to trace back — check all four for the full coaching flow.</p>
+            <p>They let the coach read your completed activities, read your wellness data, read and write your training calendar, and read and write your athlete settings. The fourth is a real write permission, used narrowly: the coach reads your threshold pace from it, and the one thing it ever writes is a threshold pace you do not have yet, during a delivery you already confirmed. A threshold pace you already set is never overwritten. It matters because without one on the Intervals.icu side, Intervals still accepts a paced workout but strips the pace target on the way to your watch — you get the right distances with no targets. Each box covers a different kind of access. Skip one, and the feature that needs it breaks in a way that's hard to trace back — check all four for the full coaching flow.</p>
           </details>
           <details>
             <summary>Can the coach write a workout without my approval?</summary>
@@ -225,7 +231,9 @@
           </details>
           <details>
             <summary>How do I revoke access or delete my data?</summary>
-            <p>Want your stored data deleted too? Ask the coach in the conversation first — it shows you exactly what's being removed before you confirm. Then remove this application in your Intervals.icu settings to stop future reads and writes. (If you revoke first, the coach is signed out and can no longer delete data for you in the conversation.) Because Intervals.icu grants access per application, not per AI, removing it disconnects every AI you'd connected — Claude, ChatGPT, all of them. Workouts already on your Intervals.icu calendar stay yours to keep or remove. More detail on the <a href="support.html">support page</a>.</p>
+            <p><strong>To stop access:</strong> remove this application in your Intervals.icu settings. That ends future reads and writes. Because Intervals.icu grants access per application rather than per AI, removing it disconnects every AI you had connected — Claude, ChatGPT, all of them.</p>
+            <p><strong>To delete your data as well, do that first:</strong> ask the coach in the conversation, and it shows you exactly what is being removed before you confirm. Deleting before you revoke is the simple order — your Intervals.icu sign-in is what identifies you here, so once it is gone you may have to re-authorize briefly just to finish the deletion.</p>
+            <p>Workouts already on your Intervals.icu calendar stay yours to keep or remove either way. More detail on the <a href="support.html">support page</a>.</p>
           </details>
         </div>
       </section>
