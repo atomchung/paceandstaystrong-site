@@ -438,3 +438,31 @@ footer { padding: 34px 0 56px; border-top: 1px solid var(--line); color: var(--i
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 }
+
+/* Native players retain keyboard, caption, fullscreen and mobile playback controls. */
+.hero-film { width: min(100%, 330px); margin: 0 auto; scroll-margin-top: 24px; }
+.hero-film figcaption { margin: 0 0 14px; }
+.hero-film figcaption strong { display: block; margin-top: 5px; font-size: 1.06rem; }
+.film-player { display: block; width: 100%; height: auto; aspect-ratio: 9 / 16; border: 1px solid var(--line); border-radius: 20px; background: #142029; box-shadow: 0 14px 32px #0b315914; }
+.film-player:focus-visible, .film-transcript summary:focus-visible { outline: 3px solid var(--coral); outline-offset: 4px; }
+.film-player::cue { font-family: system-ui, sans-serif; color: white; background: #102029d9; }
+.film-language { margin: 12px 0; color: var(--ink-soft); font-size: .85rem; }
+#films { scroll-margin-top: 24px; }
+.film-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin: 30px 0 24px; align-items: start; }
+.film-card { min-width: 0; }
+.film-card-heading { min-height: 180px; }
+.film-card-heading h3 { margin-top: 8px; font-size: 1.3rem; }
+.film-card-heading p { color: var(--ink-soft); font-size: .95rem; }
+.film-transcript { margin-top: 12px; color: var(--ink-soft); font-size: .88rem; }
+.film-transcript summary { cursor: pointer; padding: 6px 0; text-decoration: underline; text-underline-offset: 3px; }
+.film-transcript ol { padding-left: 22px; }
+.film-transcript li { margin-bottom: 7px; }
+.film-note { max-width: 820px; margin: 26px 0; color: var(--ink-soft); font-size: .88rem; }
+@media (max-width: 780px) {
+  .film-grid { grid-template-columns: 1fr; gap: 38px; }
+  .film-card { width: min(100%, 380px); margin-inline: auto; }
+  .film-card-heading { min-height: 0; }
+  .hero-film { width: min(100%, 330px); }
+}
+
+.product-name { margin: 0 0 20px; font-size: .92rem; font-weight: 700; color: var(--ink-soft); }

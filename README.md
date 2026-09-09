@@ -105,3 +105,20 @@ file on that path — the domain is attached in this repository's Pages settings
 DNS records that make it answer are at Cloudflare. The sequence, including the order that
 avoids both a takeover window and an outage, is
 `docs/ops/point-the-website-at-the-apex-domain.md` in the core repository.
+
+
+## Public films
+
+The homepage in both languages includes the 42-second story and three ten-second
+stories in `assets/films/`. Web copies are H.264/AAC at 720 × 1280 with fast-start
+metadata. The original illustrated masters, audio and editable sources are retained
+in the local GTM archive, outside this public repository. `assets/films/manifest.json`
+records the versioned public files, sizes and hashes.
+
+The four clips have Mandarin audio and independent English / Traditional Chinese
+WebVTT captions. Each page selects its matching caption language and provides a text
+transcript. These are not English voiceovers. Native controls use `preload="none"`,
+no autoplay, and poster images; `assets/media.js` pauses other clips when one starts.
+Keep versioned filenames when replacing a clip so cached copies cannot hide an edit.
+
+The site uses the existing GitHub Pages deployment. No paid video host was added.
