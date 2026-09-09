@@ -122,3 +122,15 @@ no autoplay, and poster images; `assets/media.js` pauses other clips when one st
 Keep versioned filenames when replacing a clip so cached copies cannot hide an edit.
 
 The site uses the existing GitHub Pages deployment. No paid video host was added.
+
+## First-use guidance
+
+Both homepages lead from the product story to the everyday coaching routine, setup,
+films and FAQ. Keep platform eligibility visible before setup; link to current
+provider documentation rather than promising access on every AI subscription.
+An empty Intervals.icu account is supported: history is useful, not a prerequisite.
+
+`assets/onboarding.js` progressively adds copy buttons for the connection address
+and first message, with selectable-text fallback if clipboard access is blocked.
+It opens directly linked FAQ disclosures. Without JavaScript, instructions and
+text remain readable and selectable. Native video playback stays independent.
