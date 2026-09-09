@@ -466,3 +466,42 @@ footer { padding: 34px 0 56px; border-top: 1px solid var(--line); color: var(--i
 }
 
 .product-name { margin: 0 0 20px; font-size: .92rem; font-weight: 700; color: var(--ink-soft); }
+
+/* Onboarding follows the product story before the optional film gallery. */
+#setup, #how-it-works, #what-you-connect, #client-options, #permissions { scroll-margin-top: 24px; }
+.routine-grid .card { min-height: 0; }
+.routine-grid .card-mark { margin-bottom: 14px; }
+.routine-grid .example-quote { font-weight: 700; color: var(--ink); }
+.routine-grid p { font-size: .95rem; color: var(--ink-soft); }
+.delivery-note { max-width: 860px; margin: 24px 0 0; color: var(--ink-soft); }
+.client-options { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 24px 0; }
+.client-option { min-width: 0; padding: 22px; border: 1px solid var(--line); border-radius: 18px; background: var(--paper); }
+.client-option:first-child { border: 2px solid var(--ink); background: var(--panel); }
+.client-option h3 { margin-top: 10px; }
+.client-option p { margin-bottom: 0; color: var(--ink-soft); }
+.setup-steps { max-width: 860px; }
+.setup-steps p > a { display: inline-flex; align-items: center; min-height: 44px; }
+.setup-detail { margin-top: 14px; }
+.setup-detail summary { cursor: pointer; padding: 8px 0; font-weight: 700; }
+.empty-account { max-width: 860px; padding: 12px 20px; background: var(--panel); border-radius: 14px; }
+.first-message { max-width: 860px; }
+.first-message p { margin: 8px 0; }
+.setup-success { max-width: 860px; color: var(--ink-soft); }
+.copy-button { min-height: 44px; padding: 7px 18px; margin-top: 12px; border: 1px solid var(--ink); border-radius: 10px; background: var(--paper); color: var(--ink); cursor: pointer; font: inherit; font-weight: 700; }
+.copy-button:hover { background: var(--panel); }
+.copy-button:focus-visible, summary:focus-visible { outline: 3px solid var(--coral); outline-offset: 4px; }
+.copy-status { display: inline; margin-left: 12px; font-size: .88rem; font-weight: 400; }
+.connector-address .copy-status { display: inline; text-transform: none; letter-spacing: normal; font-size: .88rem; font-weight: 400; }
+.connection-help { padding: 20px 24px; border: 1px solid var(--line); background: var(--panel); border-radius: 18px; }
+.legal .connection-help h2 { margin-top: 0; }
+.connection-help li { margin-bottom: 12px; }
+@media (max-width: 780px) {
+  .client-options { grid-template-columns: 1fr; }
+}
+@media (max-width: 520px) {
+  .hero { padding-top: 22px; gap: 36px; }
+  .hero .lede { font-size: 1.04rem; }
+  .hero .product-name { margin-bottom: 12px; }
+  .hero .actions { margin-top: 20px; }
+  section { padding: 48px 0; }
+}
