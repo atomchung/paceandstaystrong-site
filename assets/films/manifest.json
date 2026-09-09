@@ -1,0 +1,40 @@
+{
+  "date": "2026-09-09",
+  "audio_language": "Mandarin Chinese",
+  "picture_language": "English",
+  "caption_languages": [
+    "en",
+    "zh-Hant"
+  ],
+  "files": [
+    {
+      "id": "full-story",
+      "video": "full-story-v1.mp4",
+      "bytes": 3373200,
+      "duration_seconds": 41.966667,
+      "sha256": "2f1599b5569ff57c556ff788115d80dec66f1dd13769d06a2d229b4ad7f55bfd"
+    },
+    {
+      "id": "short-a",
+      "video": "short-a-v1.mp4",
+      "bytes": 1075132,
+      "duration_seconds": 10,
+      "sha256": "a3e27cb27f125f9af72c9d5c697219545620d1ba1623682ea7fb9edb8fdd3f47"
+    },
+    {
+      "id": "short-b",
+      "video": "short-b-v1.mp4",
+      "bytes": 1203672,
+      "duration_seconds": 10,
+      "sha256": "5e6e732f18824e5cef0067ed636f7a18ba02aaafa73d0984ed6cfb9ec8861bb0"
+    },
+    {
+      "id": "short-c",
+      "video": "short-c-v1.mp4",
+      "bytes": 1065354,
+      "duration_seconds": 10,
+      "sha256": "8361ad392abcd8157eabdf3ee08bcce012097f61493f8b9810b076cf35fa4d93"
+    }
+  ],
+  "video_bytes_total": 6717358
+}

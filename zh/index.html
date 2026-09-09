@@ -12,13 +12,15 @@
   <link rel="alternate" hreflang="zh-Hant" href="https://paceandstaystrong.com/zh/">
   <link rel="alternate" hreflang="en" href="https://paceandstaystrong.com/">
   <link rel="alternate" hreflang="x-default" href="https://paceandstaystrong.com/">
-  <link rel="stylesheet" href="../assets/styles.css">
+  <link rel="stylesheet" href="../assets/styles.css?v=films-20260909">
+  <script src="../assets/media.js" defer></script>
 </head>
 <body>
   <div class="wrap">
     <nav class="site-nav" aria-label="主要導覽">
-      <a class="brand" href="index.html">Long Run Hybrid Coach</a>
+      <a class="brand" href="index.html">Pace &amp; Stay Strong</a>
       <div class="nav-links">
+        <a href="#films">看影片</a>
         <a href="#how-it-works">運作方式</a>
         <a href="#what-you-connect">常見問題</a>
         <a class="nav-cta" href="#setup">開始使用</a>
@@ -29,24 +31,74 @@
     <main>
       <div class="hero">
         <div>
-          <span class="eyebrow">獨立開源專案</span>
-          <h1><span class="nowrap">跑步＋重訓</span>的<span class="nowrap">自適應</span> <span class="nowrap">AI 教練</span></h1>
-          <p class="lede">把一個網址貼進 Claude 或 ChatGPT，你就有一個讀得到你真實訓練的教練。</p>
-          <p class="lede">它讀你 Intervals.icu 帳號裡的活動與恢復數據，維持一份當前的 28 天跑步與重訓計畫，並在你同意之後，把每一堂課表排進你的日曆。你原本用什麼手錶或 app 都可以。</p>
+          <span class="eyebrow">Pace &amp; Stay Strong · 跑步＋重訓</span>
+          <h1>今天怎麼練，<br>一起排好。</h1>
+          <p class="product-name">Long Run Hybrid Coach · 跑步＋重訓 AI 教練</p>
+          <p class="lede">跟 AI 教練聊聊近況，把跑步和重訓排進同一週，練完再一起調整。</p>
+          <p class="lede">在 Claude 或 ChatGPT 裡使用。教練參考你的 Intervals.icu 訓練紀錄，維持一份當前的 28 天計畫；你確認之後，才把課表傳到日曆。</p>
           <div class="connector-address connector-address-primary">
             <span>連接網址（Remote MCP URL）</span>
             <code>https://mcp.paceandstaystrong.com/mcp</code>
           </div>
           <div class="actions">
             <a class="button" href="#setup">開始使用 — 四步驟完成連接</a>
-            <a class="button secondary" href="#how-it-works">看它怎麼運作</a>
+            <a class="button secondary" href="#demo">看 42 秒完整故事</a>
           </div>
           <p class="button-note">免費使用。沒有東西要下載，這裡也不用另外註冊帳號。你需要一個免費的 Intervals.icu 帳號，以及 Claude 或 ChatGPT。</p>
         </div>
-        <div class="hero-art">
-          <img class="hero-logo" src="../assets/long-run-hybrid-coach-logo.png?v=transparent-20260814" width="520" height="520" alt="Long Run Hybrid Coach 香蕉運動員標誌">
-        </div>
+        <figure class="hero-film" id="demo">
+          <figcaption><span class="page-kicker">完整故事 · 42 秒</span><strong>從不知道怎麼練，到一步步開始</strong></figcaption>
+          <video class="film-player" controls playsinline preload="none" poster="../assets/films/full-story-v1.jpg" width="720" height="1280" aria-label="從不知道怎麼練，到一步步開始">
+              <source src="../assets/films/full-story-v1.mp4" type="video/mp4">
+              <track kind="captions" src="../assets/films/full-story-v1.en.vtt" srclang="en" label="English">
+              <track kind="captions" src="../assets/films/full-story-v1.zh-Hant.vtt" srclang="zh-Hant" label="繁體中文" default>
+              <a href="../assets/films/full-story-v1.mp4">下載影片</a>
+            </video>
+          <p class="film-language">華語配音 · 繁體中文字幕</p>
+          <details class="film-transcript"><summary>閱讀對話</summary><ol><li>每次都跑到好累，還是不知道怎麼練。</li><li>我一週能練四天，可以幫我安排嗎？</li><li>可以。參考你最近的訓練，把跑步和肌力搭配好。</li><li>好，幫我存起來。</li><li>存好了。這三堂跑步課，要傳送嗎？</li><li>好，傳送。</li><li>今天，就跟著手錶練。</li><li>這次跑完，還有餘力。</li><li>很好，我們看看下週怎麼調整。</li></ol></details>
+        </figure>
       </div>
+
+      <section id="films" aria-labelledby="films-title">
+        <span class="page-kicker">看見你的下一步</span>
+        <h2 id="films-title">三個時刻，一位陪你練的教練。</h2>
+        <p class="section-copy">從今天練什麼，到跑完之後怎麼調整。每支 10 秒，看看教練怎麼陪你往前。</p>
+        <p class="film-language">華語配音 · 繁體中文字幕 · 點擊播放</p>
+        <div class="film-grid">
+          <article class="film-card" aria-labelledby="film-a-title">
+            <div class="film-card-heading"><span class="page-kicker">10 秒故事</span><h3 id="film-a-title">今天怎麼練</h3><p>跟教練排好課表，確認傳送，裝置同步後跟著手錶練。</p></div>
+            <video class="film-player" controls playsinline preload="none" poster="../assets/films/short-a-v1.jpg" width="720" height="1280" aria-label="今天怎麼練">
+              <source src="../assets/films/short-a-v1.mp4" type="video/mp4">
+              <track kind="captions" src="../assets/films/short-a-v1.en.vtt" srclang="en" label="English">
+              <track kind="captions" src="../assets/films/short-a-v1.zh-Hant.vtt" srclang="zh-Hant" label="繁體中文" default>
+              <a href="../assets/films/short-a-v1.mp4">下載影片</a>
+            </video>
+            <details class="film-transcript"><summary>閱讀對話</summary><ol><li>今天怎麼練？</li><li>我幫你排，跟著手錶練。</li></ol></details>
+          </article>
+          <article class="film-card" aria-labelledby="film-b-title">
+            <div class="film-card-heading"><span class="page-kicker">10 秒故事</span><h3 id="film-b-title">找到自己的節奏</h3><p>把跑步和肌力放進適合你的節奏，一步步建立習慣。</p></div>
+            <video class="film-player" controls playsinline preload="none" poster="../assets/films/short-b-v1.jpg" width="720" height="1280" aria-label="找到自己的節奏">
+              <source src="../assets/films/short-b-v1.mp4" type="video/mp4">
+              <track kind="captions" src="../assets/films/short-b-v1.en.vtt" srclang="en" label="English">
+              <track kind="captions" src="../assets/films/short-b-v1.zh-Hant.vtt" srclang="zh-Hant" label="繁體中文" default>
+              <a href="../assets/films/short-b-v1.mp4">下載影片</a>
+            </video>
+            <details class="film-transcript"><summary>閱讀對話</summary><ol><li>每次都跑得好累。</li><li>先找到你的節奏，一步步來。</li></ol></details>
+          </article>
+          <article class="film-card" aria-labelledby="film-c-title">
+            <div class="film-card-heading"><span class="page-kicker">10 秒故事</span><h3 id="film-c-title">跑完之後呢</h3><p>回報跑後感受，和教練一起回顧，再安排下一週。</p></div>
+            <video class="film-player" controls playsinline preload="none" poster="../assets/films/short-c-v1.jpg" width="720" height="1280" aria-label="跑完之後呢">
+              <source src="../assets/films/short-c-v1.mp4" type="video/mp4">
+              <track kind="captions" src="../assets/films/short-c-v1.en.vtt" srclang="en" label="English">
+              <track kind="captions" src="../assets/films/short-c-v1.zh-Hant.vtt" srclang="zh-Hant" label="繁體中文" default>
+              <a href="../assets/films/short-c-v1.mp4">下載影片</a>
+            </video>
+            <details class="film-transcript"><summary>閱讀對話</summary><ol><li>跑完了，接下來呢？</li><li>一起回顧，再安排下一週。</li></ol></details>
+          </article>
+        </div>
+        <p class="film-note">影片為情境示意，人物與資料皆為虛構。手錶訓練需使用相容裝置並完成同步設定；Intervals.icu 收到課表，不代表手錶已同步。</p>
+        <a class="button" href="#setup">讓教練認識你的訓練</a>
+      </section>
 
       <section id="setup" aria-labelledby="setup-title">
         <span class="page-kicker">第一次用</span>
