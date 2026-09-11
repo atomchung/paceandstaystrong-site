@@ -18,10 +18,10 @@
     </div>
     <header>
       <h1>Support</h1>
-      <p class="meta">Last updated: 9 September 2026 · A personal GitHub project, not a company, maintained by an independent developer in Taiwan.</p>
+      <p class="meta">Last updated: 11 September 2026 · A personal GitHub project, not a company, maintained by an independent developer in Taiwan.</p>
     </header>
 
-    <p>Start with the connection checklist below. You can ask the coach to export, correct or delete your data, or contact the developer if you need help.</p>
+    <p>Start with the connection checklist below. You can ask the coach to export or correct your data. <strong>Deleting your whole account is asked for <a href="#data-by-email">by email</a></strong>, and asking the coach to delete everything gets you that page and nothing else.</p>
 
     <aside class="connection-help" id="connection-help" aria-labelledby="connection-help-title">
       <h2 id="connection-help-title">Connection and first-use help</h2>
@@ -38,15 +38,22 @@
     <h2>1. Manage your data in conversation</h2>
     <ul>
       <li><strong>Get a copy of your data.</strong> Ask the coach what it holds about you. The archive arrives in the conversation and states what it deliberately leaves out.</li>
-      <li><strong>Delete your account.</strong> Ask the coach to delete it. You see a preview of exactly what goes and what deletion cannot reach, and nothing is removed until you confirm that preview.</li>
+      <li><strong>Delete your account — not here.</strong> This is the one thing the conversation does not do. Ask the coach and it hands you <a href="#data-by-email">section 2</a>; nothing is submitted and nothing is removed until you write.</li>
       <li><strong>Correct something you reported.</strong> Report the corrected value. For the records where only the newest one counts — a body measurement for one day, or one exercise on one day — the new value replaces the standing one, and the coach tells you what it displaced. Your plan’s own version history is separate: it is only ever added to, never edited in place, so correcting a record does not quietly rewrite what the plan said last week.</li>
       <li><strong>Retract something you reported.</strong> Ask the coach to retract the relevant athlete-reported record when the right result is removal rather than replacement.</li>
-      <li><strong>Stop all access.</strong> Revoke Long Run Hybrid Coach in Intervals.icu. That ends future reads and writes; it does not by itself delete what is already held. <strong>If you want your data deleted too, delete it first</strong> — your Intervals.icu sign-in is what identifies you here, so once it is revoked you may have to re-authorize briefly just to finish the deletion (section 6).</li>
+      <li><strong>Stop all access.</strong> Revoke Long Run Hybrid Coach in Intervals.icu. That ends future reads and writes; it does not by itself delete what is already held. Revoking first costs you nothing: a deletion request is email, and your athlete id finds the account without a working connection.</li>
     </ul>
-    <p>Your connection is the identity check, which is why these need no separate support request and no proof of who you are.</p>
+    <p>Your connection is the identity check, which is why none of these needs a separate support request. If your AI client blocks a call before it reaches this service, the conversation cannot finish it and cannot say why — which is exactly why whole-account deletion is not offered here at all.</p>
 
-    <h2>2. Reaching a person</h2>
+    <h2 id="data-by-email">2. Reaching a person, and asking for your data by email</h2>
     <p><strong>Email:</strong> <a href="mailto:tingcctwai@gmail.com">tingcctwai@gmail.com</a>. It reaches the developer directly and it is private, so it is the right place for anything involving your health data, your training, or your account. The <a href="https://github.com/atomchung/long-run-hybrid-coach/issues">public issue tracker</a> is for bugs and feature requests that other people benefit from seeing — read the next section before you post there.</p>
+    <p><strong>Deleting your whole account is asked for here, and an export can be too.</strong> Some AI clients refuse a tool call at their own approval step before it reaches this service; the conversation can then neither finish the request nor explain why, so the one operation that cannot be undone does not depend on a tool call at all:</p>
+    <ol>
+      <li>Write to <a href="mailto:tingcctwai@gmail.com">tingcctwai@gmail.com</a>, say whether you want a copy of your data or its deletion, and include your Intervals.icu athlete id — the number in your own Intervals.icu URL.</li>
+      <li>You get a reply asking for a screenshot of your Intervals.icu Settings page showing that athlete id and Long Run Hybrid Coach among the applications you have authorized. One screenshot, no back and forth. If you cannot reach that page, say so — the athlete id is enough.</li>
+      <li>You will never be asked for a password, an API key, or an authorization token. They are not needed for either route and will not be read.</li>
+      <li><strong>For a copy:</strong> the archive is sent only to the address that made the request. <strong>For a deletion:</strong> you are sent the exact scope first, nothing is removed until you confirm that scope, and the reply afterwards carries the receipt.</li>
+    </ol>
     <p>This is a personal project with one maintainer. There is no guaranteed response time and none is promised here. Anything you can do yourself, above, is faster than waiting.</p>
     <p>If you think you have found a security or privacy vulnerability, do not describe it publicly. Email it instead.</p>
 
@@ -61,23 +68,24 @@
 
     <h2>4. What support can and cannot do</h2>
     <ul>
-      <li>Export and deletion take effect immediately, because you perform them.</li>
+      <li>An export in the conversation takes effect immediately, because you perform it. A deletion, and an export asked for by email, take as long as the reply does — see the response time above.</li>
       <li>Deletion reaches the whole account and every snapshot stored beside it, in one operation.</li>
       <li>Deletion does <strong>not</strong> reach workouts already written to your Intervals.icu calendar, and does not withdraw your Intervals.icu authorization. Both are yours to remove.</li>
       <li>What you reported yourself can be corrected or retracted through the coach. The plan’s own version and decision history is different: it is only added to, never rewritten by hand.</li>
       <li>No backup-retention window is promised, because none has been measured. This product creates no routine backups.</li>
+      <li>If you used the email route, that thread — your address, your athlete id, anything you attached, and any archive sent back — sits in a mailbox rather than in the service, so deleting your data does not reach it. Ask and it is deleted by hand.</li>
     </ul>
 
-    <h2>5. If deletion was refused</h2>
-    <p>Three reasons are documented, and you can clear all of them yourself:</p>
+    <h2>5. If a deletion request cannot be completed yet</h2>
+    <p>Three reasons are documented. You will be told which one, and you can clear the first yourself.</p>
     <ul>
-      <li><strong>A delivery has not finished.</strong> Intervals.icu may hold a workout the product has not reconciled. Retry the same delivery, or check your calendar and clear the attempt, then delete.</li>
-      <li><strong>The account changed since the preview.</strong> You reported a lift, or a session reconciled, between preview and confirmation. Preview again.</li>
-      <li><strong>Your store is being moved.</strong> An operator is migrating it. Preview again after the migration completes.</li>
+      <li><strong>A delivery has not finished.</strong> Intervals.icu may hold a workout the product has not reconciled. Retry the same delivery in the conversation, or check your calendar and clear the attempt, then say so in the thread.</li>
+      <li><strong>The account changed after the scope was sent.</strong> You reported a lift, or a session reconciled, between the scope and your confirmation. You are sent the new scope and asked again — nothing is removed that you were not shown.</li>
+      <li><strong>Your store is being moved.</strong> An operator is migrating it, and the request completes after the migration does.</li>
     </ul>
 
     <h2>6. If you can no longer connect</h2>
-    <p>If you revoked your Intervals.icu authorization or lost that account, the identity check went with it. There is no proof of ownership this product can evaluate — every identifier it holds is either a one-way digest or a value anyone could claim — so an account will not be deleted on an assertion. Re-authorizing at Intervals.icu even briefly restores the self-service path and resolves it properly.</p>
+    <p>If you revoked your Intervals.icu authorization or lost that account, the conversation can no longer identify you — your Intervals.icu sign-in is what it uses — so an export in the conversation needs you to re-authorize, even briefly. A deletion never did: ask <a href="#data-by-email">by email</a>, where your athlete id is enough to find the account, with a Settings screenshot where you can still reach that page. Be aware of what that means: outside the conversation there is no proof of ownership this service can evaluate by itself, so the check is a person reading what you sent, and guarding against someone impersonating you is not something this product claims to do.</p>
 
     <h2>7. Not medical support</h2>
     <p>Long Run Hybrid Coach is a training-planning tool. It does not diagnose, treat, or monitor anything, and this page is not a medical channel. Pain, illness, or unusual symptoms are for qualified medical care, not for the coach and not for an issue.</p>
