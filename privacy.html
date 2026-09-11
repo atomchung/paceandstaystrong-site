@@ -18,7 +18,7 @@
     </div>
     <header>
       <h1>Privacy Policy</h1>
-      <p class="meta">Last updated: 20 August 2026 · Operated by an independent developer in Taiwan.</p>
+      <p class="meta">Last updated: 26 August 2026 · Operated by an independent developer in Taiwan.</p>
     </header>
 
     <p>This policy explains what Long Run Hybrid Coach processes, why it is needed, where it goes, and how to revoke access or delete product-held data.</p>
@@ -34,13 +34,17 @@
       <tr><td>How you say you feel, and recovery numbers you state</td><td>Inform coaching judgment in your own words — including heart-rate, HRV, or sleep values you read off your device. Subjective statements are stored as statements rather than translated into a score. Request-scoped recovery readings are used for that coaching turn and are not kept as a raw provider upload.</td></tr>
       <tr><td>OAuth authorization</td><td>Access your Intervals.icu account within the scopes you grant. Your Intervals.icu password is never collected.</td></tr>
     </table>
+    <p>Processing a category above does not mean the hosted service keeps a second copy of everything it can read. The storage boundary is described below: some information is never sent to the gateway, some passes through only while a request is being answered, and some is deliberately retained as product state.</p>
 
-    <h2>2. Storage and authorization</h2>
+    <h2>2. Storage, transient processing, and authorization</h2>
     <p>When a hosted gateway is used, it stores owner-scoped product state including PlanState versions, decisions and receipts, athlete-reported evidence, and delivery bookkeeping needed to maintain one current plan. Provider identity and a keyed token fingerprint are stored separately so requests can resolve to the same owner.</p>
+    <p>Completed activities, wellness summaries, calendar reads, and other Intervals.icu data may pass through the hosted gateway while it answers a coaching request. The product does not persist raw provider payloads, GPS tracks, or activity files as a second provider archive. Reconciliation can update product state — for example, whether a planned session was matched, completed, missed, moved, or replaced — without retaining the provider's raw activity record.</p>
     <p>The raw Intervals.icu OAuth access token is used for authorized requests but is not written to the owner state store or application logs. The OAuth client secret stays server-side and is not exposed to the active AI interface.</p>
+    <p>The hosted deployment is operated by the project maintainer, so persisted owner-scoped product state is technically accessible to the deployment operator at the infrastructure layer. The product does not create a separate analytics copy of that state. Application security logs are deliberately limited to boundary metadata and do not contain PlanState, health or training content, provider athlete identifiers, request or response bodies, or raw access tokens.</p>
 
-    <h2>3. AI processing</h2>
+    <h2>3. AI processing and conversation boundary</h2>
     <p>Long Run Hybrid Coach may be used through ChatGPT, Claude, or another supported AI interface. The active interface processes the training context needed for the coaching task under that AI provider's applicable terms and privacy policy. Which interface is used depends on the entry you choose.</p>
+    <p>The hosted gateway does not receive a copy of your full ChatGPT, Claude, or other AI conversation. It receives only the MCP or coach-tool requests that the active AI interface sends to Long Run Hybrid Coach, and it returns tool results to that interface. Conversation text becomes product-held data only when the active interface submits it through a coach operation that is designed to record or plan with that information.</p>
     <p>The gateway does not use training data to train a proprietary model. The current repository does not call a separate large-language-model API or require you to provide an AI API key. If you do not want training or wellness information processed by the AI provider behind the interface you chose, do not use that interface.</p>
 
     <h2>4. Connected platform</h2>
