@@ -18,7 +18,7 @@
     </div>
     <header>
       <h1>Privacy Policy</h1>
-      <p class="meta">Last updated: 11 September 2026 · Operated by an independent developer in Taiwan.</p>
+      <p class="meta">Last updated: 12 September 2026 · Operated by an independent developer in Taiwan.</p>
     </header>
 
     <p>This policy explains what Long Run Hybrid Coach processes, why it is needed, where it goes, and how to revoke access or delete product-held data.</p>
@@ -37,10 +37,10 @@
 
     <h2>2. Storage and authorization</h2>
     <p>When a hosted gateway is used, it stores owner-scoped product state including PlanState versions, decisions and receipts, athlete-reported evidence, and delivery bookkeeping needed to maintain one current plan. Provider identity and a keyed token fingerprint are stored separately so requests can resolve to the same owner.</p>
-    <p>The raw Intervals.icu OAuth access token is used for authorized requests but is not written to the owner state store or application logs. The OAuth client secret stays server-side and is not exposed to the active AI interface.</p>
+    <p>Request logs record the operation and its outcome, and identify the account by the same opaque reference your data export shows you; they last only as long as the hosting platform keeps them. The raw Intervals.icu OAuth access token is used for authorized requests but is not written to the owner state store or application logs. The OAuth client secret stays server-side and is not exposed to the active AI interface.</p>
 
     <h2>3. AI processing</h2>
-    <p>Long Run Hybrid Coach may be used through ChatGPT, Claude, or another supported AI interface. The active interface processes the training context needed for the coaching task under that AI provider's applicable terms and privacy policy. Which interface is used depends on the entry you choose.</p>
+    <p>Long Run Hybrid Coach may be used through ChatGPT, Claude, or another supported AI interface. The active interface processes the training context needed for the coaching task under that AI provider's applicable terms and privacy policy. Which interface is used depends on the entry you choose. This service receives only the coach tool calls that interface sends it, never a copy of your conversation.</p>
     <p>The gateway does not use training data to train a proprietary model. The current repository does not call a separate large-language-model API or require you to provide an AI API key. If you do not want training or wellness information processed by the AI provider behind the interface you chose, do not use that interface.</p>
 
     <h2>4. Connected platform</h2>
