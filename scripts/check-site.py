@@ -22,7 +22,7 @@ ROOT = Path(__file__).resolve().parent.parent
 # Registered with an app platform under review. These paths cannot move.
 LISTING_PATHS = ("index.html", "privacy.html", "terms.html", "support.html")
 
-MIRRORED = ("index.html", "start.html", "privacy.html", "terms.html", "support.html")
+MIRRORED = ("index.html", "start.html", "privacy.html", "terms.html", "support.html", "demo.html")
 
 LINK = re.compile(r'(?:href|src)="([^"]+)"')
 ID = re.compile(r'\sid="([^"]+)"')
