@@ -13,8 +13,8 @@
   <link rel="alternate" hreflang="zh-Hant" href="https://paceandstaystrong.com/zh/demo.html">
   <link rel="alternate" hreflang="x-default" href="https://paceandstaystrong.com/demo.html">
   <link rel="stylesheet" href="assets/styles.css?v=usability-20260909">
-  <link rel="stylesheet" href="assets/demo.css?v=product-hunt-demo-3">
-  <script src="assets/demo.js?v=product-hunt-demo-3" defer></script>
+  <link rel="stylesheet" href="assets/demo.css?v=demo-first-router">
+  <script src="assets/demo.js?v=demo-first-router" defer></script>
 </head>
 <body>
   <div class="wrap demo-page">
@@ -25,7 +25,7 @@
         <a href="index.html#how-it-works">How it works</a>
         <a href="index.html#what-you-connect">FAQ</a>
         <a href="index.html#setup">Connect my training</a>
-        <a class="nav-cta" href="demo.html" aria-current="page">Live demo</a>
+        <a class="nav-cta" href="demo.html" aria-current="page">Try it</a>
         <a class="nav-lang" href="zh/demo.html" hreflang="zh-Hant" lang="zh-Hant">中文</a>
       </div>
     </nav>
@@ -34,7 +34,7 @@
       <header class="demo-header">
         <span class="eyebrow">Live playground · Fictional athlete</span>
         <h1>Try the coach before you connect anything.</h1>
-        <p class="lede">Ask Long Run Hybrid Coach about a fictional athlete with real-looking running and strength evidence. No MCP setup, no Intervals.icu login, and no changes to a shared calendar.</p>
+        <p class="lede">Ask Long Run Hybrid Coach about a fictional athlete with real-looking running and strength evidence. No login, no Intervals.icu connection, and nothing written or changed.</p>
         <p class="button-note">This is a playground with a fictional athlete. The real product is the hosted coach you connect to your own AI client and your own Intervals.icu account.</p>
       </header>
 
@@ -79,6 +79,8 @@
             <p class="demo-empty" data-demo-empty>Start with one of the questions above, or ask your own coaching question.</p>
           </div>
 
+          <p class="demo-handoff" data-demo-handoff hidden>Want the coach reading your training instead? <a href="index.html#setup">Start with your own data →</a></p>
+
           <form class="demo-form" data-demo-form>
             <label for="demo-message"><strong>Your question</strong></label>
             <textarea class="demo-input" id="demo-message" data-demo-input maxlength="1200" placeholder="Ask about the demo athlete's plan, recent execution, or running × strength trade-off." required></textarea>
@@ -96,7 +98,7 @@
         <p>Connect the hosted MCP to a supported AI client, authorize your own Intervals.icu account, and keep one plan that follows what you actually train.</p>
         <div class="actions">
           <a class="button" href="index.html#setup">Connect my training</a>
-          <a class="button secondary" href="index.html#demo">Watch the 42-second story</a>
+          <a class="button secondary" href="index.html#full-story">Watch the 42-second story</a>
         </div>
       </div>
     </main>

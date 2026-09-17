@@ -13,8 +13,8 @@
   <link rel="alternate" hreflang="en" href="https://paceandstaystrong.com/demo.html">
   <link rel="alternate" hreflang="x-default" href="https://paceandstaystrong.com/demo.html">
   <link rel="stylesheet" href="../assets/styles.css?v=usability-20260909">
-  <link rel="stylesheet" href="../assets/demo.css?v=product-hunt-demo-3">
-  <script src="../assets/demo.js?v=product-hunt-demo-3" defer></script>
+  <link rel="stylesheet" href="../assets/demo.css?v=demo-first-router">
+  <script src="../assets/demo.js?v=demo-first-router" defer></script>
 </head>
 <body>
   <div class="wrap demo-page">
@@ -25,7 +25,7 @@
         <a href="index.html#how-it-works">運作方式</a>
         <a href="index.html#what-you-connect">常見問題</a>
         <a href="index.html#setup">連接我的訓練</a>
-        <a class="nav-cta" href="demo.html" aria-current="page">Live demo</a>
+        <a class="nav-cta" href="demo.html" aria-current="page">直接試玩</a>
         <a class="nav-lang" href="../demo.html" hreflang="en" lang="en">English</a>
       </div>
     </nav>
@@ -34,7 +34,7 @@
       <header class="demo-header">
         <span class="eyebrow">Live playground · 虛構運動員</span>
         <h1>不用先連任何帳號，<br>直接試教練。</h1>
-        <p class="lede">直接對一位虛構運動員的跑步與重訓證據提問。不用安裝 MCP、不用登入 Intervals.icu，也不會改動共用日曆。</p>
+        <p class="lede">直接對一位虛構運動員的跑步與重訓證據提問。不用登入、不需要連 Intervals.icu，也不會寫入或改動任何資料。</p>
         <p class="button-note">這是一個用虛構運動員的試玩場。真正的產品是 hosted 教練，接到你自己的 AI client 與你自己的 Intervals.icu 帳號。</p>
       </header>
 
@@ -79,6 +79,8 @@
             <p class="demo-empty" data-demo-empty>先選上方問題，或直接輸入你想問的訓練問題。</p>
           </div>
 
+          <p class="demo-handoff" data-demo-handoff hidden>想讓教練改看你的訓練？<a href="index.html#setup">用自己的資料開始 →</a></p>
+
           <form class="demo-form" data-demo-form>
             <label for="demo-message"><strong>你的問題</strong></label>
             <textarea class="demo-input" id="demo-message" data-demo-input maxlength="1200" placeholder="問 demo athlete 的課表、近期執行狀況，或跑步 × 重訓的取捨。" required></textarea>
@@ -96,7 +98,7 @@
         <p>把 hosted MCP 接到支援的 AI client，授權你自己的 Intervals.icu 帳號，讓同一份計畫跟著你實際完成的訓練一起更新。</p>
         <div class="actions">
           <a class="button" href="index.html#setup">連接我的訓練</a>
-          <a class="button secondary" href="index.html#demo">看 42 秒完整故事</a>
+          <a class="button secondary" href="index.html#full-story">看 42 秒完整流程</a>
         </div>
       </div>
     </main>
