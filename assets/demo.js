@@ -102,11 +102,48 @@
     if (cursor < text.length) node.append(text.slice(cursor));
   };
 
+  // A row of a pipe table, and the |---|:--:| rule that separates its header from its body.
+  // The coach reaches for a table whenever it is comparing sessions, and rendered as plain
+  // paragraphs those rows arrive as a wall of pipe characters -- which is what a first
+  // visitor was being shown. Recognised here so they become a real table, still built node
+  // by node like everything else.
+  const TABLE_ROW = /^\s*\|(.+)\|\s*$/;
+  const TABLE_RULE = /^[\s|:-]+$/;
+
+  const tableCells = (line) => TABLE_ROW.exec(line)[1].split('|').map((cell) => cell.trim());
+
   const renderReply = (text) => {
     const fragment = document.createDocumentFragment();
     let list = null;
+    let table = null;
     for (const raw of text.split('\n')) {
       const line = raw.trimEnd();
+
+      if (TABLE_ROW.test(line)) {
+        list = null;
+        // The rule row carries alignment, which this renderer does not use.
+        if (TABLE_RULE.test(line) && line.includes('-')) continue;
+        if (!table) {
+          table = document.createElement('table');
+          table.className = 'demo-table';
+          const scroller = document.createElement('div');
+          scroller.className = 'demo-table-scroll';
+          scroller.append(table);
+          fragment.append(scroller);
+        }
+        const row = document.createElement('tr');
+        // The first row of a table is its header; everything after it is a body row.
+        const cellTag = table.rows.length === 0 ? 'th' : 'td';
+        for (const cell of tableCells(line)) {
+          const node = document.createElement(cellTag);
+          appendInline(node, cell);
+          row.append(node);
+        }
+        table.append(row);
+        continue;
+      }
+      table = null;
+
       const bullet = /^\s*[-*]\s+(.*)$/.exec(line);
       if (bullet) {
         if (!list) { list = document.createElement('ul'); fragment.append(list); }

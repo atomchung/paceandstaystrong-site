@@ -4,17 +4,17 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Try Long Run Hybrid Coach — Live demo</title>
-  <meta name="description" content="Try Long Run Hybrid Coach instantly with a fictional demo athlete. Explore running and strength trade-offs without connecting your own training data.">
+  <meta name="description" content="Ask Long Run Hybrid Coach a real coaching question about a demo athlete. No sign-in, no Intervals.icu connection, and nothing written.">
   <meta property="og:title" content="Try Long Run Hybrid Coach — Live demo">
-  <meta property="og:description" content="Explore a fictional athlete's real training evidence and see how the Coach weighs running against strength.">
+  <meta property="og:description" content="Ask a real coaching question and see how the coach weighs running against strength for a demo athlete.">
   <meta property="og:url" content="https://paceandstaystrong.com/demo.html">
   <meta property="og:image" content="https://paceandstaystrong.com/assets/long-run-hybrid-coach-logo.png">
   <link rel="alternate" hreflang="en" href="https://paceandstaystrong.com/demo.html">
   <link rel="alternate" hreflang="zh-Hant" href="https://paceandstaystrong.com/zh/demo.html">
   <link rel="alternate" hreflang="x-default" href="https://paceandstaystrong.com/demo.html">
-  <link rel="stylesheet" href="assets/styles.css?v=usability-20260909">
-  <link rel="stylesheet" href="assets/demo.css?v=demo-first-router">
-  <script src="assets/demo.js?v=demo-first-router" defer></script>
+  <link rel="stylesheet" href="assets/styles.css?v=first-visit-20260917">
+  <link rel="stylesheet" href="assets/demo.css?v=first-visit-20260917">
+  <script src="assets/demo.js?v=first-visit-20260917" defer></script>
 </head>
 <body>
   <div class="wrap demo-page">
@@ -32,10 +32,10 @@
 
     <main>
       <header class="demo-header">
-        <span class="eyebrow">Live playground · Fictional athlete</span>
-        <h1>Try the coach before you connect anything.</h1>
-        <p class="lede">Ask Long Run Hybrid Coach about a fictional athlete with real-looking running and strength evidence. No login, no Intervals.icu connection, and nothing written or changed.</p>
-        <p class="button-note">This is a playground with a fictional athlete. The real product is the hosted coach you connect to your own AI client and your own Intervals.icu account.</p>
+        <span class="eyebrow">Live demo · Demo athlete</span>
+        <h1>Ask the coach something real.</h1>
+        <p class="lede">These are real answers from the coach, about a demo athlete instead of you.</p>
+        <p class="trust-line">No sign-in · Nothing of yours connected · Nothing gets written</p>
       </header>
 
       <div
@@ -44,58 +44,54 @@
         data-endpoint="https://demo-api.paceandstaystrong.com/demo/v1/respond"
         data-coach-label="Coach"
         data-you-label="You"
-        data-ready-text="Ready. Pick a question or ask your own."
-        data-sending-text="Reviewing the demo athlete…"
-        data-waiting-hint="It reads this athlete's evidence before answering — usually 10 to 30 seconds."
-        data-failure-text="The live demo backend is not available right now. You can still connect the real Coach from the homepage."
-        data-empty-text="Start with one of the questions above, or ask your own coaching question."
+        data-ready-text="Ready. Pick a question, or ask your own."
+        data-sending-text="Reading this athlete's training…"
+        data-waiting-hint="It looks at what this athlete actually trained before answering — usually 10 to 30 seconds."
+        data-failure-text="The demo is not answering right now. You can still connect the real coach from the homepage."
+        data-empty-text="Pick a question above, or ask your own."
       >
-        <aside class="demo-athlete" aria-labelledby="athlete-title">
-          <span class="page-kicker">Demo athlete</span>
-          <h2 id="athlete-title">Three sessions. Two goals.</h2>
-          <p class="section-copy">A synthetic example designed to make the running × strength trade-off visible.</p>
-          <ul class="demo-facts">
-            <li class="demo-fact"><strong>Running goal</strong><span>10K under 53 minutes</span></li>
-            <li class="demo-fact"><strong>Strength goal</strong><span>Maintain meaningful upper- and lower-body strength</span></li>
-            <li class="demo-fact"><strong>Recent running</strong><span>About 15 km/week · longest recent run 6 km</span></li>
-            <li class="demo-fact"><strong>Available time</strong><span>Monday, Thursday, Saturday · up to 45 minutes each</span></li>
-            <li class="demo-fact"><strong>Evidence boundary</strong><span>Missing evidence stays unknown, never zero</span></li>
-          </ul>
-          <p class="demo-disclosure">All athlete data on this page is fictional. Public demo traffic cannot write to the shared Intervals.icu calendar.</p>
-        </aside>
-
         <section class="demo-chat" aria-labelledby="chat-title">
-          <span class="page-kicker">Ask the Coach</span>
-          <h2 id="chat-title">Explore the decision, not just one generated plan.</h2>
-          <p class="section-copy">Suggested questions are deliberately different: allocation, execution trend, and a changed constraint.</p>
+          <span class="page-kicker">Ask the coach</span>
+          <h2 id="chat-title">Pick a question you would actually ask.</h2>
 
           <div class="demo-prompts" aria-label="Suggested questions">
-            <button class="demo-prompt" type="button" data-demo-prompt="I only have three 45-minute sessions next week. I want a faster 10K without losing strength. What are my realistic options?">Limited time: what do I preserve and give up?</button>
-            <button class="demo-prompt" type="button" data-demo-prompt="Review the comparable quality runs. What execution trend is actually supported, and what formal outcome is still unproven?">What is actually improving?</button>
-            <button class="demo-prompt" type="button" data-demo-prompt="Thursday is no longer available. Given the same goals, what would you preserve and what would you give up?">Thursday disappeared. Reconsider the trade-off.</button>
+            <button class="demo-prompt" type="button" data-demo-prompt="I can only train three days next week, 45 minutes each. I want a faster 10K without losing strength. How should I use those three days?">I only have three days a week. How do I fit in running and lifting?</button>
+            <button class="demo-prompt" type="button" data-demo-prompt="Am I running any better lately? What can you actually tell from my recent runs, and what is still too early to say?">Am I actually running better lately?</button>
+            <button class="demo-prompt" type="button" data-demo-prompt="Thursday is gone this week and I cannot train that day. What would you keep, and what would you drop?">Thursday just disappeared. How do I change this week?</button>
           </div>
 
           <div class="demo-transcript" data-demo-transcript aria-live="polite" aria-label="Demo conversation">
-            <p class="demo-empty" data-demo-empty>Start with one of the questions above, or ask your own coaching question.</p>
+            <p class="demo-empty" data-demo-empty>Pick a question above, or ask your own.</p>
           </div>
 
-          <p class="demo-handoff" data-demo-handoff hidden>Want the coach reading your training instead? <a href="index.html#setup">Start with your own data →</a></p>
+          <p class="demo-handoff" data-demo-handoff hidden>Want this reading your training? <a href="index.html#setup">Connect your own data →</a></p>
 
           <form class="demo-form" data-demo-form>
             <label for="demo-message"><strong>Your question</strong></label>
-            <textarea class="demo-input" id="demo-message" data-demo-input maxlength="1200" placeholder="Ask about the demo athlete's plan, recent execution, or running × strength trade-off." required></textarea>
+            <textarea class="demo-input" id="demo-message" data-demo-input maxlength="1200" placeholder="Ask about this athlete's week, how their training is going, or how to fit running and lifting together." required></textarea>
             <div class="demo-actions">
-              <button class="demo-send" type="submit" data-demo-send>Ask the Coach</button>
+              <button class="demo-send" type="submit" data-demo-send>Ask the coach</button>
               <p class="demo-status" data-demo-status role="status" aria-live="polite"></p>
             </div>
           </form>
         </section>
+
+        <aside class="demo-athlete" aria-labelledby="athlete-title">
+          <span class="page-kicker">Who you are coaching</span>
+          <h2 id="athlete-title">The demo athlete</h2>
+          <ul class="demo-facts">
+            <li class="demo-fact"><strong>Goal</strong><span>10K under 53 minutes, while keeping their strength</span></li>
+            <li class="demo-fact"><strong>Recently</strong><span>About 15 km a week · longest run 6 km</span></li>
+            <li class="demo-fact"><strong>Time</strong><span>Monday, Thursday, Saturday · up to 45 minutes each</span></li>
+          </ul>
+          <p class="demo-disclosure">A made-up athlete with a full training history behind them. Nothing you ask here is saved, and nothing is written to anyone's calendar.</p>
+        </aside>
       </div>
 
       <div class="demo-exit">
         <span class="page-kicker">Use your own training</span>
-        <h2>Ready for the real Coach?</h2>
-        <p>Connect the hosted MCP to a supported AI client, authorize your own Intervals.icu account, and keep one plan that follows what you actually train.</p>
+        <h2>Ready for your own plan?</h2>
+        <p>Connect the coach to Claude and your own Intervals.icu account, and it starts from your training instead of this one.</p>
         <div class="actions">
           <a class="button" href="index.html#setup">Connect my training</a>
           <a class="button secondary" href="index.html#full-story">Watch the 42-second story</a>

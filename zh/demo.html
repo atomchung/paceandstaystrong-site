@@ -4,17 +4,17 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>試玩 Long Run Hybrid Coach — Live demo</title>
-  <meta name="description" content="不用連接自己的訓練資料，直接用虛構運動員試玩 Long Run Hybrid Coach，探索跑步與重訓的取捨。">
+  <meta name="description" content="直接問 Long Run Hybrid Coach 一個真的訓練問題，對象是示範運動員。不用登入、不連你的資料，也不會寫入任何東西。">
   <meta property="og:title" content="試玩 Long Run Hybrid Coach — Live demo">
-  <meta property="og:description" content="直接探索一位虛構運動員的訓練證據，看看教練如何在跑步與重訓之間做取捨。">
+  <meta property="og:description" content="問一個你真的會問的訓練問題，看教練怎麼在跑步和重訓之間取捨。">
   <meta property="og:url" content="https://paceandstaystrong.com/zh/demo.html">
   <meta property="og:image" content="https://paceandstaystrong.com/assets/long-run-hybrid-coach-logo.png">
   <link rel="alternate" hreflang="zh-Hant" href="https://paceandstaystrong.com/zh/demo.html">
   <link rel="alternate" hreflang="en" href="https://paceandstaystrong.com/demo.html">
   <link rel="alternate" hreflang="x-default" href="https://paceandstaystrong.com/demo.html">
-  <link rel="stylesheet" href="../assets/styles.css?v=usability-20260909">
-  <link rel="stylesheet" href="../assets/demo.css?v=demo-first-router">
-  <script src="../assets/demo.js?v=demo-first-router" defer></script>
+  <link rel="stylesheet" href="../assets/styles.css?v=first-visit-20260917">
+  <link rel="stylesheet" href="../assets/demo.css?v=first-visit-20260917">
+  <script src="../assets/demo.js?v=first-visit-20260917" defer></script>
 </head>
 <body>
   <div class="wrap demo-page">
@@ -32,10 +32,10 @@
 
     <main>
       <header class="demo-header">
-        <span class="eyebrow">Live playground · 虛構運動員</span>
-        <h1>不用先連任何帳號，<br>直接試教練。</h1>
-        <p class="lede">直接對一位虛構運動員的跑步與重訓證據提問。不用登入、不需要連 Intervals.icu，也不會寫入或改動任何資料。</p>
-        <p class="button-note">這是一個用虛構運動員的試玩場。真正的產品是 hosted 教練，接到你自己的 AI client 與你自己的 Intervals.icu 帳號。</p>
+        <span class="eyebrow">Live demo · 示範運動員</span>
+        <h1>直接問教練，<br>問你真的想問的。</h1>
+        <p class="lede">這些是教練真的給的回答，只是對象換成示範運動員，不是你。</p>
+        <p class="trust-line">不用登入 · 不連你的資料 · 不會寫入任何東西</p>
       </header>
 
       <div
@@ -45,57 +45,53 @@
         data-coach-label="教練"
         data-you-label="你"
         data-ready-text="可以開始。選一個問題，或自己直接問。"
-        data-sending-text="正在讀取 demo athlete 的訓練證據…"
-        data-waiting-hint="它會先讀完這位運動員的證據再回答，通常 10 到 30 秒。"
-        data-failure-text="Live demo backend 目前無法使用；你仍可回首頁連接正式版 Coach。"
-        data-empty-text="先選上方問題，或直接輸入你想問的訓練問題。"
+        data-sending-text="正在看這位運動員練了什麼…"
+        data-waiting-hint="它會先看完這位運動員實際完成的訓練再回答，通常 10 到 30 秒。"
+        data-failure-text="Demo 目前沒有回應。你還是可以從首頁連接正式版教練。"
+        data-empty-text="先選上面的問題，或直接輸入你想問的。"
       >
-        <aside class="demo-athlete" aria-labelledby="athlete-title">
-          <span class="page-kicker">Demo athlete</span>
-          <h2 id="athlete-title">三堂課，兩個目標。</h2>
-          <p class="section-copy">一組刻意設計的合成資料，用來把 running × strength 的取捨講清楚。</p>
-          <ul class="demo-facts">
-            <li class="demo-fact"><strong>跑步目標</strong><span>10 公里跑進 53 分</span></li>
-            <li class="demo-fact"><strong>重訓目標</strong><span>維持有意義的上肢與下肢力量</span></li>
-            <li class="demo-fact"><strong>近期跑量</strong><span>約 15 km / 週 · 最近最長跑 6 km</span></li>
-            <li class="demo-fact"><strong>可訓練時間</strong><span>週一、週四、週六 · 每次最多 45 分鐘</span></li>
-            <li class="demo-fact"><strong>證據邊界</strong><span>缺資料就是 unknown，不會當成 0</span></li>
-          </ul>
-          <p class="demo-disclosure">本頁所有運動員資料都是虛構的。公開 demo 不會寫入共用的 Intervals.icu 日曆。</p>
-        </aside>
-
         <section class="demo-chat" aria-labelledby="chat-title">
           <span class="page-kicker">問教練</span>
-          <h2 id="chat-title">先探索取捨，不急著吐一張「最佳課表」。</h2>
-          <p class="section-copy">三個預設問題分別看 allocation、execution trend，以及條件改變後怎麼重新取捨。</p>
+          <h2 id="chat-title">挑一個你真的會問的問題。</h2>
 
           <div class="demo-prompts" aria-label="建議問題">
-            <button class="demo-prompt" type="button" data-demo-prompt="我下週只有三次、每次 45 分鐘。我想把 10 公里跑得更快，但又不想掉力量。有哪些現實的配置？">時間有限：哪些東西該保留、哪些必須犧牲？</button>
-            <button class="demo-prompt" type="button" data-demo-prompt="只比較可比的品質跑。現在有什麼 execution trend 是證據真的支持的？正式 outcome measurement 又有什麼還沒證明？">到底哪裡真的有進步？</button>
-            <button class="demo-prompt" type="button" data-demo-prompt="週四突然不能訓練。維持同一組目標的情況下，你會優先保留什麼，又會放棄什麼？">週四沒了，重新做一次取捨。</button>
+            <button class="demo-prompt" type="button" data-demo-prompt="我下週只有三天能練，每次最多 45 分鐘。我想把 10 公里練快一點，但不想把力量練掉。這三天該怎麼安排？">我一週只有三天，怎麼兼顧跑步跟重訓？</button>
+            <button class="demo-prompt" type="button" data-demo-prompt="我最近的跑步有變好嗎？從最近幾次跑步，哪些是真的看得出來的，哪些還太早說？">我最近跑得有比較好嗎？</button>
+            <button class="demo-prompt" type="button" data-demo-prompt="週四突然不能練了。這週你會保留什麼、放掉什麼？">週四突然不能練，這週怎麼改？</button>
           </div>
 
           <div class="demo-transcript" data-demo-transcript aria-live="polite" aria-label="Demo 對話">
-            <p class="demo-empty" data-demo-empty>先選上方問題，或直接輸入你想問的訓練問題。</p>
+            <p class="demo-empty" data-demo-empty>先選上面的問題，或直接輸入你想問的。</p>
           </div>
 
-          <p class="demo-handoff" data-demo-handoff hidden>想讓教練改看你的訓練？<a href="index.html#setup">用自己的資料開始 →</a></p>
+          <p class="demo-handoff" data-demo-handoff hidden>想換成你的訓練？<a href="index.html#setup">連接自己的資料 →</a></p>
 
           <form class="demo-form" data-demo-form>
             <label for="demo-message"><strong>你的問題</strong></label>
-            <textarea class="demo-input" id="demo-message" data-demo-input maxlength="1200" placeholder="問 demo athlete 的課表、近期執行狀況，或跑步 × 重訓的取捨。" required></textarea>
+            <textarea class="demo-input" id="demo-message" data-demo-input maxlength="1200" placeholder="問這位運動員這週怎麼練、最近練得如何，或跑步和重訓怎麼一起排。" required></textarea>
             <div class="demo-actions">
               <button class="demo-send" type="submit" data-demo-send>問教練</button>
               <p class="demo-status" data-demo-status role="status" aria-live="polite"></p>
             </div>
           </form>
         </section>
+
+        <aside class="demo-athlete" aria-labelledby="athlete-title">
+          <span class="page-kicker">你在指導誰</span>
+          <h2 id="athlete-title">示範運動員</h2>
+          <ul class="demo-facts">
+            <li class="demo-fact"><strong>目標</strong><span>10 公里跑進 53 分，同時維持力量</span></li>
+            <li class="demo-fact"><strong>最近</strong><span>每週約 15 公里 · 最長跑 6 公里</span></li>
+            <li class="demo-fact"><strong>時間</strong><span>週一、週四、週六 · 每次最多 45 分鐘</span></li>
+          </ul>
+          <p class="demo-disclosure">虛構的運動員，但背後有一整份訓練紀錄。你在這裡問的內容不會被保存，也不會寫進任何人的日曆。</p>
+        </aside>
       </div>
 
       <div class="demo-exit">
         <span class="page-kicker">換成自己的訓練</span>
-        <h2>想用真正的 Coach？</h2>
-        <p>把 hosted MCP 接到支援的 AI client，授權你自己的 Intervals.icu 帳號，讓同一份計畫跟著你實際完成的訓練一起更新。</p>
+        <h2>想要一份自己的計畫？</h2>
+        <p>把教練接到 Claude 和你自己的 Intervals.icu 帳號，它就會從你的訓練開始，而不是這一位。</p>
         <div class="actions">
           <a class="button" href="index.html#setup">連接我的訓練</a>
           <a class="button secondary" href="index.html#full-story">看 42 秒完整流程</a>

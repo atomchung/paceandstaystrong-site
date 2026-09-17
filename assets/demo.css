@@ -9,6 +9,7 @@
 }
 
 .demo-header h1 { margin-bottom: 14px; }
+.demo-header .trust-line { margin-top: 10px; }
 
 .demo-layout {
   display: grid;
@@ -16,6 +17,15 @@
   gap: 22px;
   align-items: start;
   padding-bottom: 54px;
+}
+
+/* The chat comes first in the document, because on a phone the athlete panel is a wall of
+   background a visitor would have to scroll past before they can ask anything. Wide enough
+   for two columns, `order` puts the athlete back on the left where it reads as context
+   beside the conversation rather than ahead of it. */
+@media (min-width: 781px) {
+  .demo-athlete { order: 1; }
+  .demo-chat { order: 2; }
 }
 
 .demo-athlete,
@@ -48,7 +58,7 @@
 .demo-fact span { margin-top: 4px; color: var(--ink-soft); font-size: 0.92rem; }
 .demo-disclosure { margin: 20px 0 0; color: var(--ink-soft); font-size: 0.88rem; }
 .demo-chat { padding: 22px; }
-.demo-prompts { display: grid; gap: 10px; margin: 18px 0 22px; }
+.demo-prompts { display: grid; gap: 10px; margin: 16px 0 22px; }
 
 .demo-prompt {
   min-height: 44px;
@@ -94,6 +104,14 @@
 .demo-body ul { margin: 0 0 10px; padding-left: 20px; }
 .demo-body li { margin: 0 0 5px; }
 .demo-body strong.demo-inline { display: inline; margin: 0; font-size: inherit; text-transform: none; letter-spacing: normal; }
+/* The coach reaches for a table when it compares sessions. It is the one thing in a reply
+   allowed to be wider than the column, so it gets its own scroller rather than pushing the
+   page sideways on a phone. */
+.demo-table-scroll { overflow-x: auto; margin: 0 0 12px; }
+.demo-table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
+.demo-table th, .demo-table td { padding: 7px 10px; border-bottom: 1px solid var(--line); text-align: left; white-space: nowrap; }
+.demo-table th { font-weight: 900; }
+.demo-table tr:last-child td { border-bottom: 0; }
 /* Hidden until the first coach reply arrives; demo.js reveals it. It sits between the
    transcript and the box you type in, so it reads as a footnote to the answer rather
    than a step the conversation is waiting on. */

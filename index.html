@@ -4,15 +4,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Long Run Hybrid Coach — Running and strength for the long run</title>
-  <meta name="description" content="Try the coach in your browser first: no login, no Intervals.icu connection, nothing written. Then connect your own training to plan running and strength.">
+  <meta name="description" content="Running and strength in one plan that reads what you actually trained, and changes with you. Try the coach in your browser first — no sign-in, nothing written.">
   <meta property="og:title" content="Long Run Hybrid Coach — an adaptive AI coach for runners who lift">
-  <meta property="og:description" content="Try the coach in your browser first — no login, no Intervals.icu connection, nothing written. Then connect your own training to plan running and strength in a conversation.">
+  <meta property="og:description" content="Running and strength in one plan that reads what you actually trained, and changes with you. Try the coach in your browser first — no sign-in, nothing written.">
   <meta property="og:url" content="https://paceandstaystrong.com/">
   <meta property="og:image" content="https://paceandstaystrong.com/assets/long-run-hybrid-coach-logo.png">
   <link rel="alternate" hreflang="en" href="https://paceandstaystrong.com/">
   <link rel="alternate" hreflang="zh-Hant" href="https://paceandstaystrong.com/zh/">
   <link rel="alternate" hreflang="x-default" href="https://paceandstaystrong.com/">
-  <link rel="stylesheet" href="assets/styles.css?v=usability-20260909">
+  <link rel="stylesheet" href="assets/styles.css?v=first-visit-20260917">
   <script src="assets/media.js" defer></script>
   <script src="assets/onboarding.js" defer></script>
 </head>
@@ -34,16 +34,20 @@
       <div class="hero">
         <div>
           <span class="eyebrow">Pace &amp; Stay Strong · Running + strength</span>
-          <h1>Know what to train.<br>Keep going.</h1>
+          <h1>Running and lifting,<br>in one plan.</h1>
           <p class="product-name">Long Run Hybrid Coach · Your running + strength AI coach</p>
-          <p class="lede">An AI coach for people who run and lift. Plan a week that fits your life, then adjust together after training.</p>
-          <p class="lede">Try it on a demo athlete first. When you want it reading your own training, connect Intervals.icu from Claude, or a supported ChatGPT workspace.</p>
+          <p class="lede">An AI coach for people who run and lift, and keep having to choose between the two.</p>
+          <ul class="value-points">
+            <li>Running and strength sit in <strong>one plan</strong>, instead of two that quietly compete for the same legs.</li>
+            <li>It reads <strong>the sessions you actually finished</strong>, rather than writing a fresh generic week every time you ask.</li>
+            <li>Trained hard, or lost a day? You <strong>adjust that plan</strong> — you do not start over.</li>
+          </ul>
           <div class="actions">
-            <a class="button" href="demo.html">Try the coach first</a>
-            <a class="button secondary" href="#setup">Connect my training</a>
+            <a class="button" href="demo.html">Try the coach</a>
+            <a class="button secondary" href="#setup">Start with my training</a>
           </div>
-          <p class="button-note"><strong>Try the coach first</strong> opens a live conversation about a demo athlete: no login, no Intervals.icu connection, and nothing written or changed. <strong>Connect my training</strong> is the four-step setup for your own account. Either way the coach is free, with no separate app to install.</p>
-          <p class="button-note"><a class="text-link" href="#full-story">Watch the 42-second story</a> · <a class="text-link" href="#client-options">Check which AI plans work</a></p>
+          <p class="trust-line">No sign-in · Nothing of yours connected · Nothing gets written</p>
+          <p class="button-note"><a class="text-link" href="#full-story">Rather watch first? The 42-second story ↓</a></p>
         </div>
         <div class="hero-art">
           <img class="hero-logo" src="assets/long-run-hybrid-coach-logo.png?v=transparent-20260814" width="520" alt="Long Run Hybrid Coach banana athlete logo">
@@ -51,38 +55,43 @@
       </div>
 
       <section id="how-it-works" aria-labelledby="how-title">
-        <span class="page-kicker">Once connected, here is the routine</span>
-        <h2 id="how-title">Talk. Plan. Train. Check in.</h2>
-        <p class="section-copy" id="one-plan">One 28-day plan for running and strength. When your schedule or training changes, return to the conversation and update it together.</p>
-        <div class="grid routine-grid"><article class="card"><div class="card-mark">1</div><h3>Share your goals and time</h3><p class="example-quote">“I want to run more comfortably and keep lifting.”</p><p>Your coach uses your training history and what you share to plan running and strength together.</p></article>
-<article class="card"><div class="card-mark">2</div><h3>Confirm the plan, then send workouts</h3><p class="example-quote">“This plan works for me. Save it.”</p><p>Approve and save your plan. When you want workouts on your Intervals.icu calendar, confirm those separately.</p></article>
-<article class="card"><div class="card-mark">3</div><h3>Come back after training</h3><p class="example-quote">“I finished today’s run, but my weekend is now busy.”</p><p>Share what you completed and how it felt. Ask your coach to review and adjust what comes next.</p></article></div>
-        <p class="delivery-note"><strong>Want workouts on your watch?</strong> Confirm the workout is in Intervals.icu, then use your supported device sync. The coach can check that Intervals.icu received it; check the watch itself for arrival. You can also use the coach without a watch.</p>
+        <span class="page-kicker">The difference</span>
+        <h2 id="how-title">Three things a general AI chat cannot do.</h2>
+        <p class="section-copy" id="one-plan">Ask any AI for a training week and you will get a reasonable-looking one. Here is what changes when the coach is connected to your own training.</p>
+        <div class="grid routine-grid">
+          <article class="card"><div class="card-mark">1</div><h3>It sees what you actually trained</h3><p>Your finished runs and lifts arrive from your own Intervals.icu account. The coach plans from those — not from whatever you happen to remember and type in.</p></article>
+          <article class="card"><div class="card-mark">2</div><h3>Running and strength in the same week</h3><p>One plan holds both, so the hard run and the heavy session are placed around each other. Two separate plans cannot do that; they just take turns wrecking your legs.</p></article>
+          <article class="card"><div class="card-mark">3</div><h3>It adjusts, instead of starting over</h3><p>Missed a session, or Thursday disappeared? Come back and change this plan. It still knows what you have already done, so you are not handed a brand-new generic week.</p></article>
+        </div>
       </section>
 
       <section id="setup" aria-labelledby="setup-title">
         <span class="page-kicker">Your first conversation</span>
-        <h2 id="setup-title">Connect your coach. Start talking.</h2>
-        <p class="section-copy">Have an <a href="https://intervals.icu">Intervals.icu account</a> ready. It connects your training history and calendar to the coach. An empty account is fine. Use a desktop browser for your first setup.</p>
-        <div class="client-options" id="client-options">
-          <article class="client-option"><span class="page-kicker">Recommended starting point</span><h3>Claude</h3><p>The free plan allows one custom connector. Copy the address below, then open <a href="https://claude.ai/customize/connectors">Claude’s connector settings</a>.</p></article>
-          <article class="client-option"><span class="page-kicker">For supported workspaces</span><h3>ChatGPT</h3><p>The full coaching flow currently needs Business, Enterprise or Edu on the web, with custom MCP read-and-write access enabled. On a personal plan, start with Claude.</p></article>
-        </div>
-        <div class="connector-address connector-address-primary">
-          <span>Connection address · Paste into Remote MCP server URL</span>
-          <code id="connection-url">https://mcp.paceandstaystrong.com/mcp</code>
-          <button type="button" class="copy-button" data-copy="connection-url" aria-label="Copy connection address" hidden>Copy</button><span class="copy-status" role="status" aria-live="polite"></span>
-        </div>
+        <h2 id="setup-title">Four steps, about five minutes.</h2>
+        <p class="section-copy">You need an <a href="https://intervals.icu">Intervals.icu account</a> — a brand-new empty one is fine — and a desktop browser for this first setup.</p>
         <ol class="steps setup-steps" role="list">
-          <li class="step"><strong>Add a connector in your AI.</strong><p>In Claude, open Customize → Connectors, then “+” → Add custom connector. Team accounts may need an administrator to enable it first.</p>
-            <details class="setup-detail"><summary>I use ChatGPT</summary><p>First check that your workspace supports full MCP read-and-write access. Follow <a href="https://help.openai.com/en/articles/12584461-developer-mode-and-full-mcp-connectors-in-chatgpt">ChatGPT’s setup instructions</a> to add a custom app through Apps / developer mode. Read/fetch access alone cannot save plans or send workouts.</p></details>
+          <li class="step" id="client-options"><strong>Start in Claude.</strong>
+            <p>Claude’s free plan allows one custom connector, which is all this needs. Open <a href="https://claude.ai/customize/connectors">Claude’s connector settings</a>.</p>
+            <details class="setup-detail"><summary>I use ChatGPT</summary><p>The full coaching flow currently needs Business, Enterprise or Edu on the web, with custom MCP read-and-write access enabled by your workspace. Follow <a href="https://help.openai.com/en/articles/12584461-developer-mode-and-full-mcp-connectors-in-chatgpt">ChatGPT’s setup instructions</a> to add a custom app through Apps / developer mode. Read-and-fetch access alone cannot save plans or send workouts, so on a personal plan start with Claude.</p></details>
           </li>
-          <li class="step"><strong>Paste the address and connect.</strong><p>Name it Long Run Hybrid Coach and paste the address above into the server URL field. After adding it, choose Connect to sign in. No API key or advanced OAuth credentials are needed.</p></li>
-          <li class="step"><strong>Sign in to Intervals.icu and review access.</strong><p>Use your own account. Review and select all four permissions, then approve the connection. They let the coach read training and recovery data and handle workouts you confirm.</p><p><a href="#permissions">See the four permissions and settings-write scope</a>. If you missed one, reconnect and grant the missing permission.</p></li>
-          <li class="step"><strong>Enable the coach in your conversation.</strong><p>Turn on Long Run Hybrid Coach in the conversation’s connector or tools menu, then paste the message below. In Claude, use “+” beside the message box → Connectors.</p></li>
+          <li class="step"><strong>Add Long Run Hybrid Coach.</strong>
+            <p>In Claude: Customize → Connectors → “+” → Add custom connector. Name it Long Run Hybrid Coach, and paste this address into the server URL field.</p>
+            <div class="connector-address">
+              <span>Connection address</span>
+              <code id="connection-url">https://mcp.paceandstaystrong.com/mcp</code>
+              <button type="button" class="copy-button" data-copy="connection-url" aria-label="Copy connection address" hidden>Copy</button><span class="copy-status" role="status" aria-live="polite"></span>
+            </div>
+            <details class="setup-detail"><summary>Is there anything else to fill in?</summary><p>No. There is no API key and no OAuth credential to enter — the address is the whole of it. On a team account, an administrator may have to enable custom connectors before the option appears.</p></details>
+          </li>
+          <li class="step"><strong>Sign in to Intervals.icu and approve access.</strong>
+            <p>Choose Connect, sign in with your own account, then select all four permissions before approving. <a href="#permissions">What the four permissions cover</a>. If you missed one, reconnect and grant it.</p>
+          </li>
+          <li class="step"><strong>Go back to the conversation and start.</strong>
+            <p>Turn Long Run Hybrid Coach on in the conversation’s connector or tools menu — in Claude, “+” beside the message box → Connectors — then send this:</p>
+            <div class="first-message"><p id="first-prompt">Read my recent training, then ask about my goals and available time each week. Help me plan running and strength.</p><button type="button" class="copy-button" data-copy="first-prompt" aria-label="Copy first message" hidden>Copy</button><span class="copy-status" role="status" aria-live="polite"></span></div>
+          </li>
         </ol>
-        <div class="first-message"><span class="page-kicker">Your first message</span><p id="first-prompt">Read my recent training, then ask about my goals and available time each week. Help me plan running and strength.</p><button type="button" class="copy-button" data-copy="first-prompt" aria-label="Copy first message" hidden>Copy</button><span class="copy-status" role="status" aria-live="polite"></span></div>
-        <p class="setup-success"><strong>How do I know it worked?</strong> The coach should report the training it could read, or clearly say the account has no data yet. Then discuss your goals and schedule. If you only get general advice, ask it to check whether it used the connector.</p>
+        <p class="setup-success"><strong>How do I know it worked?</strong> The coach should report the training it could read, or clearly say the account has no data yet. If you only get general advice, ask it to check whether it used the connector.</p>
         <details class="setup-detail empty-account" id="empty-account"><summary>Can I start with a new or empty Intervals.icu account?</summary><p>Yes. Tell the coach how you have been training, how much time you have and what you want to achieve. You do not need to fill in your history first.</p><p>Later, connect a supported device or app in Intervals.icu Settings. How much history imports depends on the source. Once activities appear in Intervals.icu, ask the coach to read them again.</p></details>
         <p class="fine">Stuck? <a href="support.html#connection-help">Try the connection checklist</a>. For current menus and plan availability, see <a href="https://support.claude.com/en/articles/11175166-get-started-with-custom-connectors-using-remote-mcp">Claude</a> and <a href="https://help.openai.com/en/articles/12584461-developer-mode-and-full-mcp-connectors-in-chatgpt">ChatGPT</a> (checked 9 September 2026).</p>
       </section>
@@ -158,7 +167,8 @@
           </details>
           <details>
             <summary>Do I need a particular watch?</summary>
-            <p>No particular watch is required, and you can use the coach without one. It uses records in Intervals.icu and training you report in conversation. Receiving workouts on a watch needs a compatible device and separate sync setup.</p>
+            <p>No particular watch is required, and you can use the coach without one. It uses records in Intervals.icu and training you report in conversation.</p>
+            <p>To follow a workout on your watch: confirm it is in Intervals.icu, then use your device’s own sync. The coach can check that Intervals.icu received it; whether it reached the watch is something only the watch shows.</p>
           </details>
           <details>
             <summary>Can I run my own gateway instead of the hosted one?</summary>
