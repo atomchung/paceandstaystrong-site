@@ -9,6 +9,7 @@
   const sendingText = root.dataset.sendingText || 'Thinking…';
   const failureText = root.dataset.failureText || 'The live demo is temporarily unavailable.';
   const emptyText = root.dataset.emptyText || '';
+  const waitingHint = root.dataset.waitingHint || '';
 
   const form = root.querySelector('[data-demo-form]');
   const input = root.querySelector('[data-demo-input]');
@@ -22,9 +23,49 @@
     ? globalThis.crypto.randomUUID()
     : `demo-${Date.now()}-${Math.random().toString(16).slice(2)}`;
 
+  // A turn takes eight to thirty seconds, and a motionless line for that long reads as a
+  // page that has hung -- which is what it was mistaken for. The elapsed count is the
+  // cheapest honest signal: it says the wait is being measured rather than ignored.
+  let waitTimer = null;
+
+  const stopWaiting = () => {
+    if (waitTimer === null) return;
+    clearInterval(waitTimer);
+    waitTimer = null;
+  };
+
   const setStatus = (message, isError = false) => {
+    stopWaiting();
     status.textContent = message;
     status.classList.toggle('error', isError);
+  };
+
+  const startWaiting = () => {
+    stopWaiting();
+    const startedAt = Date.now();
+    status.textContent = '';
+    status.classList.remove('error');
+
+    // Announced once. A live region that rewrites itself every second is unusable with a
+    // screen reader, so the ticking part is hidden from it and exists for the eye only.
+    const label = document.createElement('span');
+    label.textContent = sendingText;
+    const elapsed = document.createElement('span');
+    elapsed.className = 'demo-elapsed';
+    elapsed.setAttribute('aria-hidden', 'true');
+    status.append(label, elapsed);
+    if (waitingHint) {
+      const hint = document.createElement('span');
+      hint.className = 'demo-hint';
+      hint.textContent = waitingHint;
+      status.append(hint);
+    }
+
+    const tick = () => {
+      elapsed.textContent = ` ${Math.round((Date.now() - startedAt) / 1000)}s`;
+    };
+    tick();
+    waitTimer = setInterval(tick, 1000);
   };
 
   const setBusy = (value) => {
@@ -113,7 +154,7 @@
     appendTurn('user', youLabel, trimmed);
     input.value = '';
     setBusy(true);
-    setStatus(sendingText);
+    startWaiting();
 
     try {
       const response = await fetch(endpoint, {
