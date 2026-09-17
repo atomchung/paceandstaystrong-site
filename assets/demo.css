@@ -94,6 +94,12 @@
 .demo-body ul { margin: 0 0 10px; padding-left: 20px; }
 .demo-body li { margin: 0 0 5px; }
 .demo-body strong.demo-inline { display: inline; margin: 0; font-size: inherit; text-transform: none; letter-spacing: normal; }
+/* Hidden until the first coach reply arrives; demo.js reveals it. It sits between the
+   transcript and the box you type in, so it reads as a footnote to the answer rather
+   than a step the conversation is waiting on. */
+.demo-handoff { margin: 0 0 16px; color: var(--ink-soft); font-size: 0.92rem; }
+.demo-handoff[hidden] { display: none; }
+.demo-handoff a { font-weight: 700; }
 .demo-form { display: grid; gap: 10px; }
 
 .demo-input {

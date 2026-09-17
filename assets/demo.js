@@ -17,6 +17,9 @@
   const transcript = root.querySelector('[data-demo-transcript]');
   const status = root.querySelector('[data-demo-status]');
   const promptButtons = [...root.querySelectorAll('[data-demo-prompt]')];
+  // Revealed once an answer exists. Before that there is nothing to convert on, and a
+  // standing banner would sit between the question and the reply for no reason.
+  const handoff = root.querySelector('[data-demo-handoff]');
 
   let busy = false;
   const sessionId = (globalThis.crypto && typeof globalThis.crypto.randomUUID === 'function')
@@ -185,6 +188,7 @@
       if (!reply) throw new Error(failureText);
 
       appendTurn('coach', coachLabel, reply);
+      if (handoff) handoff.hidden = false;
       setStatus(readyText);
     } catch (error) {
       const messageText = error instanceof Error && error.message ? error.message : failureText;
