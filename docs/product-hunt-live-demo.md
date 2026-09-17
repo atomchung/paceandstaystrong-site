@@ -1,6 +1,8 @@
 # Product Hunt live demo
 
-Status: implementation plan; the public site remains static until the demo backend is live.
+Status: the backend is implemented in `long-run-hybrid-coach` (PR #473) and this page is
+wired to it. What remains before the demo is live is the owner setting `OPENAI_API_KEY` on
+the demo service and running its acceptance command.
 
 ## Goal
 
@@ -46,6 +48,20 @@ Long Run Hybrid Coach demo adapter
         +--> per-visitor ephemeral PlanState clone
 ```
 
+### Domains
+
+Three names, three jobs, and they do not overlap:
+
+| | |
+| --- | --- |
+| `mcp.paceandstaystrong.com` | the production MCP gateway — connected athletes, OAuth, real plans |
+| `demo-api.paceandstaystrong.com` | the demo backend, a separate Railway service |
+| `paceandstaystrong.com/demo.html`, `/zh/demo.html` | this repository's pages |
+
+The demo route is never added to the MCP gateway and the gateway's host never answers demo
+traffic: anonymous demo traffic there would put a public playground inside the production
+failure domain and behind the reviewed MCP surface.
+
 ### Frontend
 
 This repository owns only the static demo page and its presentation. It must never contain an OpenAI key, Intervals token, provider credential, owner id, or writable shared state.
@@ -54,11 +70,14 @@ The page can be deployed by GitHub Pages as it is today. It calls a separate HTT
 
 ### Demo backend
 
-The coaching/runtime repository owns the backend. Recommended endpoint shape:
+The coaching/runtime repository owns the backend. The endpoint both mirrors call:
 
 ```text
-POST https://mcp.paceandstaystrong.com/demo/v1/respond
+POST https://demo-api.paceandstaystrong.com/demo/v1/respond
 ```
+
+`scripts/check-site.py` holds `data-endpoint` on both pages equal to that string and fails
+if either names the MCP host; the coach repository holds the same constant from its side.
 
 Request:
 
@@ -69,7 +88,12 @@ Request:
 }
 ```
 
-Response may be streamed, but the first implementation can return one complete turn. The endpoint should use GPT-6 Astra server-side for the Product Hunt demo and call/reuse the canonical Coach logic rather than implement a second prompt-only coach.
+Response is one complete turn — `{"reply": "..."}` — with no streaming in this version. The
+endpoint uses GPT-6 Astra server-side and reuses the canonical Coach contracts, evidence
+projection and plan-change projector rather than implementing a second prompt-only coach.
+
+Errors carry a machine-readable `error.code`; the page shows its failure text for any of
+them. `429` carries `Retry-After`.
 
 ## Demo athlete
 
@@ -150,6 +174,8 @@ Before linking the homepage CTA:
 - [ ] Failure mode is readable (backend unavailable / rate limited) rather than an endless spinner.
 - [ ] English and Traditional Chinese pages match in capability and disclosure.
 - [ ] `python3 scripts/check-site.py` passes.
+- [ ] `demo-api.paceandstaystrong.com` resolves and `GET /healthz` reports `"status":"ok"`.
+- [ ] `python3 -m entrypoints.demo.acceptance --base-url https://demo-api.paceandstaystrong.com` passes in the coach repository.
 - [ ] Mobile and desktop browser smoke tests pass.
 
 ## Non-goals for the Product Hunt launch
