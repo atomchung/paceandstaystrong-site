@@ -39,6 +39,54 @@
     if (empty) empty.remove();
   };
 
+  // The coach writes Markdown. Only the subset it actually uses is rendered -- headings,
+  // bullets and bold -- and every piece is built as a DOM node. The reply is a model's
+  // words arriving on a public page, so nothing here goes near innerHTML and anything the
+  // renderer does not recognise stays literal text rather than becoming markup.
+  const BOLD = /\*\*(.+?)\*\*/g;
+
+  const appendInline = (node, text) => {
+    let cursor = 0;
+    for (const match of text.matchAll(BOLD)) {
+      if (match.index > cursor) node.append(text.slice(cursor, match.index));
+      const strong = document.createElement('strong');
+      strong.className = 'demo-inline';
+      strong.textContent = match[1];
+      node.append(strong);
+      cursor = match.index + match[0].length;
+    }
+    if (cursor < text.length) node.append(text.slice(cursor));
+  };
+
+  const renderReply = (text) => {
+    const fragment = document.createDocumentFragment();
+    let list = null;
+    for (const raw of text.split('\n')) {
+      const line = raw.trimEnd();
+      const bullet = /^\s*[-*]\s+(.*)$/.exec(line);
+      if (bullet) {
+        if (!list) { list = document.createElement('ul'); fragment.append(list); }
+        const item = document.createElement('li');
+        appendInline(item, bullet[1]);
+        list.append(item);
+        continue;
+      }
+      list = null;
+      if (!line) continue;
+      const heading = /^(#{1,4})\s+(.*)$/.exec(line);
+      if (heading) {
+        const node = document.createElement(`h${Math.min(heading[1].length + 2, 5)}`);
+        appendInline(node, heading[2]);
+        fragment.append(node);
+        continue;
+      }
+      const para = document.createElement('p');
+      appendInline(para, line);
+      fragment.append(para);
+    }
+    return fragment;
+  };
+
   const appendTurn = (role, label, text) => {
     clearEmpty();
     const turn = document.createElement('div');
@@ -48,7 +96,10 @@
     heading.textContent = label;
 
     const body = document.createElement('div');
-    body.textContent = text;
+    body.className = 'demo-body';
+    // What the visitor typed is shown exactly as typed; only the coach's side is rendered.
+    if (role === 'coach') body.append(renderReply(text));
+    else body.textContent = text;
 
     turn.append(heading, body);
     transcript.append(turn);
