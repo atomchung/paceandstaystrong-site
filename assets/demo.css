@@ -114,6 +114,8 @@
 .demo-prompt[disabled] { cursor: not-allowed; opacity: 0.55; }
 .demo-status { min-height: 1.5em; margin: 0; color: var(--ink-soft); font-size: 0.88rem; }
 .demo-status.error { color: #8b2f27; font-weight: 700; }
+.demo-elapsed { font-variant-numeric: tabular-nums; }
+.demo-hint { display: block; margin-top: 3px; font-size: 0.82rem; opacity: 0.8; }
 
 .demo-exit {
   margin-top: 26px;
