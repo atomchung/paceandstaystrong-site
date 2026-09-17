@@ -85,6 +85,15 @@
 .demo-turn.user { background: var(--paper); border: 1px solid var(--line); }
 .demo-turn.coach { background: var(--panel); border-left: 5px solid var(--aqua); }
 .demo-turn strong { display: block; margin-bottom: 5px; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.05em; }
+.demo-turn.user .demo-body { white-space: pre-wrap; }
+.demo-turn.coach .demo-body { white-space: normal; }
+.demo-body p { margin: 0 0 10px; }
+.demo-body p:last-child, .demo-body ul:last-child { margin-bottom: 0; }
+.demo-body h4, .demo-body h5 { margin: 15px 0 6px; font-size: 0.97rem; line-height: 1.35; }
+.demo-body h4:first-child, .demo-body h5:first-child { margin-top: 0; }
+.demo-body ul { margin: 0 0 10px; padding-left: 20px; }
+.demo-body li { margin: 0 0 5px; }
+.demo-body strong.demo-inline { display: inline; margin: 0; font-size: inherit; text-transform: none; letter-spacing: normal; }
 .demo-form { display: grid; gap: 10px; }
 
 .demo-input {
