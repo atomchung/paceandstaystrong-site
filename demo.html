@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Try Long Run Hybrid Coach — Live demo</title>
+  <meta name="description" content="Try Long Run Hybrid Coach instantly with a fictional demo athlete. Explore running and strength trade-offs without connecting your own training data.">
+  <meta property="og:title" content="Try Long Run Hybrid Coach — Live demo">
+  <meta property="og:description" content="Explore a fictional athlete's real training evidence and see how the Coach weighs running against strength.">
+  <meta property="og:url" content="https://paceandstaystrong.com/demo.html">
+  <meta property="og:image" content="https://paceandstaystrong.com/assets/long-run-hybrid-coach-logo.png">
+  <link rel="alternate" hreflang="en" href="https://paceandstaystrong.com/demo.html">
+  <link rel="alternate" hreflang="zh-Hant" href="https://paceandstaystrong.com/zh/demo.html">
+  <link rel="alternate" hreflang="x-default" href="https://paceandstaystrong.com/demo.html">
+  <link rel="stylesheet" href="assets/styles.css?v=usability-20260909">
+  <link rel="stylesheet" href="assets/demo.css?v=product-hunt-demo-2">
+  <script src="assets/demo.js?v=product-hunt-demo-2" defer></script>
+</head>
+<body>
+  <div class="wrap demo-page">
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a class="brand" href="index.html">Pace &amp; Stay Strong</a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#setup">Connect my training</a>
+        <a class="nav-cta" href="demo.html" aria-current="page">Live demo</a>
+        <a class="nav-lang" href="zh/demo.html" hreflang="zh-Hant" lang="zh-Hant">中文</a>
+      </div>
+    </nav>
+
+    <main>
+      <header class="demo-header">
+        <span class="eyebrow">Live playground · Fictional athlete</span>
+        <h1>Try the coach before you connect anything.</h1>
+        <p class="lede">Ask Long Run Hybrid Coach about a fictional athlete with real-looking running and strength evidence. No MCP setup, no Intervals.icu login, and no changes to a shared calendar.</p>
+        <p class="button-note">This playground is for the Product Hunt demo. The real product remains the hosted MCP you connect to your own AI client and training account.</p>
+      </header>
+
+      <div
+        class="demo-layout"
+        data-demo-root
+        data-endpoint="https://demo-api.paceandstaystrong.com/demo/v1/respond"
+        data-coach-label="Coach"
+        data-you-label="You"
+        data-ready-text="Ready. Pick a question or ask your own."
+        data-sending-text="Reviewing the demo athlete…"
+        data-failure-text="The live demo backend is not available right now. You can still connect the real Coach from the homepage."
+        data-empty-text="Start with one of the questions above, or ask your own coaching question."
+      >
+        <aside class="demo-athlete" aria-labelledby="athlete-title">
+          <span class="page-kicker">Demo athlete</span>
+          <h2 id="athlete-title">Three sessions. Two goals.</h2>
+          <p class="section-copy">A synthetic example designed to make the running × strength trade-off visible.</p>
+          <ul class="demo-facts">
+            <li class="demo-fact"><strong>Running goal</strong><span>10K under 53 minutes</span></li>
+            <li class="demo-fact"><strong>Strength goal</strong><span>Maintain meaningful upper- and lower-body strength</span></li>
+            <li class="demo-fact"><strong>Recent running</strong><span>About 15 km/week · longest recent run 6 km</span></li>
+            <li class="demo-fact"><strong>Available time</strong><span>Monday, Thursday, Saturday · up to 45 minutes each</span></li>
+            <li class="demo-fact"><strong>Evidence boundary</strong><span>Missing evidence stays unknown, never zero</span></li>
+          </ul>
+          <p class="demo-disclosure">All athlete data on this page is fictional. Public demo traffic cannot write to the shared Intervals.icu calendar.</p>
+        </aside>
+
+        <section class="demo-chat" aria-labelledby="chat-title">
+          <span class="page-kicker">Ask the Coach</span>
+          <h2 id="chat-title">Explore the decision, not just one generated plan.</h2>
+          <p class="section-copy">Suggested questions are deliberately different: allocation, execution trend, and a changed constraint.</p>
+
+          <div class="demo-prompts" aria-label="Suggested questions">
+            <button class="demo-prompt" type="button" data-demo-prompt="I only have three 45-minute sessions next week. I want a faster 10K without losing strength. What are my realistic options?">Limited time: what do I preserve and give up?</button>
+            <button class="demo-prompt" type="button" data-demo-prompt="Review the comparable quality runs. What execution trend is actually supported, and what formal outcome is still unproven?">What is actually improving?</button>
+            <button class="demo-prompt" type="button" data-demo-prompt="Thursday is no longer available. Given the same goals, what would you preserve and what would you give up?">Thursday disappeared. Reconsider the trade-off.</button>
+          </div>
+
+          <div class="demo-transcript" data-demo-transcript aria-live="polite" aria-label="Demo conversation">
+            <p class="demo-empty" data-demo-empty>Start with one of the questions above, or ask your own coaching question.</p>
+          </div>
+
+          <form class="demo-form" data-demo-form>
+            <label for="demo-message"><strong>Your question</strong></label>
+            <textarea class="demo-input" id="demo-message" data-demo-input maxlength="1200" placeholder="Ask about the demo athlete's plan, recent execution, or running × strength trade-off." required></textarea>
+            <div class="demo-actions">
+              <button class="demo-send" type="submit" data-demo-send>Ask the Coach</button>
+              <p class="demo-status" data-demo-status role="status" aria-live="polite"></p>
+            </div>
+          </form>
+        </section>
+      </div>
+
+      <div class="demo-exit">
+        <span class="page-kicker">Use your own training</span>
+        <h2>Ready for the real Coach?</h2>
+        <p>Connect the hosted MCP to a supported AI client, authorize your own Intervals.icu account, and keep one plan that follows what you actually train.</p>
+        <div class="actions">
+          <a class="button" href="index.html#setup">Connect my training</a>
+          <a class="button secondary" href="index.html#demo">Watch the 42-second story</a>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-row">
+        <span>Pace &amp; Stay Strong · Long Run Hybrid Coach</span>
+        <span><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="support.html">Support</a></span>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

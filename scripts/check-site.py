@@ -22,10 +22,21 @@ ROOT = Path(__file__).resolve().parent.parent
 # Registered with an app platform under review. These paths cannot move.
 LISTING_PATHS = ("index.html", "privacy.html", "terms.html", "support.html")
 
-MIRRORED = ("index.html", "start.html", "privacy.html", "terms.html", "support.html")
+MIRRORED = ("index.html", "start.html", "privacy.html", "terms.html", "support.html", "demo.html")
+
+# The demo backend the live-demo page posts to. Its own host, never the MCP one: that
+# domain serves connected athletes and their OAuth, and anonymous demo traffic on it would
+# put a public playground inside the production failure domain. The same string is a
+# constant in the coach repository (entrypoints/demo/config.py PUBLIC_HOST), and both ends
+# are checked -- here, and by tests/test_demo_deployment.py there -- because a page calling
+# a host nothing answers on fails silently in somebody's browser.
+DEMO_ENDPOINT = "https://demo-api.paceandstaystrong.com/demo/v1/respond"
+DEMO_FORBIDDEN_HOST = "mcp.paceandstaystrong.com"
+DEMO_PAGES = ("demo.html", "zh/demo.html")
 
 LINK = re.compile(r'(?:href|src)="([^"]+)"')
 ID = re.compile(r'\sid="([^"]+)"')
+DEMO_ENDPOINT_ATTR = re.compile(r'data-endpoint="([^"]+)"')
 HTML_LANG = re.compile(r'<html lang="([^"]+)"')
 HREFLANG = re.compile(r'<link rel="alternate" hreflang="([^"]+)" href="([^"]+)">')
 
@@ -104,6 +115,20 @@ def main() -> int:
                 fail(page, f'hreflang="zh-Hant" should be {chinese}')
             if declared.get("x-default") != english:
                 fail(page, f'hreflang="x-default" should be {english}')
+
+    # Both demo mirrors call one backend, and it is not the MCP host.
+    for relative in DEMO_PAGES:
+        page = ROOT / relative
+        if not page.is_file():
+            continue
+        text = page.read_text()
+        found = DEMO_ENDPOINT_ATTR.findall(text)
+        if not found:
+            fail(page, "the live-demo page declares no data-endpoint")
+        elif found != [DEMO_ENDPOINT]:
+            fail(page, f'data-endpoint should be {DEMO_ENDPOINT}, found {found[0]}')
+        if DEMO_FORBIDDEN_HOST in text:
+            fail(page, f"names {DEMO_FORBIDDEN_HOST}; the demo has its own backend host")
 
     if problems:
         print(f"{len(problems)} problem(s):", file=sys.stderr)
