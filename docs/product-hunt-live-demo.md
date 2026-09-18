@@ -88,8 +88,11 @@ Request:
 }
 ```
 
-Response is one complete turn — `{"reply": "..."}` — with no streaming in this version. The
-endpoint uses GPT-6 Astra server-side and reuses the canonical Coach contracts, evidence
+Response is one complete turn — `{"reply": "...", "turn": 3}` — with no streaming in this
+version. `turn` is this conversation's own count, and the page reads it to notice a
+conversation the backend has lost: a session expires, and it is gone entirely when the
+service restarts, while the browser keeps the same id and the same transcript. The
+endpoint is pinned to `gpt-5.6-luna` server-side and reuses the canonical Coach contracts, evidence
 projection and plan-change projector rather than implementing a second prompt-only coach.
 
 Errors carry a machine-readable `error.code`; the page shows its failure text for any of

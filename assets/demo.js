@@ -10,6 +10,9 @@
   const failureText = root.dataset.failureText || 'The live demo is temporarily unavailable.';
   const emptyText = root.dataset.emptyText || '';
   const waitingHint = root.dataset.waitingHint || '';
+  const resetText = root.dataset.resetText || '';
+  const turnLimitText = root.dataset.turnLimitText || '';
+  const busyText = root.dataset.busyText || '';
 
   const form = root.querySelector('[data-demo-form]');
   const input = root.querySelector('[data-demo-input]');
@@ -22,6 +25,39 @@
   const handoff = root.querySelector('[data-demo-handoff]');
 
   let busy = false;
+  // How many answers this page has been given. A demo conversation lives in one server
+  // process's memory: it expires on its own, and it is gone entirely when that process
+  // restarts. The browser survives both -- same session id, same transcript on screen --
+  // so a conversation that was replaced looks exactly like one that was continued. The
+  // backend answers with its own count of the conversation, which makes the two tellable
+  // apart: a `turn: 1` arriving after this page has already been answered is a new
+  // conversation wearing the old one's transcript.
+  let answered = 0;
+
+  // What a visitor is told for each refusal the backend names. Anything not listed, and
+  // any failure that never reached the backend, falls back to the page's own sentence --
+  // never to a browser exception string, which is what "Failed to fetch" was.
+  //
+  // `session_busy` is deliberately absent: it means this visitor's own conversation is
+  // already answering a turn, which is nothing to do with how many people are here, and
+  // the form is disabled for exactly as long as that is true. A wrong sentence would be
+  // worse than the general one.
+  //
+  // Null-prototype, so a code that happens to spell an inherited property -- `constructor`
+  // reads back as a function, whose string form is browser internals -- cannot become the
+  // sentence on screen. This backend sends a fixed set of codes; the map should not depend
+  // on that staying true.
+  const FAILURE_COPY = Object.assign(Object.create(null), {
+    turn_limit_reached: turnLimitText,
+    rate_limited: busyText,
+    model_rate_limited: busyText,
+    demo_at_capacity: busyText
+  });
+
+  // Carries a sentence written for a visitor. Anything else that reaches the catch is a
+  // transport failure whose message is the browser's wording, not copy.
+  class DemoFailure extends Error {}
+
   const sessionId = (globalThis.crypto && typeof globalThis.crypto.randomUUID === 'function')
     ? globalThis.crypto.randomUUID()
     : `demo-${Date.now()}-${Math.random().toString(16).slice(2)}`;
@@ -185,13 +221,34 @@
     turn.append(heading, body);
     transcript.append(turn);
     transcript.scrollTop = transcript.scrollHeight;
+    return turn;
+  };
+
+  // Not a turn, because nobody said it: it is the page reporting something about the
+  // conversation itself. Deliberately not in the coach's voice -- a coach explaining its
+  // own amnesia is the one thing this page cannot honestly show.
+  //
+  // Inserted *above* the question that landed in the new conversation, because that
+  // question is the one thing on screen the coach did see. Appended after it, the line
+  // would be saying "the coach cannot see anything above this" directly beneath the
+  // sentence it had just answered.
+  const noticeBefore = (node, text) => {
+    if (!text || !node) return;
+    clearEmpty();
+    const notice = document.createElement('p');
+    notice.className = 'demo-notice';
+    notice.setAttribute('role', 'note');
+    notice.textContent = text;
+    transcript.insertBefore(notice, node);
   };
 
   const submitMessage = async (message) => {
     const trimmed = message.trim();
     if (!trimmed || busy) return;
 
-    appendTurn('user', youLabel, trimmed);
+    // Held, because a conversation that turns out to have been replaced needs a line
+    // inserted above this question rather than under it.
+    const question = appendTurn('user', youLabel, trimmed);
     input.value = '';
     setBusy(true);
     startWaiting();
@@ -217,19 +274,35 @@
       }
 
       if (!response.ok) {
-        const detail = payload && typeof payload.error === 'string' ? payload.error : failureText;
-        throw new Error(detail);
+        // `error` is an object with a stable `code`; the message beside it is written for
+        // whoever is reading a log, so only the code is read and the sentence is this
+        // page's. A conversation that has spent its turns and one that is being rate
+        // limited are different things to tell somebody, and both used to arrive as "the
+        // demo is not answering right now".
+        const code = payload && payload.error && typeof payload.error.code === 'string'
+          ? payload.error.code
+          : '';
+        throw new DemoFailure(FAILURE_COPY[code] || failureText);
       }
 
       const reply = payload && typeof payload.reply === 'string' ? payload.reply.trim() : '';
-      if (!reply) throw new Error(failureText);
+      if (!reply) throw new DemoFailure(failureText);
+
+      // Before the reply, because it is about everything above it. A deployment that does
+      // not send a turn number leaves this page behaving exactly as it did before.
+      const turn = payload && Number.isInteger(payload.turn) ? payload.turn : null;
+      if (turn === 1 && answered > 0) noticeBefore(question, resetText);
+      answered = turn === null ? answered + 1 : turn;
 
       appendTurn('coach', coachLabel, reply);
       if (handoff) handoff.hidden = false;
       setStatus(readyText);
     } catch (error) {
-      const messageText = error instanceof Error && error.message ? error.message : failureText;
-      setStatus(messageText, true);
+      // Only a sentence this page wrote reaches the status line. A transport failure gets
+      // here with the browser's own words -- "Failed to fetch", which varies by browser and
+      // reads like an unhandled bug -- so it is logged for debugging and never shown.
+      if (!(error instanceof DemoFailure)) console.debug('demo request failed', error);
+      setStatus(error instanceof DemoFailure ? error.message : failureText, true);
     } finally {
       setBusy(false);
       input.focus();
