@@ -70,7 +70,7 @@
         <ol class="steps setup-steps" role="list">
           <li class="step" id="client-options"><strong>Start in Claude.</strong>
             <p>Claude’s free plan allows one custom connector, which is all this needs. Open <a href="https://claude.ai/customize/connectors">Claude’s connector settings</a>.</p>
-            <details class="setup-detail"><summary>I use ChatGPT</summary><p>The full coaching flow currently needs Business, Enterprise or Edu on the web, with custom MCP read-and-write access enabled by your workspace. Follow <a href="https://help.openai.com/en/articles/12584461-developer-mode-and-mcp-apps-in-chatgpt">ChatGPT’s setup instructions</a> to add a custom app through Apps / developer mode. Read-and-fetch access alone cannot save plans or send workouts, so on a personal plan start with Claude.</p></details>
+            <details class="setup-detail"><summary>I use ChatGPT</summary><p>A personal plan — ChatGPT Pro — can add this coach as a custom app through Apps / developer mode, then read your training and work through a plan with you, preview included. Writing is the part it cannot finish: saving the plan, recording what you trained and sending workouts to your calendar need a Business, Enterprise or Edu workspace with full MCP write enabled. Follow <a href="https://help.openai.com/en/articles/12584461-developer-mode-and-mcp-apps-in-chatgpt">ChatGPT’s setup instructions</a> to add the app. For the whole flow today, start with Claude.</p></details>
           </li>
           <li class="step"><strong>Add Long Run Hybrid Coach.</strong>
             <p>In Claude: Customize → Connectors → “+” → Add custom connector. Name it Long Run Hybrid Coach, and paste this address into the server URL field.</p>
@@ -82,7 +82,7 @@
             <details class="setup-detail"><summary>Is there anything else to fill in?</summary><p>No. There is no API key and no OAuth credential to enter — the address is the whole of it. On a team account, an administrator may have to enable custom connectors before the option appears.</p></details>
           </li>
           <li class="step"><strong>Sign in to Intervals.icu and approve access.</strong>
-            <p>Choose Connect, sign in with your own account, then select all four permissions before approving. <a href="#permissions">What the four permissions cover</a>. If you missed one, reconnect and grant it.</p>
+            <p>Choose Connect, sign in with your own account, then review the four permissions and approve. They arrive already selected. <a href="#permissions">What the four permissions cover</a>. If you unticked one, reconnect and grant it.</p>
           </li>
           <li class="step"><strong>Go back to the conversation and start.</strong>
             <p>Turn Long Run Hybrid Coach on in the conversation’s connector or tools menu — in Claude, “+” beside the message box → Connectors — then send this:</p>
@@ -156,7 +156,7 @@
           </details>
           <details>
             <summary>What do I need to start?</summary>
-            <p>Nothing, if you only want to <a href="demo.html">try it</a> — that needs no account. To connect your own training you need an <a href="https://intervals.icu">Intervals.icu account</a> and an AI account with connector access. Start with Claude; its free plan allows one custom connector. The full ChatGPT flow currently needs Business, Enterprise or Edu on the web and workspace approval. See <a href="#setup">Get started</a>.</p>
+            <p>Nothing, if you only want to <a href="demo.html">try it</a> — that needs no account. To connect your own training you need an <a href="https://intervals.icu">Intervals.icu account</a> and an AI account with connector access. Start with Claude; its free plan allows one custom connector and covers the whole flow. ChatGPT works too, with limits worth reading first — see <a href="#client-options">Get started</a>.</p>
           </details>
           <details>
             <summary>Does this cost anything?</summary>
@@ -172,8 +172,8 @@
             <p>Yes. Self-hosting runs the exact same product with your own Intervals.icu OAuth credentials and your own storage. Most people should use the hosted address in <a href="#setup">Get started</a>.</p>
           </details>
           <details id="permissions">
-            <summary>Why do all four Intervals.icu permissions need to be checked?</summary>
-            <p>They cover completed activities, wellness data, your training calendar, and athlete settings. Settings writes are limited to filling a missing threshold pace during a delivery you already confirmed; an existing value is not overwritten. Calendar workouts still require your approval. Reconnect to grant a permission you missed.</p>
+            <summary>Why does this need all four Intervals.icu permissions?</summary>
+            <p>They cover completed activities, wellness data, your training calendar, and athlete settings. Settings writes are limited to filling a missing threshold pace during a delivery you already confirmed; an existing value is not overwritten. Calendar workouts still require your approval. Reconnect to grant a permission you turned off.</p>
           </details>
           <details>
             <summary>Can the coach write a workout without my approval?</summary>

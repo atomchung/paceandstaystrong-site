@@ -70,7 +70,7 @@
         <ol class="steps setup-steps" role="list">
           <li class="step" id="client-options"><strong>先用 Claude。</strong>
             <p>Claude 免費方案可以加一個自訂連接器，這樣就夠了。開啟 <a href="https://claude.ai/customize/connectors">Claude 連接器設定</a>。</p>
-            <details class="setup-detail"><summary>我用 ChatGPT</summary><p>完整教練流程目前需要 Business、Enterprise 或 Edu 網頁版，而且工作區要開放自訂 MCP 讀寫。請依 <a href="https://help.openai.com/en/articles/12584461-developer-mode-and-mcp-apps-in-chatgpt">ChatGPT 官方設定說明</a>，透過 Apps／developer mode 新增自訂 app。只有讀取權限無法儲存計畫或傳送課表，個人方案請先用 Claude。</p></details>
+            <details class="setup-detail"><summary>我用 ChatGPT</summary><p>個人方案（ChatGPT Pro）可以在 Apps／developer mode 把這個教練加成自訂 app，接著讀你的訓練、跟你把計畫討論到完整預覽。做不完的是寫入：儲存計畫、記錄你練了什麼、把課表送進日曆，需要 Business、Enterprise 或 Edu 工作區並開啟完整 MCP 寫入。新增 app 請依 <a href="https://help.openai.com/en/articles/12584461-developer-mode-and-mcp-apps-in-chatgpt">ChatGPT 官方設定說明</a>。想一次跑完整個流程，目前請用 Claude。</p></details>
           </li>
           <li class="step"><strong>加入 Long Run Hybrid Coach。</strong>
             <p>在 Claude：Customize → Connectors →「＋」→ Add custom connector。名稱填 Long Run Hybrid Coach，伺服器網址貼上這一串。</p>
@@ -82,7 +82,7 @@
             <details class="setup-detail"><summary>還要填別的嗎？</summary><p>不用。沒有 API key，也不需要填 OAuth 憑證，就只有這串網址。團隊帳號可能要管理員先開放自訂連接器，選項才會出現。</p></details>
           </li>
           <li class="step"><strong>登入 Intervals.icu 並授權。</strong>
-            <p>按 Connect，用你自己的帳號登入，四項權限全部勾選後再同意。<a href="#permissions">四項權限各自涵蓋什麼</a>。漏勾的話重新連接補上即可。</p>
+            <p>按 Connect，用你自己的帳號登入，確認四項權限後同意。四項預設已經勾好。<a href="#permissions">四項權限各自涵蓋什麼</a>。若取消掉其中一項，重新連接補上即可。</p>
           </li>
           <li class="step"><strong>回到對話，開始使用。</strong>
             <p>在對話的連接器／工具選單啟用 Long Run Hybrid Coach（Claude 是輸入框旁的「＋」→ Connectors），然後送出這句：</p>
@@ -156,7 +156,7 @@
           </details>
           <details>
             <summary>開始之前需要準備什麼？</summary>
-            <p>只是想試試看的話什麼都不用，<a href="demo.html">直接試玩</a>不需要帳號。要讓它讀你自己的訓練，才需要一個 <a href="https://intervals.icu">Intervals.icu 帳號</a>，以及支援連接器的 AI 帳號。第一次建議用 Claude；免費方案可加入一個自訂連接器。ChatGPT 的完整流程目前需要 Business、Enterprise 或 Edu 網頁版及工作區授權。前往<a href="#setup">開始使用</a>。</p>
+            <p>只是想試試看的話什麼都不用，<a href="demo.html">直接試玩</a>不需要帳號。要讓它讀你自己的訓練，才需要一個 <a href="https://intervals.icu">Intervals.icu 帳號</a>，以及支援連接器的 AI 帳號。第一次建議用 Claude；免費方案可加入一個自訂連接器，整套流程都能跑。ChatGPT 也可以，但有限制要先看過——見<a href="#client-options">開始使用</a>。</p>
           </details>
           <details>
             <summary>這個要錢嗎？</summary>
@@ -172,8 +172,8 @@
             <p>可以。自架跑的是完全一樣的產品，用你自己的 Intervals.icu OAuth 憑證和儲存空間。多數人直接用<a href="#setup">開始使用</a>裡的託管網址就好。</p>
           </details>
           <details id="permissions">
-            <summary>為什麼 Intervals.icu 四個權限都要勾？</summary>
-            <p>四項權限分別用來讀取已完成活動、讀取健康與恢復資料、讀寫訓練日曆，以及讀寫運動員設定。設定寫入只用於你已確認的課表交付：缺少門檻配速時補上，已設定的值不會覆寫。日曆課表仍須你確認後才會寫入。漏勾權限時，重新連接並補齊即可。</p>
+            <summary>為什麼 Intervals.icu 四個權限都要給？</summary>
+            <p>四項權限分別用來讀取已完成活動、讀取健康與恢復資料、讀寫訓練日曆，以及讀寫運動員設定。設定寫入只用於你已確認的課表交付：缺少門檻配速時補上，已設定的值不會覆寫。日曆課表仍須你確認後才會寫入。關掉其中一項時，重新連接並補齊即可。</p>
           </details>
           <details>
             <summary>教練會不會沒經過我同意就寫課表？</summary>
