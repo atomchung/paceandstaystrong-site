@@ -60,14 +60,12 @@
           </div>
 
           <div class="demo-transcript" data-demo-transcript aria-live="polite" aria-label="Demo conversation">
-            <!-- The page's own opening, not a model answer: it repeats what the panel
-                 beside it already says and makes no coaching judgement of its own. It is
-                 here so a first visitor arrives at a conversation rather than an empty box
-                 with three buttons over it. -->
-            <div class="demo-turn coach">
-              <strong>Coach</strong>
-              <div class="demo-body">This athlete runs about 15 km a week, longest run 6 km, and wants a 10K under 53 minutes without losing strength. Ask whatever you like — the three above are common places to start.</div>
-            </div>
+            <!-- The page's own opening, in the page's own voice. It is a note rather than a
+                 turn for the same reason the reset line is: nobody said it. Wearing the
+                 coach's label would have it asserting this athlete's training in a voice
+                 that reads no evidence and that the conversation itself never hears — the
+                 request body carries the session id and the message, nothing else. -->
+            <p class="demo-notice" role="note">The coach reads this athlete's full training record — the panel beside this is the short version. Ask a suggested question or type your own.</p>
           </div>
 
           <form class="demo-form" data-demo-form>

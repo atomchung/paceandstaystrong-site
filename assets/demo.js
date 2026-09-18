@@ -19,11 +19,11 @@
   const transcript = root.querySelector('[data-demo-transcript]');
   const status = root.querySelector('[data-demo-status]');
   const promptButtons = [...root.querySelectorAll('[data-demo-prompt]')];
-  // Revealed once this has been a conversation rather than a single answer -- a second
-  // reply, not a first. What is being demonstrated is a coach that follows up, and a page
-  // that offers the way out before the follow-up has happened is asking somebody to leave
-  // before they have seen the thing.
-  const HANDOFF_AFTER = 2;
+  // Revealed once an answer exists. What was wrong with it was where it sat -- between the
+  // transcript and the box you type in, a call to action between an answer and the next
+  // question -- and moving it under the form is the whole of that fix. Waiting for a second
+  // reply was tried and put back: most visitors to a page like this ask once, and a link
+  // they never see converts nobody.
   const handoff = root.querySelector('[data-demo-handoff]');
 
   let busy = false;
@@ -63,6 +63,12 @@
   const sessionId = (globalThis.crypto && typeof globalThis.crypto.randomUUID === 'function')
     ? globalThis.crypto.randomUUID()
     : `demo-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+
+  // Which mirror this is. The backend writes one sentence in its own voice -- the one it
+  // falls back to when a turn comes back with no words in it -- and the message is often no
+  // help in choosing its language: what was typed on the Chinese page the day this was
+  // reported was `b`. Sent as the page's own `lang`, omitted when there isn't one.
+  const locale = document.documentElement.lang || undefined;
 
   // A turn takes eight to thirty seconds, and a motionless page for that long reads as one
   // that has hung -- which is what it was mistaken for. The wait is shown as the coach's
@@ -252,13 +258,29 @@
   // question is the one thing on screen the coach did see. Appended after it, the line
   // would be saying "the coach cannot see anything above this" directly beneath the
   // sentence it had just answered.
+  const notice = (text) => {
+    const node = document.createElement('p');
+    node.className = 'demo-notice';
+    node.setAttribute('role', 'note');
+    node.textContent = text;
+    return node;
+  };
+
   const noticeBefore = (node, text) => {
     if (!text || !node) return;
-    const notice = document.createElement('p');
-    notice.className = 'demo-notice';
-    notice.setAttribute('role', 'note');
-    notice.textContent = text;
-    transcript.insertBefore(notice, node);
+    transcript.insertBefore(notice(text), node);
+  };
+
+  // A turn that failed is reported where the turn was going to be. Removing the pending
+  // bubble and leaving the explanation beside the send button would put the answer back in
+  // the place this page just moved it out of -- below the fold on a phone, the moment a
+  // question is on screen. The status line keeps its copy too: it is what `role="status"`
+  // announces, and it is where an error that never reached a turn belongs.
+  const failWaiting = (text) => {
+    if (!pendingTurn) return;
+    transcript.replaceChild(notice(text), pendingTurn);
+    pendingTurn = null;
+    transcript.scrollTop = transcript.scrollHeight;
   };
 
   const submitMessage = async (message) => {
@@ -281,7 +303,8 @@
         },
         body: JSON.stringify({
           session_id: sessionId,
-          message: trimmed
+          message: trimmed,
+          locale
         })
       });
 
@@ -318,14 +341,17 @@
       answered = turn === null ? answered + 1 : turn;
 
       appendTurn('coach', coachLabel, reply);
-      if (handoff && answered >= HANDOFF_AFTER) handoff.hidden = false;
+      if (handoff) handoff.hidden = false;
       setStatus(readyText);
     } catch (error) {
       // Only a sentence this page wrote reaches the status line. A transport failure gets
       // here with the browser's own words -- "Failed to fetch", which varies by browser and
       // reads like an unhandled bug -- so it is logged for debugging and never shown.
       if (!(error instanceof DemoFailure)) console.debug('demo request failed', error);
-      setStatus(error instanceof DemoFailure ? error.message : failureText, true);
+      const said = error instanceof DemoFailure ? error.message : failureText;
+      // Before `setStatus`, which stops the wait and would take the bubble away first.
+      failWaiting(said);
+      setStatus(said, true);
     } finally {
       setBusy(false);
       input.focus();

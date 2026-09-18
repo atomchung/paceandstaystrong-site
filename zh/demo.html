@@ -60,12 +60,10 @@
           </div>
 
           <div class="demo-transcript" data-demo-transcript aria-live="polite" aria-label="Demo 對話">
-            <!-- 頁面自己的開場，不是模型的回答：只重述旁邊那塊已經寫的事實，不做任何訓練
-                 判斷。放在這裡是為了讓第一次來的人看到一段對話，而不是三顆按鈕加一個空框。 -->
-            <div class="demo-turn coach">
-              <strong>教練</strong>
-              <div class="demo-body">這位運動員每週跑大約 15 公里，最長跑 6 公里，想在 10 公里跑進 53 分、同時維持力量。你想問哪一塊都可以 — 上面三個是常見的開頭。</div>
-            </div>
+            <!-- 頁面自己的開場，用頁面自己的聲音。它是 note 不是一輪對話，理由跟重置那行一樣：
+                 沒有人說過這句。掛上教練的標籤，等於讓一個沒有讀過任何證據、而且對話本身也
+                 聽不到的聲音斷言這位運動員的訓練——送出去的 body 只有 session id 和訊息。 -->
+            <p class="demo-notice" role="note">教練讀的是這位運動員的完整訓練紀錄，旁邊那塊只是摘要。挑一個建議問題，或直接打你自己的。</p>
           </div>
 
           <form class="demo-form" data-demo-form>
