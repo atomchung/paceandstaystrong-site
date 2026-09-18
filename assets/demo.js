@@ -70,7 +70,7 @@
   // reported was `b`. Sent as the page's own `lang`, omitted when there isn't one.
   const locale = document.documentElement.lang || undefined;
 
-  // A turn takes eight to thirty seconds, and a motionless page for that long reads as one
+  // A turn takes ten to thirty seconds, and a motionless page for that long reads as one
   // that has hung -- which is what it was mistaken for. The wait is shown as the coach's
   // own turn, at the end of the transcript: the place the eye is already on after a
   // question lands there, and the place a conversation puts the person who is answering.
