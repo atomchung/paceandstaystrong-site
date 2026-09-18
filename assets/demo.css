@@ -90,6 +90,10 @@
 }
 
 .demo-empty { margin: 0; color: var(--ink-soft); }
+/* The page's own voice inside the transcript: what it says is about the conversation, not
+   about training, so it is not a turn and is not attributed to anyone. */
+.demo-notice { margin: 0 0 14px; padding: 11px 14px; border: 1px dashed var(--line); border-radius: 12px; color: var(--ink-soft); font-size: 0.92rem; }
+.demo-notice:last-child { margin-bottom: 0; }
 .demo-turn { margin: 0 0 14px; padding: 14px 16px; border-radius: 14px; white-space: pre-wrap; }
 .demo-turn:last-child { margin-bottom: 0; }
 .demo-turn.user { background: var(--paper); border: 1px solid var(--line); }
