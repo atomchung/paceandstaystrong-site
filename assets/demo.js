@@ -37,13 +37,22 @@
   // What a visitor is told for each refusal the backend names. Anything not listed, and
   // any failure that never reached the backend, falls back to the page's own sentence --
   // never to a browser exception string, which is what "Failed to fetch" was.
-  const FAILURE_COPY = {
+  //
+  // `session_busy` is deliberately absent: it means this visitor's own conversation is
+  // already answering a turn, which is nothing to do with how many people are here, and
+  // the form is disabled for exactly as long as that is true. A wrong sentence would be
+  // worse than the general one.
+  //
+  // Null-prototype, so a code that happens to spell an inherited property -- `constructor`
+  // reads back as a function, whose string form is browser internals -- cannot become the
+  // sentence on screen. This backend sends a fixed set of codes; the map should not depend
+  // on that staying true.
+  const FAILURE_COPY = Object.assign(Object.create(null), {
     turn_limit_reached: turnLimitText,
     rate_limited: busyText,
     model_rate_limited: busyText,
-    session_busy: busyText,
     demo_at_capacity: busyText
-  };
+  });
 
   // Carries a sentence written for a visitor. Anything else that reaches the catch is a
   // transport failure whose message is the browser's wording, not copy.
@@ -212,27 +221,34 @@
     turn.append(heading, body);
     transcript.append(turn);
     transcript.scrollTop = transcript.scrollHeight;
+    return turn;
   };
 
   // Not a turn, because nobody said it: it is the page reporting something about the
   // conversation itself. Deliberately not in the coach's voice -- a coach explaining its
   // own amnesia is the one thing this page cannot honestly show.
-  const appendNotice = (text) => {
-    if (!text) return;
+  //
+  // Inserted *above* the question that landed in the new conversation, because that
+  // question is the one thing on screen the coach did see. Appended after it, the line
+  // would be saying "the coach cannot see anything above this" directly beneath the
+  // sentence it had just answered.
+  const noticeBefore = (node, text) => {
+    if (!text || !node) return;
     clearEmpty();
     const notice = document.createElement('p');
     notice.className = 'demo-notice';
     notice.setAttribute('role', 'note');
     notice.textContent = text;
-    transcript.append(notice);
-    transcript.scrollTop = transcript.scrollHeight;
+    transcript.insertBefore(notice, node);
   };
 
   const submitMessage = async (message) => {
     const trimmed = message.trim();
     if (!trimmed || busy) return;
 
-    appendTurn('user', youLabel, trimmed);
+    // Held, because a conversation that turns out to have been replaced needs a line
+    // inserted above this question rather than under it.
+    const question = appendTurn('user', youLabel, trimmed);
     input.value = '';
     setBusy(true);
     startWaiting();
@@ -275,7 +291,7 @@
       // Before the reply, because it is about everything above it. A deployment that does
       // not send a turn number leaves this page behaving exactly as it did before.
       const turn = payload && Number.isInteger(payload.turn) ? payload.turn : null;
-      if (turn === 1 && answered > 0) appendNotice(resetText);
+      if (turn === 1 && answered > 0) noticeBefore(question, resetText);
       answered = turn === null ? answered + 1 : turn;
 
       appendTurn('coach', coachLabel, reply);
