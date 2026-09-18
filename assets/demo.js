@@ -8,7 +8,6 @@
   const readyText = root.dataset.readyText || '';
   const sendingText = root.dataset.sendingText || 'Thinking…';
   const failureText = root.dataset.failureText || 'The live demo is temporarily unavailable.';
-  const emptyText = root.dataset.emptyText || '';
   const waitingHint = root.dataset.waitingHint || '';
   const resetText = root.dataset.resetText || '';
   const turnLimitText = root.dataset.turnLimitText || '';
@@ -20,8 +19,11 @@
   const transcript = root.querySelector('[data-demo-transcript]');
   const status = root.querySelector('[data-demo-status]');
   const promptButtons = [...root.querySelectorAll('[data-demo-prompt]')];
-  // Revealed once an answer exists. Before that there is nothing to convert on, and a
-  // standing banner would sit between the question and the reply for no reason.
+  // Revealed once an answer exists. What was wrong with it was where it sat -- between the
+  // transcript and the box you type in, a call to action between an answer and the next
+  // question -- and moving it under the form is the whole of that fix. Waiting for a second
+  // reply was tried and put back: most visitors to a page like this ask once, and a link
+  // they never see converts nobody.
   const handoff = root.querySelector('[data-demo-handoff]');
 
   let busy = false;
@@ -62,15 +64,30 @@
     ? globalThis.crypto.randomUUID()
     : `demo-${Date.now()}-${Math.random().toString(16).slice(2)}`;
 
-  // A turn takes eight to thirty seconds, and a motionless line for that long reads as a
-  // page that has hung -- which is what it was mistaken for. The elapsed count is the
-  // cheapest honest signal: it says the wait is being measured rather than ignored.
+  // Which mirror this is. The backend writes one sentence in its own voice -- the one it
+  // falls back to when a turn comes back with no words in it -- and the message is often no
+  // help in choosing its language: what was typed on the Chinese page the day this was
+  // reported was `b`. Sent as the page's own `lang`, omitted when there isn't one.
+  const locale = document.documentElement.lang || undefined;
+
+  // A turn takes ten to thirty seconds, and a motionless page for that long reads as one
+  // that has hung -- which is what it was mistaken for. The wait is shown as the coach's
+  // own turn, at the end of the transcript: the place the eye is already on after a
+  // question lands there, and the place a conversation puts the person who is answering.
+  // A line under the send button was the previous answer to this, and on a phone it is
+  // below the fold the moment a question is added.
   let waitTimer = null;
+  let pendingTurn = null;
 
   const stopWaiting = () => {
-    if (waitTimer === null) return;
-    clearInterval(waitTimer);
-    waitTimer = null;
+    if (waitTimer !== null) {
+      clearInterval(waitTimer);
+      waitTimer = null;
+    }
+    if (pendingTurn) {
+      pendingTurn.remove();
+      pendingTurn = null;
+    }
   };
 
   const setStatus = (message, isError = false) => {
@@ -82,26 +99,41 @@
   const startWaiting = () => {
     stopWaiting();
     const startedAt = Date.now();
-    status.textContent = '';
+
+    // The hint is the one part that stays by the button: it is about the demo rather than
+    // about this turn, and inside the bubble it would compete with what the bubble says.
+    status.textContent = waitingHint;
     status.classList.remove('error');
 
-    // Announced once. A live region that rewrites itself every second is unusable with a
-    // screen reader, so the ticking part is hidden from it and exists for the eye only.
-    const label = document.createElement('span');
-    label.textContent = sendingText;
+    const turn = document.createElement('div');
+    turn.className = 'demo-turn coach pending';
+
+    const heading = document.createElement('strong');
+    heading.textContent = coachLabel;
+
+    const dots = document.createElement('span');
+    dots.className = 'demo-dots';
+    dots.setAttribute('aria-hidden', 'true');
+    for (let index = 0; index < 3; index += 1) dots.append(document.createElement('i'));
+
+    // Announced once, by the transcript's own live region. A live region that rewrites
+    // itself every second is unusable with a screen reader, so the ticking part is hidden
+    // from it and exists for the eye only.
+    const said = document.createElement('span');
+    said.className = 'demo-pending-wait';
+    said.textContent = sendingText;
+
     const elapsed = document.createElement('span');
-    elapsed.className = 'demo-elapsed';
+    elapsed.className = 'demo-pending-wait demo-elapsed';
     elapsed.setAttribute('aria-hidden', 'true');
-    status.append(label, elapsed);
-    if (waitingHint) {
-      const hint = document.createElement('span');
-      hint.className = 'demo-hint';
-      hint.textContent = waitingHint;
-      status.append(hint);
-    }
+
+    turn.append(heading, dots, said, elapsed);
+    transcript.append(turn);
+    transcript.scrollTop = transcript.scrollHeight;
+    pendingTurn = turn;
 
     const tick = () => {
-      elapsed.textContent = ` ${Math.round((Date.now() - startedAt) / 1000)}s`;
+      elapsed.textContent = `${Math.round((Date.now() - startedAt) / 1000)}s`;
     };
     tick();
     waitTimer = setInterval(tick, 1000);
@@ -112,11 +144,6 @@
     send.disabled = value;
     input.disabled = value;
     promptButtons.forEach((button) => { button.disabled = value; });
-  };
-
-  const clearEmpty = () => {
-    const empty = transcript.querySelector('[data-demo-empty]');
-    if (empty) empty.remove();
   };
 
   // The coach writes Markdown. Only the subset it actually uses is rendered -- headings,
@@ -205,7 +232,6 @@
   };
 
   const appendTurn = (role, label, text) => {
-    clearEmpty();
     const turn = document.createElement('div');
     turn.className = `demo-turn ${role}`;
 
@@ -232,14 +258,29 @@
   // question is the one thing on screen the coach did see. Appended after it, the line
   // would be saying "the coach cannot see anything above this" directly beneath the
   // sentence it had just answered.
+  const notice = (text) => {
+    const node = document.createElement('p');
+    node.className = 'demo-notice';
+    node.setAttribute('role', 'note');
+    node.textContent = text;
+    return node;
+  };
+
   const noticeBefore = (node, text) => {
     if (!text || !node) return;
-    clearEmpty();
-    const notice = document.createElement('p');
-    notice.className = 'demo-notice';
-    notice.setAttribute('role', 'note');
-    notice.textContent = text;
-    transcript.insertBefore(notice, node);
+    transcript.insertBefore(notice(text), node);
+  };
+
+  // A turn that failed is reported where the turn was going to be. Removing the pending
+  // bubble and leaving the explanation beside the send button would put the answer back in
+  // the place this page just moved it out of -- below the fold on a phone, the moment a
+  // question is on screen. The status line keeps its copy too: it is what `role="status"`
+  // announces, and it is where an error that never reached a turn belongs.
+  const failWaiting = (text) => {
+    if (!pendingTurn) return;
+    transcript.replaceChild(notice(text), pendingTurn);
+    pendingTurn = null;
+    transcript.scrollTop = transcript.scrollHeight;
   };
 
   const submitMessage = async (message) => {
@@ -262,7 +303,8 @@
         },
         body: JSON.stringify({
           session_id: sessionId,
-          message: trimmed
+          message: trimmed,
+          locale
         })
       });
 
@@ -288,6 +330,10 @@
       const reply = payload && typeof payload.reply === 'string' ? payload.reply.trim() : '';
       if (!reply) throw new DemoFailure(failureText);
 
+      // The bubble that was standing in for this reply goes before the reply takes its
+      // place, so the coach never appears to be answering twice.
+      stopWaiting();
+
       // Before the reply, because it is about everything above it. A deployment that does
       // not send a turn number leaves this page behaving exactly as it did before.
       const turn = payload && Number.isInteger(payload.turn) ? payload.turn : null;
@@ -302,7 +348,10 @@
       // here with the browser's own words -- "Failed to fetch", which varies by browser and
       // reads like an unhandled bug -- so it is logged for debugging and never shown.
       if (!(error instanceof DemoFailure)) console.debug('demo request failed', error);
-      setStatus(error instanceof DemoFailure ? error.message : failureText, true);
+      const said = error instanceof DemoFailure ? error.message : failureText;
+      // Before `setStatus`, which stops the wait and would take the bubble away first.
+      failWaiting(said);
+      setStatus(said, true);
     } finally {
       setBusy(false);
       input.focus();
@@ -322,9 +371,5 @@
     });
   });
 
-  if (emptyText) {
-    const empty = transcript.querySelector('[data-demo-empty]');
-    if (empty) empty.textContent = emptyText;
-  }
   setStatus(readyText);
 })();

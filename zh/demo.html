@@ -13,8 +13,8 @@
   <link rel="alternate" hreflang="en" href="https://paceandstaystrong.com/demo.html">
   <link rel="alternate" hreflang="x-default" href="https://paceandstaystrong.com/demo.html">
   <link rel="stylesheet" href="../assets/styles.css?v=first-visit-20260917">
-  <link rel="stylesheet" href="../assets/demo.css?v=demo-continuity-20260918">
-  <script src="../assets/demo.js?v=demo-continuity-20260918" defer></script>
+  <link rel="stylesheet" href="../assets/demo.css?v=demo-chat-20260918">
+  <script src="../assets/demo.js?v=demo-chat-20260918" defer></script>
 </head>
 <body>
   <div class="wrap demo-page">
@@ -46,7 +46,6 @@
         data-sending-text="正在看這位運動員練了什麼…"
         data-waiting-hint="通常 10 到 30 秒。"
         data-failure-text="這個試玩目前沒有回應。你還是可以從首頁連接正式版教練。"
-        data-empty-text="先選上面的問題，或直接輸入你想問的。"
         data-reset-text="這段對話重新開始了：教練看不到這行以上的內容，下面的回答是從零開始的。"
         data-turn-limit-text="這段對話問到上限了。重新整理頁面可以開始新的一段。"
         data-busy-text="現在同時試玩的人比較多，等幾秒再問一次。"
@@ -61,10 +60,11 @@
           </div>
 
           <div class="demo-transcript" data-demo-transcript aria-live="polite" aria-label="Demo 對話">
-            <p class="demo-empty" data-demo-empty>先選上面的問題，或直接輸入你想問的。</p>
+            <!-- 頁面自己的開場，用頁面自己的聲音。它是 note 不是一輪對話，理由跟重置那行一樣：
+                 沒有人說過這句。掛上教練的標籤，等於讓一個沒有讀過任何證據、而且對話本身也
+                 聽不到的聲音斷言這位運動員的訓練——送出去的 body 只有 session id 和訊息。 -->
+            <p class="demo-notice" role="note">教練讀的是這位運動員的完整訓練紀錄，旁邊那塊只是摘要。挑一個建議問題，或直接打你自己的。</p>
           </div>
-
-          <p class="demo-handoff" data-demo-handoff hidden>想換成你自己的訓練？<a href="index.html#setup">開始使用 →</a></p>
 
           <form class="demo-form" data-demo-form>
             <label for="demo-message"><strong>你的問題</strong></label>
@@ -74,6 +74,8 @@
               <p class="demo-status" data-demo-status role="status" aria-live="polite"></p>
             </div>
           </form>
+
+          <p class="demo-handoff" data-demo-handoff hidden>想換成你自己的訓練？<a href="index.html#setup">開始使用 →</a></p>
         </section>
 
         <aside class="demo-athlete" aria-labelledby="athlete-title">
