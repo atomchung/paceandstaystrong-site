@@ -8,7 +8,6 @@
   const readyText = root.dataset.readyText || '';
   const sendingText = root.dataset.sendingText || 'Thinking…';
   const failureText = root.dataset.failureText || 'The live demo is temporarily unavailable.';
-  const emptyText = root.dataset.emptyText || '';
   const waitingHint = root.dataset.waitingHint || '';
   const resetText = root.dataset.resetText || '';
   const turnLimitText = root.dataset.turnLimitText || '';
@@ -93,7 +92,6 @@
 
   const startWaiting = () => {
     stopWaiting();
-    clearEmpty();
     const startedAt = Date.now();
 
     // The hint is the one part that stays by the button: it is about the demo rather than
@@ -140,11 +138,6 @@
     send.disabled = value;
     input.disabled = value;
     promptButtons.forEach((button) => { button.disabled = value; });
-  };
-
-  const clearEmpty = () => {
-    const empty = transcript.querySelector('[data-demo-empty]');
-    if (empty) empty.remove();
   };
 
   // The coach writes Markdown. Only the subset it actually uses is rendered -- headings,
@@ -233,7 +226,6 @@
   };
 
   const appendTurn = (role, label, text) => {
-    clearEmpty();
     const turn = document.createElement('div');
     turn.className = `demo-turn ${role}`;
 
@@ -262,7 +254,6 @@
   // sentence it had just answered.
   const noticeBefore = (node, text) => {
     if (!text || !node) return;
-    clearEmpty();
     const notice = document.createElement('p');
     notice.className = 'demo-notice';
     notice.setAttribute('role', 'note');
@@ -354,9 +345,5 @@
     });
   });
 
-  if (emptyText) {
-    const empty = transcript.querySelector('[data-demo-empty]');
-    if (empty) empty.textContent = emptyText;
-  }
   setStatus(readyText);
 })();

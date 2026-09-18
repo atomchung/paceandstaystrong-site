@@ -97,11 +97,13 @@
   background: var(--cream);
 }
 
-.demo-empty { margin: 0; color: var(--ink-soft); }
 /* The page's own voice inside the transcript: what it says is about the conversation, not
    about training, so it is not a turn and is not attributed to anyone. */
 .demo-notice { align-self: stretch; margin: 0; padding: 11px 14px; border: 1px dashed var(--line); border-radius: 12px; color: var(--ink-soft); font-size: 0.92rem; }
-.demo-turn { max-width: 100%; margin: 0; padding: 14px 16px; border-radius: 14px; white-space: pre-wrap; }
+/* `white-space` belongs on the body of a turn, not on the turn: the visitor's own words are
+   shown exactly as typed, and the coach's are rendered. On the wrapper it also turned the
+   indentation of the one turn written by hand -- the opening below -- into blank lines. */
+.demo-turn { max-width: 100%; margin: 0; padding: 14px 16px; border-radius: 14px; }
 /* The visitor's own words sit on the right and stay narrow -- a question is a sentence or
    two, and a question stretched across the full column reads like a second answer. */
 .demo-turn.user {

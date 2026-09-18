@@ -46,7 +46,6 @@
         data-sending-text="正在看這位運動員練了什麼…"
         data-waiting-hint="通常 10 到 30 秒。"
         data-failure-text="這個試玩目前沒有回應。你還是可以從首頁連接正式版教練。"
-        data-empty-text="先選上面的問題，或直接輸入你想問的。"
         data-reset-text="這段對話重新開始了：教練看不到這行以上的內容，下面的回答是從零開始的。"
         data-turn-limit-text="這段對話問到上限了。重新整理頁面可以開始新的一段。"
         data-busy-text="現在同時試玩的人比較多，等幾秒再問一次。"
@@ -61,7 +60,12 @@
           </div>
 
           <div class="demo-transcript" data-demo-transcript aria-live="polite" aria-label="Demo 對話">
-            <p class="demo-empty" data-demo-empty>先選上面的問題，或直接輸入你想問的。</p>
+            <!-- 頁面自己的開場，不是模型的回答：只重述旁邊那塊已經寫的事實，不做任何訓練
+                 判斷。放在這裡是為了讓第一次來的人看到一段對話，而不是三顆按鈕加一個空框。 -->
+            <div class="demo-turn coach">
+              <strong>教練</strong>
+              <div class="demo-body">這位運動員每週跑大約 15 公里，最長跑 6 公里，想在 10 公里跑進 53 分、同時維持力量。你想問哪一塊都可以 — 上面三個是常見的開頭。</div>
+            </div>
           </div>
 
           <form class="demo-form" data-demo-form>

@@ -46,7 +46,6 @@
         data-sending-text="Reading this athlete's training…"
         data-waiting-hint="Usually 10 to 30 seconds."
         data-failure-text="Nothing is coming back right now. You can still connect the real coach from the homepage."
-        data-empty-text="Pick a question above, or ask your own."
         data-reset-text="This conversation started over. The coach cannot see anything above this line, and answered what follows without it."
         data-turn-limit-text="This conversation has reached its limit. Reload the page to start a new one."
         data-busy-text="A lot of people are trying the demo right now. Give it a few seconds."
@@ -61,7 +60,14 @@
           </div>
 
           <div class="demo-transcript" data-demo-transcript aria-live="polite" aria-label="Demo conversation">
-            <p class="demo-empty" data-demo-empty>Pick a question above, or ask your own.</p>
+            <!-- The page's own opening, not a model answer: it repeats what the panel
+                 beside it already says and makes no coaching judgement of its own. It is
+                 here so a first visitor arrives at a conversation rather than an empty box
+                 with three buttons over it. -->
+            <div class="demo-turn coach">
+              <strong>Coach</strong>
+              <div class="demo-body">This athlete runs about 15 km a week, longest run 6 km, and wants a 10K under 53 minutes without losing strength. Ask whatever you like — the three above are common places to start.</div>
+            </div>
           </div>
 
           <form class="demo-form" data-demo-form>
