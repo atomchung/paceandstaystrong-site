@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Try Long Run Hybrid Coach — Live demo</title>
+  <title>Try it — Long Run Hybrid Coach</title>
   <meta name="description" content="Ask Long Run Hybrid Coach a real coaching question about a demo athlete. No sign-in, no Intervals.icu connection, and nothing written.">
-  <meta property="og:title" content="Try Long Run Hybrid Coach — Live demo">
+  <meta property="og:title" content="Try it — Long Run Hybrid Coach">
   <meta property="og:description" content="Ask a real coaching question and see how the coach weighs running against strength for a demo athlete.">
   <meta property="og:url" content="https://paceandstaystrong.com/demo.html">
   <meta property="og:image" content="https://paceandstaystrong.com/assets/long-run-hybrid-coach-logo.png">
@@ -24,7 +24,7 @@
         <a href="index.html">Home</a>
         <a href="index.html#how-it-works">How it works</a>
         <a href="index.html#what-you-connect">FAQ</a>
-        <a href="index.html#setup">Connect my training</a>
+        <a href="index.html#setup">Get started</a>
         <a class="nav-cta" href="demo.html" aria-current="page">Try it</a>
         <a class="nav-lang" href="zh/demo.html" hreflang="zh-Hant" lang="zh-Hant">中文</a>
       </div>
@@ -32,9 +32,8 @@
 
     <main>
       <header class="demo-header">
-        <span class="eyebrow">Live demo · Demo athlete</span>
-        <h1>Ask the coach something real.</h1>
-        <p class="lede">These are real answers from the coach, about a demo athlete instead of you.</p>
+        <h1>Ask the coach what you actually want to know.</h1>
+        <p class="lede">The coach answers live, about a demo athlete rather than about you.</p>
         <p class="trust-line">No sign-in · Nothing of yours connected · Nothing gets written</p>
       </header>
 
@@ -44,18 +43,16 @@
         data-endpoint="https://demo-api.paceandstaystrong.com/demo/v1/respond"
         data-coach-label="Coach"
         data-you-label="You"
-        data-ready-text="Ready. Pick a question, or ask your own."
         data-sending-text="Reading this athlete's training…"
-        data-waiting-hint="It looks at what this athlete actually trained before answering — usually 10 to 30 seconds."
-        data-failure-text="The demo is not answering right now. You can still connect the real coach from the homepage."
+        data-waiting-hint="Usually 10 to 30 seconds."
+        data-failure-text="Nothing is coming back right now. You can still connect the real coach from the homepage."
         data-empty-text="Pick a question above, or ask your own."
         data-reset-text="This conversation started over. The coach cannot see anything above this line, and answered what follows without it."
         data-turn-limit-text="This conversation has reached its limit. Reload the page to start a new one."
         data-busy-text="A lot of people are trying the demo right now. Give it a few seconds."
       >
         <section class="demo-chat" aria-labelledby="chat-title">
-          <span class="page-kicker">Ask the coach</span>
-          <h2 id="chat-title">Pick a question you would actually ask.</h2>
+          <h2 id="chat-title">The conversation</h2>
 
           <div class="demo-prompts" aria-label="Suggested questions">
             <button class="demo-prompt" type="button" data-demo-prompt="I can only train three days next week, 45 minutes each. I want a faster 10K without losing strength. How should I use those three days?">I only have three days a week. How do I fit in running and lifting?</button>
@@ -67,36 +64,34 @@
             <p class="demo-empty" data-demo-empty>Pick a question above, or ask your own.</p>
           </div>
 
-          <p class="demo-handoff" data-demo-handoff hidden>Want this reading your training? <a href="index.html#setup">Connect your own data →</a></p>
+          <p class="demo-handoff" data-demo-handoff hidden>Want this reading your own training? <a href="index.html#setup">Get started →</a></p>
 
           <form class="demo-form" data-demo-form>
             <label for="demo-message"><strong>Your question</strong></label>
             <textarea class="demo-input" id="demo-message" data-demo-input maxlength="1200" placeholder="Ask about this athlete's week, how their training is going, or how to fit running and lifting together." required></textarea>
             <div class="demo-actions">
-              <button class="demo-send" type="submit" data-demo-send>Ask the coach</button>
+              <button class="demo-send" type="submit" data-demo-send>Send</button>
               <p class="demo-status" data-demo-status role="status" aria-live="polite"></p>
             </div>
           </form>
         </section>
 
         <aside class="demo-athlete" aria-labelledby="athlete-title">
-          <span class="page-kicker">Who you are coaching</span>
           <h2 id="athlete-title">The demo athlete</h2>
           <ul class="demo-facts">
             <li class="demo-fact"><strong>Goal</strong><span>10K under 53 minutes, while keeping their strength</span></li>
             <li class="demo-fact"><strong>Recently</strong><span>About 15 km a week · longest run 6 km</span></li>
             <li class="demo-fact"><strong>Time</strong><span>Monday, Thursday, Saturday · up to 45 minutes each</span></li>
           </ul>
-          <p class="demo-disclosure">A made-up athlete with a full training history behind them. Nothing you ask here is saved, and nothing is written to anyone's calendar.</p>
+          <p class="demo-disclosure">A made-up athlete with a full training history behind them. Nothing you ask here is saved.</p>
         </aside>
       </div>
 
       <div class="demo-exit">
-        <span class="page-kicker">Use your own training</span>
         <h2>Ready for your own plan?</h2>
         <p>Connect the coach to Claude and your own Intervals.icu account, and it starts from your training instead of this one.</p>
         <div class="actions">
-          <a class="button" href="index.html#setup">Connect my training</a>
+          <a class="button" href="index.html#setup">Get started</a>
           <a class="button secondary" href="index.html#full-story">Watch the 42-second story</a>
         </div>
       </div>

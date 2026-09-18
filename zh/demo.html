@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>試玩 Long Run Hybrid Coach — Live demo</title>
+  <title>直接試玩 — Long Run Hybrid Coach</title>
   <meta name="description" content="直接問 Long Run Hybrid Coach 一個真的訓練問題，對象是示範運動員。不用登入、不連你的資料，也不會寫入任何東西。">
-  <meta property="og:title" content="試玩 Long Run Hybrid Coach — Live demo">
+  <meta property="og:title" content="直接試玩 — Long Run Hybrid Coach">
   <meta property="og:description" content="問一個你真的會問的訓練問題，看教練怎麼在跑步和重訓之間取捨。">
   <meta property="og:url" content="https://paceandstaystrong.com/zh/demo.html">
   <meta property="og:image" content="https://paceandstaystrong.com/assets/long-run-hybrid-coach-logo.png">
@@ -24,7 +24,7 @@
         <a href="index.html">首頁</a>
         <a href="index.html#how-it-works">運作方式</a>
         <a href="index.html#what-you-connect">常見問題</a>
-        <a href="index.html#setup">連接我的訓練</a>
+        <a href="index.html#setup">開始使用</a>
         <a class="nav-cta" href="demo.html" aria-current="page">直接試玩</a>
         <a class="nav-lang" href="../demo.html" hreflang="en" lang="en">English</a>
       </div>
@@ -32,9 +32,8 @@
 
     <main>
       <header class="demo-header">
-        <span class="eyebrow">Live demo · 示範運動員</span>
-        <h1>直接問教練，<br>問你真的想問的。</h1>
-        <p class="lede">這些是教練真的給的回答，只是對象換成示範運動員，不是你。</p>
+        <h1>問教練你真的想問的。</h1>
+        <p class="lede">教練會即時回答，只是對象是示範運動員，不是你。</p>
         <p class="trust-line">不用登入 · 不連你的資料 · 不會寫入任何東西</p>
       </header>
 
@@ -44,18 +43,16 @@
         data-endpoint="https://demo-api.paceandstaystrong.com/demo/v1/respond"
         data-coach-label="教練"
         data-you-label="你"
-        data-ready-text="可以開始。選一個問題，或自己直接問。"
         data-sending-text="正在看這位運動員練了什麼…"
-        data-waiting-hint="它會先看完這位運動員實際完成的訓練再回答，通常 10 到 30 秒。"
-        data-failure-text="Demo 目前沒有回應。你還是可以從首頁連接正式版教練。"
+        data-waiting-hint="通常 10 到 30 秒。"
+        data-failure-text="這個試玩目前沒有回應。你還是可以從首頁連接正式版教練。"
         data-empty-text="先選上面的問題，或直接輸入你想問的。"
         data-reset-text="這段對話重新開始了：教練看不到這行以上的內容，下面的回答是從零開始的。"
         data-turn-limit-text="這段對話問到上限了。重新整理頁面可以開始新的一段。"
         data-busy-text="現在同時試玩的人比較多，等幾秒再問一次。"
       >
         <section class="demo-chat" aria-labelledby="chat-title">
-          <span class="page-kicker">問教練</span>
-          <h2 id="chat-title">挑一個你真的會問的問題。</h2>
+          <h2 id="chat-title">這段對話</h2>
 
           <div class="demo-prompts" aria-label="建議問題">
             <button class="demo-prompt" type="button" data-demo-prompt="我下週只有三天能練，每次最多 45 分鐘。我想把 10 公里練快一點，但不想把力量練掉。這三天該怎麼安排？">我一週只有三天，怎麼兼顧跑步跟重訓？</button>
@@ -67,36 +64,34 @@
             <p class="demo-empty" data-demo-empty>先選上面的問題，或直接輸入你想問的。</p>
           </div>
 
-          <p class="demo-handoff" data-demo-handoff hidden>想換成你的訓練？<a href="index.html#setup">連接自己的資料 →</a></p>
+          <p class="demo-handoff" data-demo-handoff hidden>想換成你自己的訓練？<a href="index.html#setup">開始使用 →</a></p>
 
           <form class="demo-form" data-demo-form>
             <label for="demo-message"><strong>你的問題</strong></label>
             <textarea class="demo-input" id="demo-message" data-demo-input maxlength="1200" placeholder="問這位運動員這週怎麼練、最近練得如何，或跑步和重訓怎麼一起排。" required></textarea>
             <div class="demo-actions">
-              <button class="demo-send" type="submit" data-demo-send>問教練</button>
+              <button class="demo-send" type="submit" data-demo-send>送出</button>
               <p class="demo-status" data-demo-status role="status" aria-live="polite"></p>
             </div>
           </form>
         </section>
 
         <aside class="demo-athlete" aria-labelledby="athlete-title">
-          <span class="page-kicker">你在指導誰</span>
           <h2 id="athlete-title">示範運動員</h2>
           <ul class="demo-facts">
             <li class="demo-fact"><strong>目標</strong><span>10 公里跑進 53 分，同時維持力量</span></li>
             <li class="demo-fact"><strong>最近</strong><span>每週約 15 公里 · 最長跑 6 公里</span></li>
             <li class="demo-fact"><strong>時間</strong><span>週一、週四、週六 · 每次最多 45 分鐘</span></li>
           </ul>
-          <p class="demo-disclosure">虛構的運動員，但背後有一整份訓練紀錄。你在這裡問的內容不會被保存，也不會寫進任何人的日曆。</p>
+          <p class="demo-disclosure">虛構的運動員，但背後有一整份訓練紀錄。你在這裡問的內容不會被保存。</p>
         </aside>
       </div>
 
       <div class="demo-exit">
-        <span class="page-kicker">換成自己的訓練</span>
         <h2>想要一份自己的計畫？</h2>
         <p>把教練接到 Claude 和你自己的 Intervals.icu 帳號，它就會從你的訓練開始，而不是這一位。</p>
         <div class="actions">
-          <a class="button" href="index.html#setup">連接我的訓練</a>
+          <a class="button" href="index.html#setup">開始使用</a>
           <a class="button secondary" href="index.html#full-story">看 42 秒完整流程</a>
         </div>
       </div>
