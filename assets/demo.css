@@ -78,7 +78,15 @@
 .demo-input:focus-visible,
 .demo-send:focus-visible { outline: 3px solid var(--coral); outline-offset: 3px; }
 
+/* A column of turns rather than a stack of blocks: each turn takes the width its own text
+   needs and is pushed to its own side, which is what says who is speaking before a word of
+   it is read. The label above each one stays, because a colour and a side are a convention
+   a first visitor has not been taught yet. */
 .demo-transcript {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
   min-height: 220px;
   max-height: 520px;
   overflow-y: auto;
@@ -92,13 +100,51 @@
 .demo-empty { margin: 0; color: var(--ink-soft); }
 /* The page's own voice inside the transcript: what it says is about the conversation, not
    about training, so it is not a turn and is not attributed to anyone. */
-.demo-notice { margin: 0 0 14px; padding: 11px 14px; border: 1px dashed var(--line); border-radius: 12px; color: var(--ink-soft); font-size: 0.92rem; }
-.demo-notice:last-child { margin-bottom: 0; }
-.demo-turn { margin: 0 0 14px; padding: 14px 16px; border-radius: 14px; white-space: pre-wrap; }
-.demo-turn:last-child { margin-bottom: 0; }
-.demo-turn.user { background: var(--paper); border: 1px solid var(--line); }
-.demo-turn.coach { background: var(--panel); border-left: 5px solid var(--aqua); }
+.demo-notice { align-self: stretch; margin: 0; padding: 11px 14px; border: 1px dashed var(--line); border-radius: 12px; color: var(--ink-soft); font-size: 0.92rem; }
+.demo-turn { max-width: 100%; margin: 0; padding: 14px 16px; border-radius: 14px; white-space: pre-wrap; }
+/* The visitor's own words sit on the right and stay narrow -- a question is a sentence or
+   two, and a question stretched across the full column reads like a second answer. */
+.demo-turn.user {
+  align-self: flex-end;
+  max-width: 82%;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-bottom-right-radius: 5px;
+}
+/* The coach answers on the left and is allowed the width, because its replies carry
+   headings, lists and the occasional table. */
+.demo-turn.coach {
+  align-self: flex-start;
+  max-width: 94%;
+  background: var(--panel);
+  border-left: 5px solid var(--aqua);
+  border-bottom-left-radius: 5px;
+}
 .demo-turn strong { display: block; margin-bottom: 5px; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.05em; }
+.demo-turn.user strong { text-align: right; color: var(--ink-soft); }
+
+/* The coach's turn before it has any words in it. A reply takes ten to thirty seconds, and
+   for all of that the transcript used to show nothing at all -- the only sign of life was a
+   line of text below the send button, off screen on a phone the moment a question was
+   added. This is that sign, in the place a reader is already looking: the next turn, on the
+   coach's side, saying it is being written. */
+.demo-turn.pending { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.demo-turn.pending strong { flex-basis: 100%; margin-bottom: 0; }
+.demo-pending-wait { color: var(--ink-soft); font-size: 0.82rem; font-variant-numeric: tabular-nums; }
+
+.demo-dots { display: inline-flex; gap: 5px; align-items: center; }
+.demo-dots i { width: 7px; height: 7px; border-radius: 50%; background: var(--ink-soft); opacity: 0.35; animation: demo-dot 1.25s infinite ease-in-out; }
+.demo-dots i:nth-child(2) { animation-delay: 0.16s; }
+.demo-dots i:nth-child(3) { animation-delay: 0.32s; }
+
+@keyframes demo-dot {
+  0%, 60%, 100% { opacity: 0.25; transform: translateY(0); }
+  30% { opacity: 1; transform: translateY(-3px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .demo-dots i { animation: none; opacity: 0.55; }
+}
 .demo-turn.user .demo-body { white-space: pre-wrap; }
 .demo-turn.coach .demo-body { white-space: normal; }
 .demo-body p { margin: 0 0 10px; }
@@ -116,10 +162,10 @@
 .demo-table th, .demo-table td { padding: 7px 10px; border-bottom: 1px solid var(--line); text-align: left; white-space: nowrap; }
 .demo-table th { font-weight: 900; }
 .demo-table tr:last-child td { border-bottom: 0; }
-/* Hidden until the first coach reply arrives; demo.js reveals it. It sits between the
-   transcript and the box you type in, so it reads as a footnote to the answer rather
-   than a step the conversation is waiting on. */
-.demo-handoff { margin: 0 0 16px; color: var(--ink-soft); font-size: 0.92rem; }
+/* Hidden until the first coach reply arrives; demo.js reveals it. It sits after the box you
+   type in, so nothing stands between an answer and the next question -- the conversation is
+   the demo, and this is the one line offering the way out of it. */
+.demo-handoff { margin: 14px 0 0; color: var(--ink-soft); font-size: 0.92rem; }
 .demo-handoff[hidden] { display: none; }
 .demo-handoff a { font-weight: 700; }
 .demo-form { display: grid; gap: 10px; }
@@ -143,7 +189,6 @@
 .demo-status { min-height: 1.5em; margin: 0; color: var(--ink-soft); font-size: 0.88rem; }
 .demo-status.error { color: #8b2f27; font-weight: 700; }
 .demo-elapsed { font-variant-numeric: tabular-nums; }
-.demo-hint { display: block; margin-top: 3px; font-size: 0.82rem; opacity: 0.8; }
 
 .demo-exit {
   margin-top: 26px;
@@ -165,4 +210,8 @@
   .demo-athlete,
   .demo-chat { padding: 18px; }
   .demo-transcript { min-height: 180px; }
+  /* Narrow enough that holding a turn back from the edge costs more than the side is
+     worth: the question keeps its side and gives up the inset. */
+  .demo-turn.user { max-width: 92%; }
+  .demo-turn.coach { max-width: 100%; }
 }

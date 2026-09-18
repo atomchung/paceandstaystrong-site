@@ -20,8 +20,11 @@
   const transcript = root.querySelector('[data-demo-transcript]');
   const status = root.querySelector('[data-demo-status]');
   const promptButtons = [...root.querySelectorAll('[data-demo-prompt]')];
-  // Revealed once an answer exists. Before that there is nothing to convert on, and a
-  // standing banner would sit between the question and the reply for no reason.
+  // Revealed once this has been a conversation rather than a single answer -- a second
+  // reply, not a first. What is being demonstrated is a coach that follows up, and a page
+  // that offers the way out before the follow-up has happened is asking somebody to leave
+  // before they have seen the thing.
+  const HANDOFF_AFTER = 2;
   const handoff = root.querySelector('[data-demo-handoff]');
 
   let busy = false;
@@ -62,15 +65,24 @@
     ? globalThis.crypto.randomUUID()
     : `demo-${Date.now()}-${Math.random().toString(16).slice(2)}`;
 
-  // A turn takes eight to thirty seconds, and a motionless line for that long reads as a
-  // page that has hung -- which is what it was mistaken for. The elapsed count is the
-  // cheapest honest signal: it says the wait is being measured rather than ignored.
+  // A turn takes eight to thirty seconds, and a motionless page for that long reads as one
+  // that has hung -- which is what it was mistaken for. The wait is shown as the coach's
+  // own turn, at the end of the transcript: the place the eye is already on after a
+  // question lands there, and the place a conversation puts the person who is answering.
+  // A line under the send button was the previous answer to this, and on a phone it is
+  // below the fold the moment a question is added.
   let waitTimer = null;
+  let pendingTurn = null;
 
   const stopWaiting = () => {
-    if (waitTimer === null) return;
-    clearInterval(waitTimer);
-    waitTimer = null;
+    if (waitTimer !== null) {
+      clearInterval(waitTimer);
+      waitTimer = null;
+    }
+    if (pendingTurn) {
+      pendingTurn.remove();
+      pendingTurn = null;
+    }
   };
 
   const setStatus = (message, isError = false) => {
@@ -81,27 +93,43 @@
 
   const startWaiting = () => {
     stopWaiting();
+    clearEmpty();
     const startedAt = Date.now();
-    status.textContent = '';
+
+    // The hint is the one part that stays by the button: it is about the demo rather than
+    // about this turn, and inside the bubble it would compete with what the bubble says.
+    status.textContent = waitingHint;
     status.classList.remove('error');
 
-    // Announced once. A live region that rewrites itself every second is unusable with a
-    // screen reader, so the ticking part is hidden from it and exists for the eye only.
-    const label = document.createElement('span');
-    label.textContent = sendingText;
+    const turn = document.createElement('div');
+    turn.className = 'demo-turn coach pending';
+
+    const heading = document.createElement('strong');
+    heading.textContent = coachLabel;
+
+    const dots = document.createElement('span');
+    dots.className = 'demo-dots';
+    dots.setAttribute('aria-hidden', 'true');
+    for (let index = 0; index < 3; index += 1) dots.append(document.createElement('i'));
+
+    // Announced once, by the transcript's own live region. A live region that rewrites
+    // itself every second is unusable with a screen reader, so the ticking part is hidden
+    // from it and exists for the eye only.
+    const said = document.createElement('span');
+    said.className = 'demo-pending-wait';
+    said.textContent = sendingText;
+
     const elapsed = document.createElement('span');
-    elapsed.className = 'demo-elapsed';
+    elapsed.className = 'demo-pending-wait demo-elapsed';
     elapsed.setAttribute('aria-hidden', 'true');
-    status.append(label, elapsed);
-    if (waitingHint) {
-      const hint = document.createElement('span');
-      hint.className = 'demo-hint';
-      hint.textContent = waitingHint;
-      status.append(hint);
-    }
+
+    turn.append(heading, dots, said, elapsed);
+    transcript.append(turn);
+    transcript.scrollTop = transcript.scrollHeight;
+    pendingTurn = turn;
 
     const tick = () => {
-      elapsed.textContent = ` ${Math.round((Date.now() - startedAt) / 1000)}s`;
+      elapsed.textContent = `${Math.round((Date.now() - startedAt) / 1000)}s`;
     };
     tick();
     waitTimer = setInterval(tick, 1000);
@@ -288,6 +316,10 @@
       const reply = payload && typeof payload.reply === 'string' ? payload.reply.trim() : '';
       if (!reply) throw new DemoFailure(failureText);
 
+      // The bubble that was standing in for this reply goes before the reply takes its
+      // place, so the coach never appears to be answering twice.
+      stopWaiting();
+
       // Before the reply, because it is about everything above it. A deployment that does
       // not send a turn number leaves this page behaving exactly as it did before.
       const turn = payload && Number.isInteger(payload.turn) ? payload.turn : null;
@@ -295,7 +327,7 @@
       answered = turn === null ? answered + 1 : turn;
 
       appendTurn('coach', coachLabel, reply);
-      if (handoff) handoff.hidden = false;
+      if (handoff && answered >= HANDOFF_AFTER) handoff.hidden = false;
       setStatus(readyText);
     } catch (error) {
       // Only a sentence this page wrote reaches the status line. A transport failure gets
