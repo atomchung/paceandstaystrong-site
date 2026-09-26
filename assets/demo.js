@@ -60,6 +60,77 @@
   // transport failure whose message is the browser's wording, not copy.
   class DemoFailure extends Error {}
 
+  const responseFailure = (payload) => {
+    const code = payload && payload.error && typeof payload.error.code === 'string'
+      ? payload.error.code : '';
+    return new DemoFailure(FAILURE_COPY[code] || failureText);
+  };
+
+  // A POST can stream on the same endpoint without sending the question twice. Decode
+  // bytes before framing lines: both UTF-8 characters and SSE separators may span reads.
+  const readStream = async (response, onDelta) => {
+    if (!response.body) throw new DemoFailure(failureText);
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder('utf-8', { fatal: true });
+    let buffer = '';
+    let event = '';
+    let data = [];
+
+    const dispatch = () => {
+      const name = event;
+      const lines = data;
+      event = '';
+      data = [];
+      // Comments and unrecognised events never become visible model output.
+      if (!lines.length || !['delta', 'done', 'error'].includes(name)) return null;
+      let payload;
+      try { payload = JSON.parse(lines.join('\n')); }
+      catch (_error) { throw new DemoFailure(failureText); }
+      if (name === 'error') throw responseFailure(payload);
+      if (name === 'delta') {
+        if (!payload || typeof payload.text !== 'string') throw new DemoFailure(failureText);
+        onDelta(payload.text);
+        return null;
+      }
+      if (!payload || typeof payload.reply !== 'string' || !payload.reply.trim()
+        || !Number.isInteger(payload.turn) || payload.turn < 1) {
+        throw new DemoFailure(failureText);
+      }
+      return payload;
+    };
+
+    try {
+      while (true) {
+        const { value, done } = await reader.read();
+        buffer += decoder.decode(value, { stream: !done });
+        let end;
+        while ((end = buffer.search(/[\r\n]/)) !== -1) {
+          // Hold a trailing CR until the next read so a split CRLF is one newline.
+          if (buffer[end] === '\r' && end === buffer.length - 1 && !done) break;
+          const line = buffer.slice(0, end);
+          const width = buffer[end] === '\r' && buffer[end + 1] === '\n' ? 2 : 1;
+          buffer = buffer.slice(end + width);
+          if (!line) {
+            const completed = dispatch();
+            if (completed) return completed;
+          } else if (!line.startsWith(':')) {
+            const colon = line.indexOf(':');
+            const field = colon === -1 ? line : line.slice(0, colon);
+            const content = colon === -1 ? '' : line.slice(colon + 1).replace(/^ /, '');
+            if (field === 'event') event = content;
+            if (field === 'data') data.push(content);
+          }
+        }
+        // Neither some text nor a clean connection close proves a completed answer.
+        if (done) throw new DemoFailure(failureText);
+      }
+    } finally {
+      // `done` is authoritative; do not keep a connection alive after it or a failure.
+      try { await reader.cancel(); } catch (_error) { /* Already disconnected. */ }
+      reader.releaseLock();
+    }
+  };
+
   const sessionId = (globalThis.crypto && typeof globalThis.crypto.randomUUID === 'function')
     ? globalThis.crypto.randomUUID()
     : `demo-${Date.now()}-${Math.random().toString(16).slice(2)}`;
@@ -79,11 +150,15 @@
   let waitTimer = null;
   let pendingTurn = null;
 
-  const stopWaiting = () => {
+  const stopTimer = () => {
     if (waitTimer !== null) {
       clearInterval(waitTimer);
       waitTimer = null;
     }
+  };
+
+  const stopWaiting = () => {
+    stopTimer();
     if (pendingTurn) {
       pendingTurn.remove();
       pendingTurn = null;
@@ -107,6 +182,9 @@
 
     const turn = document.createElement('div');
     turn.className = 'demo-turn coach pending';
+    // Queue changes in this live-region subtree until one complete answer is ready.
+    // Announcing a growing answer on every token would repeat it for screen readers.
+    turn.setAttribute('aria-busy', 'true');
 
     const heading = document.createElement('strong');
     heading.textContent = coachLabel;
@@ -116,9 +194,8 @@
     dots.setAttribute('aria-hidden', 'true');
     for (let index = 0; index < 3; index += 1) dots.append(document.createElement('i'));
 
-    // Announced once, by the transcript's own live region. A live region that rewrites
-    // itself every second is unusable with a screen reader, so the ticking part is hidden
-    // from it and exists for the eye only.
+    // The status already announces the wait hint. Keep the elapsed timer visual only;
+    // the incomplete turn stays busy until a whole answer can be announced once.
     const said = document.createElement('span');
     said.className = 'demo-pending-wait';
     said.textContent = sendingText;
@@ -250,6 +327,33 @@
     return turn;
   };
 
+  const appendDelta = (text) => {
+    if (!text || !pendingTurn) return;
+    stopTimer();
+    let body = pendingTurn.querySelector('.demo-body');
+    if (!body) {
+      body = document.createElement('div');
+      body.className = 'demo-body';
+      pendingTurn.replaceChildren(pendingTurn.firstElementChild, body);
+      pendingTurn.className = 'demo-turn coach streaming';
+    }
+    // Partial Markdown stays literal text. Only the authoritative final reply is rendered.
+    body.append(text);
+    transcript.scrollTop = transcript.scrollHeight;
+  };
+
+  const completeWaiting = (reply) => {
+    stopTimer();
+    const body = document.createElement('div');
+    body.className = 'demo-body';
+    body.append(renderReply(reply));
+    pendingTurn.replaceChildren(pendingTurn.firstElementChild, body);
+    pendingTurn.className = 'demo-turn coach';
+    pendingTurn.setAttribute('aria-busy', 'false');
+    pendingTurn = null;
+    transcript.scrollTop = transcript.scrollHeight;
+  };
+
   // Not a turn, because nobody said it: it is the page reporting something about the
   // conversation itself. Deliberately not in the coach's voice -- a coach explaining its
   // own amnesia is the one thing this page cannot honestly show.
@@ -299,7 +403,7 @@
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Accept': 'application/json'
+          'Accept': 'text/event-stream, application/json'
         },
         body: JSON.stringify({
           session_id: sessionId,
@@ -308,11 +412,14 @@
         })
       });
 
+      const streaming = response.ok && (response.headers.get('content-type') || '')
+        .split(';')[0].trim().toLowerCase() === 'text/event-stream';
       let payload = null;
-      try {
-        payload = await response.json();
-      } catch (_error) {
-        payload = null;
+      if (streaming) payload = await readStream(response, appendDelta);
+      else {
+        // An older deployment can still answer JSON; this is the same request, not a retry.
+        try { payload = await response.json(); }
+        catch (_error) { payload = null; }
       }
 
       if (!response.ok) {
@@ -321,18 +428,11 @@
         // page's. A conversation that has spent its turns and one that is being rate
         // limited are different things to tell somebody, and both used to arrive as "the
         // demo is not answering right now".
-        const code = payload && payload.error && typeof payload.error.code === 'string'
-          ? payload.error.code
-          : '';
-        throw new DemoFailure(FAILURE_COPY[code] || failureText);
+        throw responseFailure(payload);
       }
 
       const reply = payload && typeof payload.reply === 'string' ? payload.reply.trim() : '';
       if (!reply) throw new DemoFailure(failureText);
-
-      // The bubble that was standing in for this reply goes before the reply takes its
-      // place, so the coach never appears to be answering twice.
-      stopWaiting();
 
       // Before the reply, because it is about everything above it. A deployment that does
       // not send a turn number leaves this page behaving exactly as it did before.
@@ -340,7 +440,7 @@
       if (turn === 1 && answered > 0) noticeBefore(question, resetText);
       answered = turn === null ? answered + 1 : turn;
 
-      appendTurn('coach', coachLabel, reply);
+      completeWaiting(reply);
       if (handoff) handoff.hidden = false;
       setStatus(readyText);
     } catch (error) {
