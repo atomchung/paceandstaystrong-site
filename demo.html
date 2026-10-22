@@ -3,110 +3,19 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Try it — Long Run Hybrid Coach</title>
-  <meta name="description" content="Ask Long Run Hybrid Coach a real coaching question about a demo athlete. No sign-in, no Intervals.icu connection, and nothing written.">
-  <meta property="og:title" content="Try it — Long Run Hybrid Coach">
-  <meta property="og:description" content="Ask a real coaching question and see how the coach weighs running against strength for a demo athlete.">
-  <meta property="og:url" content="https://paceandstaystrong.com/demo.html">
-  <meta property="og:image" content="https://paceandstaystrong.com/assets/long-run-hybrid-coach-logo.png">
+  <title>Get started — Long Run Hybrid Coach</title>
+  <meta name="robots" content="noindex">
+  <meta http-equiv="refresh" content="0; url=index.html#setup">
+  <link rel="canonical" href="https://paceandstaystrong.com/#setup">
   <link rel="alternate" hreflang="en" href="https://paceandstaystrong.com/demo.html">
   <link rel="alternate" hreflang="zh-Hant" href="https://paceandstaystrong.com/zh/demo.html">
   <link rel="alternate" hreflang="x-default" href="https://paceandstaystrong.com/demo.html">
-  <link rel="stylesheet" href="assets/styles.css?v=first-visit-20260917">
-  <link rel="stylesheet" href="assets/demo.css?v=demo-stream-20260926">
-  <script src="assets/demo.js?v=demo-stream-20260926" defer></script>
+  <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
-  <div class="wrap demo-page">
-    <nav class="site-nav" aria-label="Primary navigation">
-      <a class="brand" href="index.html">Pace &amp; Stay Strong</a>
-      <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="index.html#how-it-works">How it works</a>
-        <a href="index.html#what-you-connect">FAQ</a>
-        <a href="index.html#setup">Get started</a>
-        <a class="nav-cta" href="demo.html" aria-current="page">Try it</a>
-        <a class="nav-lang" href="zh/demo.html" hreflang="zh-Hant" lang="zh-Hant">中文</a>
-      </div>
-    </nav>
-
-    <main>
-      <header class="demo-header">
-        <h1>Ask the coach what you actually want to know.</h1>
-        <p class="lede">The coach answers live, about a demo athlete rather than about you.</p>
-        <p class="trust-line">No sign-in · Nothing of yours connected · Nothing gets written</p>
-      </header>
-
-      <div
-        class="demo-layout"
-        data-demo-root
-        data-endpoint="https://demo-api.paceandstaystrong.com/demo/v1/respond"
-        data-coach-label="Coach"
-        data-you-label="You"
-        data-sending-text="Reading this athlete's training…"
-        data-waiting-hint="Usually 10 to 30 seconds."
-        data-failure-text="Nothing is coming back right now. You can still connect the real coach from the homepage."
-        data-reset-text="This conversation started over. The coach cannot see anything above this line, and answered what follows without it."
-        data-turn-limit-text="This conversation has reached its limit. Reload the page to start a new one."
-        data-busy-text="A lot of people are trying the demo right now. Give it a few seconds."
-      >
-        <section class="demo-chat" aria-labelledby="chat-title">
-          <h2 id="chat-title">The conversation</h2>
-
-          <div class="demo-prompts" aria-label="Suggested questions">
-            <button class="demo-prompt" type="button" data-demo-prompt="I can only train three days next week, 45 minutes each. I want a faster 10K without losing strength. How should I use those three days?">I only have three days a week. How do I fit in running and lifting?</button>
-            <button class="demo-prompt" type="button" data-demo-prompt="Am I running any better lately? What can you actually tell from my recent runs, and what is still too early to say?">Am I actually running better lately?</button>
-            <button class="demo-prompt" type="button" data-demo-prompt="Thursday is gone this week and I cannot train that day. What would you keep, and what would you drop?">Thursday just disappeared. How do I change this week?</button>
-          </div>
-
-          <div class="demo-transcript" data-demo-transcript aria-live="polite" aria-label="Demo conversation">
-            <!-- The page's own opening, in the page's own voice. It is a note rather than a
-                 turn for the same reason the reset line is: nobody said it. Wearing the
-                 coach's label would have it asserting this athlete's training in a voice
-                 that reads no evidence and that the conversation itself never hears — the
-                 request body carries the session id and the message, nothing else. -->
-            <p class="demo-notice" role="note">The coach reads this athlete's full training record — the panel beside this is the short version. Ask a suggested question or type your own.</p>
-          </div>
-
-          <form class="demo-form" data-demo-form>
-            <label for="demo-message"><strong>Your question</strong></label>
-            <textarea class="demo-input" id="demo-message" data-demo-input maxlength="1200" placeholder="Ask about this athlete's week, how their training is going, or how to fit running and lifting together." required></textarea>
-            <div class="demo-actions">
-              <button class="demo-send" type="submit" data-demo-send>Send</button>
-              <p class="demo-status" data-demo-status role="status" aria-live="polite"></p>
-            </div>
-          </form>
-
-          <p class="demo-handoff" data-demo-handoff hidden>Want this reading your own training? <a href="index.html#setup">Get started →</a></p>
-        </section>
-
-        <aside class="demo-athlete" aria-labelledby="athlete-title">
-          <h2 id="athlete-title">The demo athlete</h2>
-          <ul class="demo-facts">
-            <li class="demo-fact"><strong>Goal</strong><span>10K under 58 minutes, while keeping their strength</span></li>
-            <li class="demo-fact"><strong>Recently</strong><span>About 34 km a week · longest run 15 km</span></li>
-            <li class="demo-fact"><strong>Time</strong><span>Tuesday, Wednesday, Thursday, Saturday · 40 to 85 minutes</span></li>
-          </ul>
-          <p class="demo-disclosure">A made-up athlete with a full training history behind them. Nothing you ask here is saved.</p>
-        </aside>
-      </div>
-
-      <div class="demo-exit">
-        <h2>Ready for your own plan?</h2>
-        <p>Connect the coach to Claude and your own Intervals.icu account, and it starts from your training instead of this one.</p>
-        <div class="actions">
-          <a class="button" href="index.html#setup">Get started</a>
-          <a class="button secondary" href="index.html#full-story">Watch the 42-second story</a>
-        </div>
-      </div>
-    </main>
-
-    <footer>
-      <div class="footer-row">
-        <span>Pace &amp; Stay Strong · Long Run Hybrid Coach</span>
-        <span><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="support.html">Support</a></span>
-      </div>
-    </footer>
-  </div>
+  <main class="legal">
+    <header><h1>The interactive demo has closed</h1><p class="meta">Connect the coach in Claude or ChatGPT to use it with your own training.</p></header>
+    <p><a class="button" href="index.html#setup">Connect the coach</a></p>
+  </main>
 </body>
 </html>
