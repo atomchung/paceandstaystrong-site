@@ -18,12 +18,19 @@
     </div>
     <header>
       <h1>Privacy Policy</h1>
-      <p class="meta">Last updated: 18 September 2026 · Operated by an independent developer in Taiwan.</p>
+      <p class="meta">Last updated: 28 October 2026 · Operated by an independent developer in Taiwan.</p>
     </header>
 
     <p>This policy explains what Long Run Hybrid Coach processes, why it is needed, where it goes, and how to revoke access or delete product-held data.</p>
 
     <h2>1. Data processed and purpose</h2>
+    <h3>OpenAI Plugin entry</h3>
+    <p>The OpenAI Plugin entry of Long Run Hybrid Coach uses <code>oai-plugin.paceandstaystrong.com</code> and supports running and strength-training planning through Intervals.icu. It processes completed-activity summaries, including date, sport, duration, distance, pace, exercise heart rate and training load, together with training information explicitly supplied in MCP tool calls. Athlete-supplied records include goals, availability, training preferences, strength sets and loads, training sessions and notes about how the athlete feels. These records maintain the current 28-day direction, support an executable week, reconcile planned and completed sessions, and support explicitly confirmed updates to product-owned calendar workouts.</p>
+    <p>The Intervals connection uses activity-reading, calendar-management and sport-settings permissions. The account display name and email address identify the connected account for the current request.</p>
+    <p>The selected AI interface processes the conversation and tool results under its own terms and privacy policy. This service processes the arguments that interface sends in MCP tool calls and performs the authorized Intervals operations needed for the requested training task. Railway hosts the service.</p>
+
+    <h3>Full coach service</h3>
+    <p>The full coach service at <code>mcp.paceandstaystrong.com</code> processes completed activities, available device recovery summaries, and athlete-supplied training and body records for its training-planning features. The following table describes its data categories and purposes. The storage, retention and account controls in the remaining sections apply to both service entries.</p>
     <table>
       <tr><th>Data</th><th>Purpose</th></tr>
       <tr><td>Completed activities</td><td>Reconcile planned training against what you actually completed and maintain the current direction.</td></tr>
@@ -36,6 +43,7 @@
     </table>
 
     <h2>2. Storage and authorization</h2>
+    <p>Each service entry maintains its own account mapping, plan versions, athlete-reported records, confirmations and delivery bookkeeping in an independent data space.</p>
     <p>When a hosted gateway is used, it stores owner-scoped product state including PlanState versions, decisions and receipts, athlete-reported evidence, and delivery bookkeeping needed to maintain one current plan. Provider identity and a keyed token fingerprint are stored separately so requests can resolve to the same owner.</p>
     <p>Request logs record the operation and its outcome, and identify the account by the same opaque reference your data export shows you; they last only as long as the hosting platform keeps them. The raw Intervals.icu OAuth access token is used for authorized requests but is not written to the owner state store or application logs. The OAuth client secret stays server-side and is not exposed to the active AI interface.</p>
 
@@ -47,6 +55,7 @@
     <p>Long Run Hybrid Coach reads from and writes to Intervals.icu under the authorization scopes you grant. Intervals.icu handles that data under its own terms and privacy policy. The product does not sell training data, use it for advertising, or write completed activities or wellness records.</p>
 
     <h2>5. Retention, correction, and deletion</h2>
+    <p>Training state for each service entry is retained until account-data deletion. Supported athlete-reported records can be corrected or retracted through the coach; product-held data can be exported through the coach or requested by email. Whole-account deletion follows the written request process on the <a href="support.html#data-by-email">support page</a>. Requests should identify the service entry concerned.</p>
     <p>Owner-scoped training state is retained until you delete it, so that current decisions can be reconciled and audited. There is no expiry and no inactivity sweep.</p>
     <p><strong>In the conversation:</strong> ask the coach for a copy of your data through the connection you already use. Deleting all of it is not done there and no tool performs it — ask the coach and it answers with the support page below.</p>
     <p><strong>By email:</strong> write to <a href="mailto:tingcctwai@gmail.com">tingcctwai@gmail.com</a>. <strong>This is the only route for deleting your data</strong>, and an export can be asked for the same way. It does not depend on your AI client letting a request through: some AI clients refuse a tool call at their own approval step before it reaches this service, and the conversation can then neither finish your request nor explain why — which is why the operation that cannot be undone is not offered there. You give your Intervals.icu athlete id and, where you can reach the page, a screenshot of your Intervals.icu Settings page showing it; the export or the deletion is then run for you. A copy goes only to the address that made the request, and a deletion runs against the exact scope you confirm. You will never be asked for a password, an API key, or an authorization token. The steps are on the <a href="support.html#data-by-email">support page</a>.</p>
