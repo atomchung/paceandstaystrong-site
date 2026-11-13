@@ -69,7 +69,15 @@
         <ol class="steps setup-steps" role="list">
           <li class="step" id="client-options"><strong>Start in Claude.</strong>
             <p>Claude’s free plan allows one custom connector, which is all this needs. Open <a href="https://claude.ai/customize/connectors">Claude’s connector settings</a>.</p>
-            <details class="setup-detail"><summary>I use ChatGPT</summary><p>A personal plan can add it too: on ChatGPT Pro, Plugins → “+” → paste the same server URL and choose OAuth. From there it reads your training and works through a plan with you, preview included. Saving that plan, recording what you trained and sending workouts is the half that can fall short — OpenAI currently lists full MCP write as a beta on Business, Enterprise and Edu, and <a href="https://help.openai.com/en/articles/12584461-developer-mode-and-mcp-apps-in-chatgpt">its setup page</a> is where that answer is kept up to date. For the whole flow today, start with Claude.</p></details>
+            <details class="setup-detail"><summary>I use ChatGPT</summary>
+              <p>ChatGPT’s plugin directory has a Plugin version of this coach, with no address to paste. You need an Intervals.icu account that your watch already syncs its training to.</p>
+              <ol>
+                <li>Open <a href="https://chatgpt.com/plugins/plugin_asdk_app_6ae202f14434819180f54642d659a519">Long Run Hybrid Coach’s install page</a> and choose Install plugin. If you are not signed in to ChatGPT, it asks you to sign in first.</li>
+                <li>When it connects, sign in to your own Intervals.icu account and approve the activity-reading, calendar-management and sport-settings permissions.</li>
+                <li>In a ChatGPT conversation, send the message in step 4.</li>
+              </ol>
+              <p>The Plugin version reads only your completed training from Intervals.icu, not the recovery data held there. Its plan is separate from the full version’s — the one you add with the address in step 2 — and nothing is shared between the two.</p>
+              <p>To use the full version in ChatGPT, a personal plan can add it too: on ChatGPT Pro, Plugins → “+” → paste the same server URL and choose OAuth. From there it reads your training and works through a plan with you, preview included. Saving that plan, recording what you trained and sending workouts is the half that can fall short — OpenAI currently lists full MCP write as a beta on Business, Enterprise and Edu, and <a href="https://help.openai.com/en/articles/12584461-developer-mode-and-mcp-apps-in-chatgpt">its setup page</a> is where that answer is kept up to date. For the whole flow today, start with Claude.</p></details>
           </li>
           <li class="step"><strong>Add Long Run Hybrid Coach.</strong>
             <p>In Claude: Customize → Connectors → “+” → Add custom connector. Name it Long Run Hybrid Coach, and paste this address into the server URL field.</p>
